@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 1, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | Embedding provider pinned (E8); vector index implementation and lifecycle recorded (E15/R14); hosted-embedding trust-boundary scope documented (C5); see §6 |
+| **Last change** | Field-label synonym table added for query construction (E16); see §6 |
 
 ---
 
@@ -38,8 +38,9 @@ Single source of truth for pinned engineering constants and measured values.
 | E13 | Chunk size | **Provisional: 500 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
 | E14 | Chunk overlap | **Provisional: 50 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
 | E15 | Vector index implementation | In-process, per-case, pure-Python brute-force cosine similarity. No FAISS/ANN index, no external vector database, no numpy — unjustified by the per-case data volume (tens to low hundreds of chunks). | BUILD P1 task 4 |
+| E16 | Field-label synonym table | **Provisional.** 10 static synonym groups (`app/retrieval/query.py`, `FIELD_LABEL_SYNONYM_GROUPS`) seeded from the entity types already named in P12 — PAN, Aadhaar, DOB, passport, phone, email, address, PIN code, account number, name. Hand-authored, not tuned; recall@k (BUILD P1 tasks 7-8) is what will validate it. No LLM-based expansion. | BUILD P1 task 5 |
 
-E6–E15 are unresolved by design. Do not infer them; pin them in the stated phase and record
+E6–E16 are unresolved by design. Do not infer them; pin them in the stated phase and record
 them here in the same commit.
 
 ---
@@ -225,6 +226,7 @@ affected measurements re-run.
 | 2026-07-26 | E13, E14 | *(absent)* | Added: 500 chars / 50 chars | Chunking (BUILD P1 task 2) needed a size and overlap constant that no prior document named. Conventional starting values, deliberately not tuned yet — recall@k (BUILD P1 tasks 7-8) is what will validate them. | None — no measurements taken yet |
 | 2026-07-26 | E8 | `TBD — Phase 1` | OpenAI `text-embedding-3-small` | Hosted API required by BUILD P1 task 3 (free-tier deployment constraint excludes local models). Chosen for consistency with this project's OpenAI-compatible framing (ARCH §1), keeping a single vendor relationship across embeddings (Phase 1) and the eventual generative LLM (E9, Phase 2). See C5 for the trust-boundary reasoning this decision required. | None — no measurements taken yet |
 | 2026-07-26 | E15, R14 | *(absent)* | Added | Per-case vector index (BUILD P1 task 4) needed a named implementation choice and lifecycle. In-process brute-force cosine similarity chosen over FAISS/external vector DB — unjustified by per-case data volume and would violate the single-container constraint (ARCH N5, §9). Lifecycle mirrors R8 (process-memory, not durable). | None — no measurements taken yet |
+| 2026-07-26 | E16 | *(absent)* | Added: 10 synonym groups | Query construction (BUILD P1 task 5) needed a versioned starting point for its synonym table. Hand-authored, deliberately not tuned — recall@k (BUILD P1 tasks 7-8) is what will validate it, same treatment as E13/E14. | None — no measurements taken yet |
 
 ---
 
