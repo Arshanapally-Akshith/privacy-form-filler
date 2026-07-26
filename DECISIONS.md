@@ -13,9 +13,9 @@ Single source of truth for pinned engineering constants and measured values.
 
 | | |
 |---|---|
-| **Status** | Phase 0, in progress |
+| **Status** | Phase 1, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | Static build output path and build command pinned (R11/R12/R12a); see §6 |
+| **Last change** | OCR engine pinned; text-layer threshold and minimum image resolution provisionally pinned (E10-E12); see §6 |
 
 ---
 
@@ -32,9 +32,9 @@ Single source of truth for pinned engineering constants and measured values.
 | E7 | Confidence score definition | **TBD — Phase 2** | BUILD P2, task 4 |
 | E8 | Embedding provider and model | **TBD — Phase 1** | BUILD P1, task 3 |
 | E9 | LLM provider and model | **TBD — Phase 1** | Implied by BUILD P1/P2; not specified |
-| E10 | OCR engine | **TBD — Phase 1**. Must be CPU-only. | ARCH §6.1, D11; BUILD P1 task 1a |
-| E11 | Text-layer sufficiency threshold for OCR fallback | **TBD — Phase 1** | ARCH §6.1; BUILD P1 task 1b |
-| E12 | Minimum accepted image resolution | **TBD — Phase 1** | BUILD P1 task 1c |
+| E10 | OCR engine | Tesseract, via `pytesseract`. CPU-only; no GPU runtime pulled in (unlike e.g. EasyOCR). | ARCH §6.1, D11; BUILD P1 task 1a |
+| E11 | Text-layer sufficiency threshold for OCR fallback | **Provisional: 20 characters.** Native page text shorter than this triggers OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | ARCH §6.1; BUILD P1 task 1b |
+| E12 | Minimum accepted image resolution | **Provisional: 600×600 px.** Standalone images below this on either dimension are rejected outright rather than sent through OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | BUILD P1 task 1c |
 
 E6–E12 are unresolved by design. Do not infer them; pin them in the stated phase and record
 them here in the same commit.
@@ -215,6 +215,9 @@ affected measurements re-run.
 | 2026-07-26 | E10–E12, R9a–R9c, V17–V18 | *(absent)* | Added | OCR intake path was implied by input formats but had no named mechanism, routing rule, or evaluation coverage. | None — no measurements taken yet |
 | 2026-07-26 | P6–P9 | `TBD — Phase 0` | Dataset source, version, retrieval date, and committed path (see §2) | Candidate evaluated and selected per `ARCHITECTURE.md` §12 open item; official data.gov.in "All India Pincode Directory till last month" (GODL-India licensed) chosen over community/third-party mirrors for license clarity. Derived to `app/config/data/pincode_district_state.csv`. | None — no measurements taken yet |
 | 2026-07-26 | R11, R12, R12a | `TBD — Phase 0, agreed with frontend developer` | `frontend/dist/`, `npm run build`, same-origin static mount | This is a solo project — no separate frontend developer exists, so `BUILD.md` task 6's "agree with frontend developer" collapses to a single-owner decision. Vite convention chosen as the current standard for new React SPAs. | None — no measurements taken yet |
+| 2026-07-26 | E10 | `TBD — Phase 1` | Tesseract via `pytesseract` | CPU-only requirement (ARCH §9 deployment constraint) rules out GPU-backed engines (e.g. EasyOCR); mature, small container footprint. | None — no measurements taken yet |
+| 2026-07-26 | E11 | `TBD — Phase 1` | Provisional: 20 characters | Starting value for per-page native-vs-OCR routing (BUILD P1 task 1b), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
+| 2026-07-26 | E12 | `TBD — Phase 1` | Provisional: 600×600 px | Starting value for standalone-image rejection (BUILD P1 task 1c), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
 
 ---
 
