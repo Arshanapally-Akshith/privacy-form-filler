@@ -1,0 +1,8 @@
+{
+  "name": "test_invalid_unknown_action",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "full_name": "redact"
+  },
+  "permitted_cooccurrence_sets": []
+}

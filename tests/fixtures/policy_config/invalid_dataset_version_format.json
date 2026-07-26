@@ -1,0 +1,8 @@
+{
+  "name": "test_invalid_dataset_version_format",
+  "dataset_version": "26-07-2026",
+  "field_actions": {
+    "full_name": "tokenize"
+  },
+  "permitted_cooccurrence_sets": []
+}

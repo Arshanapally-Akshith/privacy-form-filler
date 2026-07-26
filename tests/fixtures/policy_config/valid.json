@@ -1,0 +1,14 @@
+{
+  "name": "test_valid_config",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "full_name": "tokenize",
+    "date_of_birth": "generalize",
+    "pin_code": "derive",
+    "form_title": "pass_through"
+  },
+  "permitted_cooccurrence_sets": [
+    ["age_band", "state"],
+    ["age_band", "city"]
+  ]
+}

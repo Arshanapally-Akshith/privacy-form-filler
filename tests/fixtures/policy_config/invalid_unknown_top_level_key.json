@@ -1,0 +1,9 @@
+{
+  "name": "test_invalid_unknown_top_level_key",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "full_name": "tokenize"
+  },
+  "permitted_cooccurrence_sets": [],
+  "unexpected_key": "should be rejected"
+}

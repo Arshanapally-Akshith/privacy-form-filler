@@ -1,0 +1,7 @@
+{
+  "name": "test_invalid_missing_dataset_version",
+  "field_actions": {
+    "full_name": "tokenize"
+  },
+  "permitted_cooccurrence_sets": []
+}

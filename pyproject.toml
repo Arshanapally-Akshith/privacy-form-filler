@@ -9,6 +9,7 @@ dependencies = [
     "langgraph",
     "pydantic-settings",
     "python-multipart",
+    "jsonschema",
 ]
 
 [dependency-groups]

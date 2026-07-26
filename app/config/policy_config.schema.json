@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://privacy-form-filler.local/schemas/policy_config.schema.json",
+  "title": "Policy Config",
+  "description": "Schema for privacy policy config JSON files (ARCHITECTURE.md §5.3). Validates structure only: per-field action mapping, permitted co-occurrence set declarations, and the referenced dataset version. It does not encode which combinations are privacy-safe — that enforcement (the co-occurrence guard) is Phase 3 runtime logic, informed by Phase 7 k-anonymity results.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "dataset_version", "field_actions", "permitted_cooccurrence_sets"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_version": {
+      "type": "string",
+      "description": "PIN → city/state dataset version reference. Pinned convention: the retrieval date (DECISIONS.md P8), format YYYY-MM-DD.",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "field_actions": {
+      "type": "object",
+      "description": "Per-field policy action mapping. Keys are form field names.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["tokenize", "generalize", "derive", "pass_through"]
+      }
+    },
+    "permitted_cooccurrence_sets": {
+      "type": "array",
+      "description": "Each element is one set of derived/generalized attribute names permitted to co-occur within a session (ARCHITECTURE.md §5.2). Structural validity only — not a privacy determination.",
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
