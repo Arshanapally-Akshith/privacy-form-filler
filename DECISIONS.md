@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 1, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | OCR engine pinned; text-layer threshold and minimum image resolution provisionally pinned (E10-E12); see §6 |
+| **Last change** | Chunk size and overlap provisionally pinned (E13/E14); see §6 |
 
 ---
 
@@ -35,8 +35,10 @@ Single source of truth for pinned engineering constants and measured values.
 | E10 | OCR engine | Tesseract, via `pytesseract`. CPU-only; no GPU runtime pulled in (unlike e.g. EasyOCR). | ARCH §6.1, D11; BUILD P1 task 1a |
 | E11 | Text-layer sufficiency threshold for OCR fallback | **Provisional: 20 characters.** Native page text shorter than this triggers OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | ARCH §6.1; BUILD P1 task 1b |
 | E12 | Minimum accepted image resolution | **Provisional: 600×600 px.** Standalone images below this on either dimension are rejected outright rather than sent through OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | BUILD P1 task 1c |
+| E13 | Chunk size | **Provisional: 500 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
+| E14 | Chunk overlap | **Provisional: 50 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
 
-E6–E12 are unresolved by design. Do not infer them; pin them in the stated phase and record
+E6–E14 are unresolved by design. Do not infer them; pin them in the stated phase and record
 them here in the same commit.
 
 ---
@@ -218,6 +220,7 @@ affected measurements re-run.
 | 2026-07-26 | E10 | `TBD — Phase 1` | Tesseract via `pytesseract` | CPU-only requirement (ARCH §9 deployment constraint) rules out GPU-backed engines (e.g. EasyOCR); mature, small container footprint. | None — no measurements taken yet |
 | 2026-07-26 | E11 | `TBD — Phase 1` | Provisional: 20 characters | Starting value for per-page native-vs-OCR routing (BUILD P1 task 1b), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
 | 2026-07-26 | E12 | `TBD — Phase 1` | Provisional: 600×600 px | Starting value for standalone-image rejection (BUILD P1 task 1c), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
+| 2026-07-26 | E13, E14 | *(absent)* | Added: 500 chars / 50 chars | Chunking (BUILD P1 task 2) needed a size and overlap constant that no prior document named. Conventional starting values, deliberately not tuned yet — recall@k (BUILD P1 tasks 7-8) is what will validate them. | None — no measurements taken yet |
 
 ---
 
