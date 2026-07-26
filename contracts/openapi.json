@@ -1,0 +1,593 @@
+{
+  "components": {
+    "schemas": {
+      "Body_create_case_api_cases_post": {
+        "properties": {
+          "documents": {
+            "items": {
+              "contentMediaType": "application/octet-stream",
+              "type": "string"
+            },
+            "title": "Documents",
+            "type": "array"
+          },
+          "form_schema_id": {
+            "title": "Form Schema Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "form_schema_id",
+          "documents"
+        ],
+        "title": "Body_create_case_api_cases_post",
+        "type": "object"
+      },
+      "CaseStatus": {
+        "enum": [
+          "queued",
+          "processing",
+          "human_review",
+          "completed",
+          "failed"
+        ],
+        "title": "CaseStatus",
+        "type": "string"
+      },
+      "CaseStatusResponse": {
+        "properties": {
+          "case_id": {
+            "title": "Case Id",
+            "type": "string"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/Progress"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CaseStatus"
+          }
+        },
+        "required": [
+          "case_id",
+          "status",
+          "progress"
+        ],
+        "title": "CaseStatusResponse",
+        "type": "object"
+      },
+      "CreateCaseResponse": {
+        "properties": {
+          "case_id": {
+            "title": "Case Id",
+            "type": "string"
+          },
+          "form_schema_id": {
+            "title": "Form Schema Id",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CaseStatus"
+          }
+        },
+        "required": [
+          "case_id",
+          "form_schema_id",
+          "status"
+        ],
+        "title": "CreateCaseResponse",
+        "type": "object"
+      },
+      "FieldRecord": {
+        "properties": {
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Provenance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "$ref": "#/components/schemas/FieldState"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "name",
+          "label",
+          "state"
+        ],
+        "title": "FieldRecord",
+        "type": "object"
+      },
+      "FieldState": {
+        "enum": [
+          "filled",
+          "low_confidence",
+          "conflict",
+          "missing",
+          "human_reviewed"
+        ],
+        "title": "FieldState",
+        "type": "string"
+      },
+      "FieldsResponse": {
+        "properties": {
+          "case_id": {
+            "title": "Case Id",
+            "type": "string"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldRecord"
+            },
+            "title": "Fields",
+            "type": "array"
+          }
+        },
+        "required": [
+          "case_id",
+          "fields"
+        ],
+        "title": "FieldsResponse",
+        "type": "object"
+      },
+      "FormSchemaSummary": {
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description"
+        ],
+        "title": "FormSchemaSummary",
+        "type": "object"
+      },
+      "FormSchemasResponse": {
+        "properties": {
+          "form_schemas": {
+            "items": {
+              "$ref": "#/components/schemas/FormSchemaSummary"
+            },
+            "title": "Form Schemas",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form_schemas"
+        ],
+        "title": "FormSchemasResponse",
+        "type": "object"
+      },
+      "Progress": {
+        "properties": {
+          "fields_completed": {
+            "title": "Fields Completed",
+            "type": "integer"
+          },
+          "fields_total": {
+            "title": "Fields Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "fields_total",
+          "fields_completed"
+        ],
+        "title": "Progress",
+        "type": "object"
+      },
+      "Provenance": {
+        "properties": {
+          "document_id": {
+            "title": "Document Id",
+            "type": "string"
+          },
+          "page_number": {
+            "title": "Page Number",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "document_id",
+          "page_number"
+        ],
+        "title": "Provenance",
+        "type": "object"
+      },
+      "ReviewDecision": {
+        "enum": [
+          "approve",
+          "override"
+        ],
+        "title": "ReviewDecision",
+        "type": "string"
+      },
+      "ReviewRequest": {
+        "properties": {
+          "decision": {
+            "$ref": "#/components/schemas/ReviewDecision"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "ReviewRequest",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "privacy-form-filler",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/cases": {
+      "post": {
+        "operationId": "create_case_api_cases_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_case_api_cases_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCaseResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "Create Case",
+        "tags": [
+          "cases"
+        ]
+      }
+    },
+    "/api/cases/{case_id}/fields": {
+      "get": {
+        "operationId": "get_case_fields_api_cases__case_id__fields_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "case_id",
+            "required": true,
+            "schema": {
+              "title": "Case Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "Get Case Fields",
+        "tags": [
+          "cases"
+        ]
+      }
+    },
+    "/api/cases/{case_id}/fields/{field_name}/review": {
+      "post": {
+        "operationId": "review_field_api_cases__case_id__fields__field_name__review_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "case_id",
+            "required": true,
+            "schema": {
+              "title": "Case Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "field_name",
+            "required": true,
+            "schema": {
+              "title": "Field Name",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldRecord"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "Review Field",
+        "tags": [
+          "cases"
+        ]
+      }
+    },
+    "/api/cases/{case_id}/result": {
+      "get": {
+        "operationId": "get_case_result_api_cases__case_id__result_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "case_id",
+            "required": true,
+            "schema": {
+              "title": "Case Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "Get Case Result",
+        "tags": [
+          "cases"
+        ]
+      }
+    },
+    "/api/cases/{case_id}/status": {
+      "get": {
+        "operationId": "get_case_status_api_cases__case_id__status_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "case_id",
+            "required": true,
+            "schema": {
+              "title": "Case Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseStatusResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "Get Case Status",
+        "tags": [
+          "cases"
+        ]
+      }
+    },
+    "/api/form-schemas": {
+      "get": {
+        "operationId": "list_form_schemas_api_form_schemas_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormSchemasResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "summary": "List Form Schemas",
+        "tags": [
+          "form-schemas"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Health Health Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    }
+  }
+}

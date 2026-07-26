@@ -8,6 +8,7 @@ dependencies = [
     "uvicorn[standard]",
     "langgraph",
     "pydantic-settings",
+    "python-multipart",
 ]
 
 [dependency-groups]
