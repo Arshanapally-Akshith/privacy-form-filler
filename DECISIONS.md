@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 0, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | PIN → city/state dataset source, version, retrieval date, and committed path pinned (P6–P9); see §6 |
+| **Last change** | Static build output path and build command pinned (R11/R12/R12a); see §6 |
 
 ---
 
@@ -114,8 +114,9 @@ adjusted afterward. Moving it post-hoc is a documented anti-pattern for this pro
 | R9b | Text acquisition routing | Native text first; OCR fallback when a page's text layer is absent or below E11. Decided per page, not per document. | ARCH §6.1, D12 |
 | R9c | Text-acquisition path logging | Recorded per page, so OCR error and extraction error stay separable | BUILD P1 task 1b |
 | R10 | LLM response caching | Cached by input hash for evaluation runs | BUILD P6 risk table |
-| R11 | Static build output path | **TBD — Phase 0**, agreed with frontend developer | ARCH §9, BUILD P0 task 6 |
-| R12 | Frontend build command | **TBD — Phase 0**, agreed with frontend developer | BUILD P0, task 6 |
+| R11 | Static build output path | `frontend/dist/` (Vite default) | ARCH §9, BUILD P0 task 6 |
+| R12 | Frontend build command | `npm run build` (Vite) | BUILD P0, task 6 |
+| R12a | Same-origin serving | SPA served from the same origin as the API — FastAPI mounts `frontend/dist/` as static assets in the same container/process (R1). No separate frontend host, no CORS configuration needed. | ARCH §9, BUILD P0 task 6 |
 | R13 | Deployment host | **TBD — Phase 8** | BUILD P8, task 2 |
 
 ---
@@ -213,6 +214,7 @@ affected measurements re-run.
 | 2026-07-26 | R9 | "2–3 hand-authored schemas" | KYC / Account Opening + Insurance Policy Application | Demonstration forms frozen. Implementation choice; engine remains form-agnostic. | None — no measurements taken yet |
 | 2026-07-26 | E10–E12, R9a–R9c, V17–V18 | *(absent)* | Added | OCR intake path was implied by input formats but had no named mechanism, routing rule, or evaluation coverage. | None — no measurements taken yet |
 | 2026-07-26 | P6–P9 | `TBD — Phase 0` | Dataset source, version, retrieval date, and committed path (see §2) | Candidate evaluated and selected per `ARCHITECTURE.md` §12 open item; official data.gov.in "All India Pincode Directory till last month" (GODL-India licensed) chosen over community/third-party mirrors for license clarity. Derived to `app/config/data/pincode_district_state.csv`. | None — no measurements taken yet |
+| 2026-07-26 | R11, R12, R12a | `TBD — Phase 0, agreed with frontend developer` | `frontend/dist/`, `npm run build`, same-origin static mount | This is a solo project — no separate frontend developer exists, so `BUILD.md` task 6's "agree with frontend developer" collapses to a single-owner decision. Vite convention chosen as the current standard for new React SPAs. | None — no measurements taken yet |
 
 ---
 
