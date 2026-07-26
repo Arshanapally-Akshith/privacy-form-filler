@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 0, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | OCR intake and demonstration forms pinned; see §6 |
+| **Last change** | PIN → city/state dataset source, version, retrieval date, and committed path pinned (P6–P9); see §6 |
 
 ---
 
@@ -50,10 +50,10 @@ them here in the same commit.
 | P3 | Generalize mapping | DOB → age band (per E1, E2) | ARCH §5.1 |
 | P4 | Derive mapping | PIN code → city, state | ARCH §5.1 |
 | P5 | Permitted transformation class | Deterministic transformations and trusted lookups only. No probabilistic inference, no LLM-based derivation. | ARCH §5.1 |
-| P6 | PIN → city/state dataset source | **TBD — Phase 0** | ARCH §5.4 |
-| P7 | PIN → city/state dataset version | **TBD — Phase 0** | ARCH §5.4 |
-| P8 | PIN dataset retrieval date | **TBD — Phase 0** | ARCH §5.4 |
-| P9 | PIN dataset committed path | **TBD — Phase 0** | ARCH §5.4 |
+| P6 | PIN → city/state dataset source | "All India Pincode Directory till last month", published by Department of Posts, Ministry of Communications, Government of India, via data.gov.in (Open Government Data Platform India). API resource id `5c2f62fe-5afa-4119-a499-fec9d604d5bd`. License: Government Open Data License – India (GODL-India). Dataset page: https://www.data.gov.in/resource/all-india-pincode-directory-till-last-month | ARCH §5.4 |
+| P7 | PIN → city/state dataset version | No formal version number is published by the source. Pinned by retrieval date (P8) and the dataset's own last-updated timestamp per API metadata: 2025-10-03T04:04:14Z. 165,627 rows / 19,586 unique pincodes at retrieval. | ARCH §5.4 |
+| P8 | PIN dataset retrieval date | 2026-07-26 | ARCH §5.4 |
+| P9 | PIN dataset committed path | `app/config/data/pincode_district_state.csv` (derived: pincode, district, statename only, deduplicated to 21,162 rows). Attribution and derivation notes: `app/config/data/PINCODE_DATASET_ATTRIBUTION.md`. | ARCH §5.4 |
 | P10 | Unknown PIN handling | Explicit fallback to Tokenize; never silently passed through | BUILD P3 risk table; CLAUDE §5 |
 | P11 | Co-occurrence violation behavior | Fails at config load with a specific error | ARCH §5.2 |
 | P12 | Detected entity types | Aadhaar, PAN, Passport, account numbers, phone, email, names, dates, PIN codes, addresses | BUILD P3, task 1 |
@@ -212,6 +212,7 @@ affected measurements re-run.
 |------|----|------|----|--------|---------------------|
 | 2026-07-26 | R9 | "2–3 hand-authored schemas" | KYC / Account Opening + Insurance Policy Application | Demonstration forms frozen. Implementation choice; engine remains form-agnostic. | None — no measurements taken yet |
 | 2026-07-26 | E10–E12, R9a–R9c, V17–V18 | *(absent)* | Added | OCR intake path was implied by input formats but had no named mechanism, routing rule, or evaluation coverage. | None — no measurements taken yet |
+| 2026-07-26 | P6–P9 | `TBD — Phase 0` | Dataset source, version, retrieval date, and committed path (see §2) | Candidate evaluated and selected per `ARCHITECTURE.md` §12 open item; official data.gov.in "All India Pincode Directory till last month" (GODL-India licensed) chosen over community/third-party mirrors for license clarity. Derived to `app/config/data/pincode_district_state.csv`. | None — no measurements taken yet |
 
 ---
 
