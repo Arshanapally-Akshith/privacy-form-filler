@@ -1,6 +1,14 @@
 import json
 import logging
 
+# Attribute names present on every LogRecord, used to isolate caller-supplied
+# `extra=` fields so they can be surfaced as first-class JSON keys instead of
+# being silently dropped.
+_STANDARD_RECORD_ATTRS = set(logging.LogRecord("", 0, "", 0, "", (), None).__dict__) | {
+    "message",
+    "asctime",
+}
+
 
 class JSONFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
@@ -10,6 +18,12 @@ class JSONFormatter(logging.Formatter):
             "logger": record.name,
             "message": record.getMessage(),
         }
+        extra = {
+            key: value
+            for key, value in record.__dict__.items()
+            if key not in _STANDARD_RECORD_ATTRS
+        }
+        payload.update(extra)
         if record.exc_info:
             payload["exc_info"] = self.formatException(record.exc_info)
         return json.dumps(payload)
