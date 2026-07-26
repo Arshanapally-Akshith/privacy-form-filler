@@ -7,3 +7,4 @@ class Settings(BaseSettings):
     app_name: str = "privacy-form-filler"
     environment: str = "development"
     log_level: str = "INFO"
+    enable_debug_endpoints: bool = True

@@ -42,8 +42,8 @@ def test_case_a_query_never_returns_case_b_chunks() -> None:
     results = index_a.query(query_vector=[1.0, 0.0], top_k=10)
 
     assert len(results) == 1
-    assert results[0].chunk.document_id == "case-a-doc"
-    assert all(r.chunk.document_id != "case-b-doc" for r in results)
+    assert results[0][1].chunk.document_id == "case-a-doc"
+    assert all(embedded.chunk.document_id != "case-b-doc" for _, embedded in results)
 
 
 def test_identical_content_and_vectors_across_cases_still_respect_isolation() -> None:
@@ -61,7 +61,7 @@ def test_identical_content_and_vectors_across_cases_still_respect_isolation() ->
     results = index_a.query(query_vector=shared_vector, top_k=10)
 
     assert len(results) == 1
-    assert results[0].chunk.document_id == "case-a-doc"
+    assert results[0][1].chunk.document_id == "case-a-doc"
 
 
 def test_embed_chunks_preserves_provenance(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -100,4 +100,6 @@ def test_query_ranks_by_similarity_and_respects_top_k() -> None:
 
     results = index.query(query_vector=[1.0, 0.0], top_k=2)
 
-    assert [r.chunk.text for r in results] == ["exact", "near"]
+    assert [embedded.chunk.text for _, embedded in results] == ["exact", "near"]
+    scores = [score for score, _ in results]
+    assert scores[0] > scores[1]

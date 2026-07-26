@@ -77,6 +77,62 @@
         "title": "CreateCaseResponse",
         "type": "object"
       },
+      "DebugRetrieveRequest": {
+        "properties": {
+          "case_id": {
+            "title": "Case Id",
+            "type": "string"
+          },
+          "field_label": {
+            "minLength": 1,
+            "title": "Field Label",
+            "type": "string"
+          },
+          "top_k": {
+            "exclusiveMinimum": 0.0,
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "case_id",
+          "field_label",
+          "top_k"
+        ],
+        "title": "DebugRetrieveRequest",
+        "type": "object"
+      },
+      "DebugRetrieveResponse": {
+        "properties": {
+          "case_id": {
+            "title": "Case Id",
+            "type": "string"
+          },
+          "chunks": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievedChunk"
+            },
+            "title": "Chunks",
+            "type": "array"
+          },
+          "field_label": {
+            "title": "Field Label",
+            "type": "string"
+          },
+          "query_text": {
+            "title": "Query Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "case_id",
+          "field_label",
+          "query_text",
+          "chunks"
+        ],
+        "title": "DebugRetrieveResponse",
+        "type": "object"
+      },
       "FieldRecord": {
         "properties": {
           "confidence": {
@@ -238,6 +294,39 @@
         "title": "Provenance",
         "type": "object"
       },
+      "RetrievedChunk": {
+        "properties": {
+          "chunk_index": {
+            "title": "Chunk Index",
+            "type": "integer"
+          },
+          "document_id": {
+            "title": "Document Id",
+            "type": "string"
+          },
+          "page_number": {
+            "title": "Page Number",
+            "type": "integer"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_id",
+          "page_number",
+          "chunk_index",
+          "text",
+          "score"
+        ],
+        "title": "RetrievedChunk",
+        "type": "object"
+      },
       "ReviewDecision": {
         "enum": [
           "approve",
@@ -315,6 +404,9 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "Create Case",
@@ -362,6 +454,9 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "Get Case Fields",
@@ -428,6 +523,9 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "Review Field",
@@ -476,6 +574,9 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "Get Case Result",
@@ -523,11 +624,63 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "Get Case Status",
         "tags": [
           "cases"
+        ]
+      }
+    },
+    "/api/debug/retrieve": {
+      "post": {
+        "operationId": "debug_retrieve_api_debug_retrieve_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DebugRetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebugRetrieveResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          }
+        },
+        "summary": "Debug Retrieve",
+        "tags": [
+          "debug"
         ]
       }
     },
@@ -559,6 +712,9 @@
           },
           "501": {
             "description": "Not Implemented"
+          },
+          "502": {
+            "description": "Bad Gateway"
           }
         },
         "summary": "List Form Schemas",

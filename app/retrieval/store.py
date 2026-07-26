@@ -46,13 +46,10 @@ class CaseVectorIndex:
     def add(self, embedded_chunks: list[EmbeddedChunk]) -> None:
         self._entries.extend(embedded_chunks)
 
-    def query(self, query_vector: list[float], top_k: int) -> list[EmbeddedChunk]:
-        ranked = sorted(
-            self._entries,
-            key=lambda entry: _cosine_similarity(query_vector, entry.vector),
-            reverse=True,
-        )
-        return ranked[:top_k]
+    def query(self, query_vector: list[float], top_k: int) -> list[tuple[float, EmbeddedChunk]]:
+        scored = [(_cosine_similarity(query_vector, entry.vector), entry) for entry in self._entries]
+        scored.sort(key=lambda pair: pair[0], reverse=True)
+        return scored[:top_k]
 
     def __len__(self) -> int:
         return len(self._entries)
@@ -77,3 +74,17 @@ class CaseIndexRegistry:
         if case_id not in self._indices:
             self._indices[case_id] = CaseVectorIndex()
         return self._indices[case_id]
+
+    def get(self, case_id: str) -> CaseVectorIndex | None:
+        """Non-creating lookup. Returns None for a case_id that was never populated, so
+        callers (e.g. the debug retrieval endpoint) can distinguish "unknown case" from
+        "known case, nothing indexed yet" instead of silently manufacturing an empty index
+        for a typo'd id."""
+        return self._indices.get(case_id)
+
+
+# Process-global, in-memory registry (DECISIONS.md R14). Whatever populates a case's
+# index (currently: direct Python calls from tests/harnesses -- see DECISIONS.md notes on
+# app/api/debug.py) and whatever queries it (the debug retrieval endpoint) share this same
+# instance.
+case_index_registry = CaseIndexRegistry()

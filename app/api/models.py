@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class FieldState(str, Enum):
@@ -73,3 +73,24 @@ class FormSchemaSummary(BaseModel):
 
 class FormSchemasResponse(BaseModel):
     form_schemas: list[FormSchemaSummary]
+
+
+class DebugRetrieveRequest(BaseModel):
+    case_id: str
+    field_label: str = Field(min_length=1)
+    top_k: int = Field(gt=0)
+
+
+class RetrievedChunk(BaseModel):
+    document_id: str
+    page_number: int
+    chunk_index: int
+    text: str
+    score: float
+
+
+class DebugRetrieveResponse(BaseModel):
+    case_id: str
+    field_label: str
+    query_text: str
+    chunks: list[RetrievedChunk]

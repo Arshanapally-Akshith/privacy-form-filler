@@ -57,6 +57,7 @@ def test_end_to_end_query_composition_returns_expected_chunk_with_provenance(
     results = index.query(query_vector=query_vector, top_k=1)
 
     assert len(results) == 1
-    assert results[0].chunk.document_id == "doc-1"
-    assert results[0].chunk.page_number == 3
-    assert results[0].chunk.text == "PAN: ABCDE1234F"
+    _, embedded = results[0]
+    assert embedded.chunk.document_id == "doc-1"
+    assert embedded.chunk.page_number == 3
+    assert embedded.chunk.text == "PAN: ABCDE1234F"

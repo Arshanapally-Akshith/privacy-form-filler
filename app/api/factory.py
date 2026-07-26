@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from app.api.cases import router as cases_router
+from app.api.debug import router as debug_router
 from app.api.form_schemas import router as form_schemas_router
 from app.config.logging import configure_logging
 from app.config.settings import Settings
@@ -18,5 +19,7 @@ def create_app() -> FastAPI:
 
     app.include_router(cases_router)
     app.include_router(form_schemas_router)
+    if settings.enable_debug_endpoints:
+        app.include_router(debug_router)
 
     return app
