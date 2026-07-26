@@ -17,6 +17,11 @@ RUN uv sync --frozen --no-dev
 
 FROM python:3.11-slim AS runtime
 
+# CPU-only OCR engine (DECISIONS.md E10), needed at runtime by pytesseract.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends tesseract-ocr \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd --create-home --uid 1000 --shell /usr/sbin/nologin appuser
 
 WORKDIR /app

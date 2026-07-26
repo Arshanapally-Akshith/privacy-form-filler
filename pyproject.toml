@@ -10,6 +10,9 @@ dependencies = [
     "pydantic-settings",
     "python-multipart",
     "jsonschema",
+    "pymupdf",
+    "pytesseract",
+    "pillow",
 ]
 
 [dependency-groups]
@@ -21,6 +24,16 @@ dev = [
 
 [tool.uv]
 package = true
+
+[tool.pytest.ini_options]
+markers = [
+    "requires_tesseract: test asserts real OCR output and needs the tesseract binary installed",
+]
+
+[[tool.mypy.overrides]]
+# Neither library publishes type stubs or a py.typed marker.
+module = ["fitz", "pytesseract"]
+ignore_missing_imports = true
 
 [build-system]
 requires = ["hatchling"]
