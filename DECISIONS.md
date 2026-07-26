@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 1, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | Chunk size and overlap provisionally pinned (E13/E14); see §6 |
+| **Last change** | Embedding provider pinned (E8); vector index implementation and lifecycle recorded (E15/R14); hosted-embedding trust-boundary scope documented (C5); see §6 |
 
 ---
 
@@ -30,15 +30,16 @@ Single source of truth for pinned engineering constants and measured values.
 | E5 | Default policy action for detected sensitive values without an explicit rule | Tokenize (fail closed) | ARCH §5.3, D9 |
 | E6 | Retry budget per field | **TBD — Phase 5** | ARCH §7 requires a fixed budget; no value specified in any document |
 | E7 | Confidence score definition | **TBD — Phase 2** | BUILD P2, task 4 |
-| E8 | Embedding provider and model | **TBD — Phase 1** | BUILD P1, task 3 |
+| E8 | Embedding provider and model | OpenAI `text-embedding-3-small`, hosted API. See C5 for the trust-boundary scope of this call. | BUILD P1, task 3 |
 | E9 | LLM provider and model | **TBD — Phase 1** | Implied by BUILD P1/P2; not specified |
 | E10 | OCR engine | Tesseract, via `pytesseract`. CPU-only; no GPU runtime pulled in (unlike e.g. EasyOCR). | ARCH §6.1, D11; BUILD P1 task 1a |
 | E11 | Text-layer sufficiency threshold for OCR fallback | **Provisional: 20 characters.** Native page text shorter than this triggers OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | ARCH §6.1; BUILD P1 task 1b |
 | E12 | Minimum accepted image resolution | **Provisional: 600×600 px.** Standalone images below this on either dimension are rejected outright rather than sent through OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | BUILD P1 task 1c |
 | E13 | Chunk size | **Provisional: 500 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
 | E14 | Chunk overlap | **Provisional: 50 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
+| E15 | Vector index implementation | In-process, per-case, pure-Python brute-force cosine similarity. No FAISS/ANN index, no external vector database, no numpy — unjustified by the per-case data volume (tens to low hundreds of chunks). | BUILD P1 task 4 |
 
-E6–E14 are unresolved by design. Do not infer them; pin them in the stated phase and record
+E6–E15 are unresolved by design. Do not infer them; pin them in the stated phase and record
 them here in the same commit.
 
 ---
@@ -120,6 +121,7 @@ adjusted afterward. Moving it post-hoc is a documented anti-pattern for this pro
 | R12 | Frontend build command | `npm run build` (Vite) | BUILD P0, task 6 |
 | R12a | Same-origin serving | SPA served from the same origin as the API — FastAPI mounts `frontend/dist/` as static assets in the same container/process (R1). No separate frontend host, no CORS configuration needed. | ARCH §9, BUILD P0 task 6 |
 | R13 | Deployment host | **TBD — Phase 8** | BUILD P8, task 2 |
+| R14 | Vector index lifecycle | In-memory, per-process; not durable across restarts, consistent with R8. A container restart loses all case indices and requires re-ingestion. Chosen to avoid persistence-layer complexity not required by Phase 1. | BUILD P1 task 4 |
 
 ---
 
@@ -221,6 +223,8 @@ affected measurements re-run.
 | 2026-07-26 | E11 | `TBD — Phase 1` | Provisional: 20 characters | Starting value for per-page native-vs-OCR routing (BUILD P1 task 1b), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
 | 2026-07-26 | E12 | `TBD — Phase 1` | Provisional: 600×600 px | Starting value for standalone-image rejection (BUILD P1 task 1c), validated against golden-file fixtures only. **Not final** — pending validation against a broader document sample before end of Phase 1. | None — no measurements taken yet |
 | 2026-07-26 | E13, E14 | *(absent)* | Added: 500 chars / 50 chars | Chunking (BUILD P1 task 2) needed a size and overlap constant that no prior document named. Conventional starting values, deliberately not tuned yet — recall@k (BUILD P1 tasks 7-8) is what will validate them. | None — no measurements taken yet |
+| 2026-07-26 | E8 | `TBD — Phase 1` | OpenAI `text-embedding-3-small` | Hosted API required by BUILD P1 task 3 (free-tier deployment constraint excludes local models). Chosen for consistency with this project's OpenAI-compatible framing (ARCH §1), keeping a single vendor relationship across embeddings (Phase 1) and the eventual generative LLM (E9, Phase 2). See C5 for the trust-boundary reasoning this decision required. | None — no measurements taken yet |
+| 2026-07-26 | E15, R14 | *(absent)* | Added | Per-case vector index (BUILD P1 task 4) needed a named implementation choice and lifecycle. In-process brute-force cosine similarity chosen over FAISS/external vector DB — unjustified by per-case data volume and would violate the single-container constraint (ARCH N5, §9). Lifecycle mirrors R8 (process-memory, not durable). | None — no measurements taken yet |
 
 ---
 
@@ -235,3 +239,4 @@ decision.
 | C2 | Phase 0 exit criterion states "no TBD remaining," but measurement placeholders remain open until Phase 7 by design | BUILD P0 vs. BUILD P1–P7 |
 | C3 | Named policy configs are described as finalized in Phase 6 but authored in Phase 3 | ARCH §5.3 vs. BUILD P3 task 8 |
 | C4 | A fixed retry budget is required but no value is specified in any document | ARCH §7, CLAUDE §6 |
+| C5 | **Hosted embedding boundary clarification.** Phase 1 embedding generation (E8) sends raw, un-pseudonymized chunk text to the hosted embedding provider, in every privacy mode. This is required because retrieval quality depends on semantic embeddings — a pseudonymized/tokenized chunk carries no semantic relationship to a query, so pseudonymizing before embedding would degrade retrieval accuracy for reasons that have nothing to do with privacy (the same reasoning Invariant P1 already applies to retrieval generally). This decision applies specifically to embedding generation, not to any other outbound call: the Privacy Policy Engine gates generative LLM calls (the field-extraction and verifier calls behind the boundary in ARCH §3's diagram, per Invariant P2), not the Phase 1 embedding call, which sits outside that gate by P1's own design. Recorded here rather than silently assumed because ARCH §1's positioning statement ("no raw PII is ever transmitted to a third-party language model") could otherwise be read more broadly than Invariant P2 actually claims. | ARCH §1, §3, Invariants P1/P2 vs. BUILD P1 task 3 |

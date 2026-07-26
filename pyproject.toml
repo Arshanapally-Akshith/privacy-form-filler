@@ -13,6 +13,7 @@ dependencies = [
     "pymupdf",
     "pytesseract",
     "pillow",
+    "openai",
 ]
 
 [dependency-groups]
