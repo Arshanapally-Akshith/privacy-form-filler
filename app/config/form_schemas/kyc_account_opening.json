@@ -1,0 +1,87 @@
+{
+  "id": "kyc_account_opening",
+  "name": "KYC / Account Opening",
+  "description": "Bank account opening KYC form. Identifier-dense: name, PAN, Aadhaar, phone, and account references are all tokenized under the strict policy config (DECISIONS.md R9).",
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "name",
+      "required": true,
+      "expected_format": "As it appears on the primary ID proof",
+      "policy_action_ref": "name"
+    },
+    {
+      "name": "date_of_birth",
+      "label": "Date of Birth",
+      "type": "date",
+      "required": true,
+      "expected_format": "DD/MM/YYYY",
+      "policy_action_ref": "dob"
+    },
+    {
+      "name": "pan_number",
+      "label": "PAN Number",
+      "type": "identifier",
+      "required": true,
+      "expected_format": "5 letters, 4 digits, 1 letter (e.g. ABCDE1234F)",
+      "policy_action_ref": "pan"
+    },
+    {
+      "name": "aadhaar_number",
+      "label": "Aadhaar Number",
+      "type": "identifier",
+      "required": true,
+      "expected_format": "12 digits",
+      "policy_action_ref": "aadhaar"
+    },
+    {
+      "name": "residential_address",
+      "label": "Residential Address",
+      "type": "location",
+      "required": true,
+      "expected_format": "Full postal address, single line",
+      "policy_action_ref": "address"
+    },
+    {
+      "name": "pin_code",
+      "label": "PIN Code",
+      "type": "location",
+      "required": true,
+      "expected_format": "6 digits",
+      "policy_action_ref": "pincode"
+    },
+    {
+      "name": "phone_number",
+      "label": "Phone Number",
+      "type": "identifier",
+      "required": true,
+      "expected_format": "10 digits, optionally +91-prefixed",
+      "policy_action_ref": "phone"
+    },
+    {
+      "name": "email_address",
+      "label": "Email Address",
+      "type": "identifier",
+      "required": false,
+      "expected_format": "user@example.com",
+      "policy_action_ref": "email"
+    },
+    {
+      "name": "linked_account_number",
+      "label": "Existing Bank Account Number (if any)",
+      "type": "identifier",
+      "required": false,
+      "expected_format": "9-18 digit account number",
+      "policy_action_ref": "account_number"
+    },
+    {
+      "name": "annual_income",
+      "label": "Annual Income",
+      "type": "numeric_financial",
+      "required": false,
+      "expected_format": "Amount in INR",
+      "policy_action_ref": null
+    }
+  ]
+}

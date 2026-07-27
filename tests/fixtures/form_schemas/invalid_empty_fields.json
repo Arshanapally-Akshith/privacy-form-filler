@@ -1,0 +1,6 @@
+{
+  "id": "test_form",
+  "name": "Test Form",
+  "description": "Invalid: a form schema with no fields is meaningless.",
+  "fields": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "test_form",
+  "name": "Test Form",
+  "description": "Invalid: an unexpected top-level key must be rejected, not silently ignored.",
+  "unexpected_key": true,
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "name",
+      "required": true,
+      "policy_action_ref": "name"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "test_form",
+  "name": "Test Form",
+  "description": "Invalid: field type is not one of DECISIONS.md V2's taxonomy.",
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "bogus_type",
+      "required": true,
+      "policy_action_ref": "name"
+    }
+  ]
+}

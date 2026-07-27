@@ -1,0 +1,71 @@
+{
+  "id": "insurance_policy_application",
+  "name": "Insurance Policy Application",
+  "description": "Individual life/health insurance policy application. Age band and city are the functionally correct inputs for premium tier and risk zone, so Generalize and Derive cost nothing here (ARCHITECTURE.md Sec 2, demonstration scope).",
+  "fields": [
+    {
+      "name": "full_name",
+      "label": "Full Name",
+      "type": "name",
+      "required": true,
+      "expected_format": "As it appears on the primary ID proof",
+      "policy_action_ref": "name"
+    },
+    {
+      "name": "date_of_birth",
+      "label": "Date of Birth",
+      "type": "date",
+      "required": true,
+      "expected_format": "DD/MM/YYYY",
+      "policy_action_ref": "dob"
+    },
+    {
+      "name": "residential_address",
+      "label": "Residential Address",
+      "type": "location",
+      "required": true,
+      "expected_format": "Full postal address, single line",
+      "policy_action_ref": "address"
+    },
+    {
+      "name": "pin_code",
+      "label": "PIN Code",
+      "type": "location",
+      "required": true,
+      "expected_format": "6 digits",
+      "policy_action_ref": "pincode"
+    },
+    {
+      "name": "phone_number",
+      "label": "Phone Number",
+      "type": "identifier",
+      "required": true,
+      "expected_format": "10 digits, optionally +91-prefixed",
+      "policy_action_ref": "phone"
+    },
+    {
+      "name": "email_address",
+      "label": "Email Address",
+      "type": "identifier",
+      "required": false,
+      "expected_format": "user@example.com",
+      "policy_action_ref": "email"
+    },
+    {
+      "name": "annual_income",
+      "label": "Annual Income",
+      "type": "numeric_financial",
+      "required": true,
+      "expected_format": "Amount in INR, used for sum-assured sizing",
+      "policy_action_ref": null
+    },
+    {
+      "name": "nominee_full_name",
+      "label": "Nominee Full Name",
+      "type": "name",
+      "required": true,
+      "expected_format": "As it appears on the nominee's ID proof",
+      "policy_action_ref": "name"
+    }
+  ]
+}
