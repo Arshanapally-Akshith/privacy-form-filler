@@ -1,5 +1,5 @@
-"""Pinned detection and tokenization constants (BUILD.md Phase 3, tasks 1-2). Named, not
-duplicated inline, per CLAUDE.md §6.
+"""Pinned detection, tokenization, and generalization constants (BUILD.md Phase 3, tasks
+1-3). Named, not duplicated inline, per CLAUDE.md §6.
 """
 
 from pathlib import Path
@@ -102,3 +102,26 @@ MONTH_NAMES = frozenset(
 WEEKDAY_NAMES = frozenset(
     {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
 )
+
+# --- Generalize: DOB -> age band (BUILD.md Phase 3, task 3) -------------------------------
+
+# DECISIONS.md E2: 10 years, decade-aligned (band = [n*10, n*10+9]).
+AGE_BAND_WIDTH_YEARS = 10
+
+# Four-digit years only, per the approved Commit 3 adjustment: two-digit years (%y) are
+# removed entirely rather than relying on Python's century-windowing heuristic (00-68 ->
+# 2000s, 69-99 -> 1900s), which is a real source of error for a DOB specifically -- an
+# elderly applicant born in "05" almost certainly means 1905, not 2005. A string shaped
+# like a two-digit-year date simply matches none of these and fails loudly (DateParseError)
+# rather than being silently guessed. Mirrors the format variety detection.py's own DATE
+# regex already recognizes.
+DATE_OF_BIRTH_FORMATS = ("%d/%m/%Y", "%d-%m-%Y", "%d %B %Y", "%d %b %Y")
+
+# Coarse sanity bound, not a precise validator: catches gross extraction errors (e.g. OCR
+# misreading "1990" as "1890") without rejecting a genuine, rare, very old applicant. Set
+# generously above the verified real-world record (122 years).
+MAX_PLAUSIBLE_AGE_YEARS = 130
+
+# Documented convention, not a silent guess: a Feb 29 DOB evaluated against a non-leap
+# reference year has no Feb 29 to compare against. Treated as falling on Feb 28 that year.
+LEAP_DAY_FALLBACK_MONTH_DAY = (2, 28)
