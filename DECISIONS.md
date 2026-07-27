@@ -15,7 +15,7 @@ Single source of truth for pinned engineering constants and measured values.
 |---|---|
 | **Status** | Phase 1, in progress |
 | **Last updated** | 2026-07-26 |
-| **Last change** | Field-label synonym table added for query construction (E16); see §6 |
+| **Last change** | Phase 1 recall@5 measured: 1.000 overall (20/20) against `gemini-embedding-001`, after migrating the embedding provider from OpenAI (E8) following an account quota failure; `Settings` extra-field handling relaxed (R15); see §6 |
 
 ---
 
@@ -30,7 +30,7 @@ Single source of truth for pinned engineering constants and measured values.
 | E5 | Default policy action for detected sensitive values without an explicit rule | Tokenize (fail closed) | ARCH §5.3, D9 |
 | E6 | Retry budget per field | **TBD — Phase 5** | ARCH §7 requires a fixed budget; no value specified in any document |
 | E7 | Confidence score definition | **TBD — Phase 2** | BUILD P2, task 4 |
-| E8 | Embedding provider and model | OpenAI `text-embedding-3-small`, hosted API. See C5 for the trust-boundary scope of this call. | BUILD P1, task 3 |
+| E8 | Embedding provider and model | Google Gemini `gemini-embedding-001`, hosted API (`google-genai` SDK). Originally pinned to OpenAI `text-embedding-3-small`; migrated 2026-07-27, see §6 change log for the reason and for why the OpenAI implementation was removed rather than kept as a dormant alternative. See C5 for the trust-boundary scope of this call — unchanged by the provider swap. | BUILD P1, task 3 |
 | E9 | LLM provider and model | **TBD — Phase 1** | Implied by BUILD P1/P2; not specified |
 | E10 | OCR engine | Tesseract, via `pytesseract`. CPU-only; no GPU runtime pulled in (unlike e.g. EasyOCR). | ARCH §6.1, D11; BUILD P1 task 1a |
 | E11 | Text-layer sufficiency threshold for OCR fallback | **Provisional: 20 characters.** Native page text shorter than this triggers OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | ARCH §6.1; BUILD P1 task 1b |
@@ -94,10 +94,14 @@ them here in the same commit.
 | V16 | Failure-case table size | 5–8 concrete examples | BUILD P7, task 5 |
 | V17 | OCR evaluation coverage | A **representative subset** of documents rendered to scanned/photographed form — spanning all document types, both form types, and both clean-scan and photograph-like conditions. Deliberately not a fixed percentage; composition and count recorded in §5 once generated. | BUILD P6 task 3a |
 | V18 | OCR accuracy reporting | Accuracy on OCR-derived text reported separately from native text | ARCH §6.1, §11.6; BUILD P7 task 1 |
+| V19 | Recall@k evaluation k-value | **k = 5.** Fixed before the Phase 1 retrieval measurement runs, for the same reason V7 is frozen before results — so it cannot be adjusted after seeing the number. | BUILD P1 tasks 7-8 |
 
 **V7 is frozen.** It was fixed before any result was generated, specifically so it cannot be
 adjusted afterward. Moving it post-hoc is a documented anti-pattern for this project
 (BUILD P7 risk table).
+
+**V19 is frozen** for the same reason, fixed in this commit before the Phase 1 recall
+measurement (§5) was run.
 
 ---
 
@@ -123,6 +127,7 @@ adjusted afterward. Moving it post-hoc is a documented anti-pattern for this pro
 | R12a | Same-origin serving | SPA served from the same origin as the API — FastAPI mounts `frontend/dist/` as static assets in the same container/process (R1). No separate frontend host, no CORS configuration needed. | ARCH §9, BUILD P0 task 6 |
 | R13 | Deployment host | **TBD — Phase 8** | BUILD P8, task 2 |
 | R14 | Vector index lifecycle | In-memory, per-process; not durable across restarts, consistent with R8. A container restart loses all case indices and requires re-ingestion. Chosen to avoid persistence-layer complexity not required by Phase 1. | BUILD P1 task 4 |
+| R15 | `Settings` extra-field handling | `extra="ignore"` (changed from `"forbid"` in Phase 0). The project-root `.env` is a shared file: it now also holds `OPENAI_API_KEY`/`GEMINI_API_KEY` for the embedding SDK, which reads them directly from the process environment and never through this class. pydantic-settings' dotenv source does not filter unprefixed keys out before its extra-field check (verified empirically — a real unprefixed OS environment variable was correctly filtered; an unprefixed `.env`-file key was not), so `extra="forbid"` broke `Settings()` construction entirely once those keys existed in `.env`. Trade-off, stated plainly: this also stops catching a genuine typo in an `APP_`-prefixed key, which `"forbid"` did catch. | Provider migration, 2026-07-27 |
 
 ---
 
@@ -135,10 +140,20 @@ run.
 
 | Metric | Value | Date |
 |--------|-------|------|
-| Retrieval recall@k (k = TBD) on ~20 hand-labeled pairs | *pending* | |
-| Labeled pair count | *pending* | |
-| Recall@k — native-text documents | *pending* | |
-| Recall@k — OCR-derived documents | *pending* | |
+| Retrieval recall@5 (V19) on 20 hand-labeled pairs | **1.000 (20/20)** | 2026-07-27 |
+| Labeled pair count | 20 | 2026-07-27 |
+| Recall@5 — native-text documents | **1.000 (16/16)** | 2026-07-27 |
+| Recall@5 — OCR-derived documents | **1.000 (4/4)** | 2026-07-27 |
+
+Measured by `eval/harness/measure_recall.py` against `gemini-embedding-001` (E8). Stored
+run: `eval/harness/results/phase1_recall_result.json`; replayable offline from
+`eval/harness/fixtures/phase1_embedding_cache.json` (see the regression test). Read
+plainly, not as a general retrieval-quality claim: this is a 20-pair sanity check across 4
+documents (`BUILD.md` Phase 1 task 7), not the Phase 6 evaluation dataset — a perfect
+score here says the pipeline works end-to-end and the E13/E14/E16 starting values aren't
+obviously wrong at this scale, not that retrieval is flawless at the Phase 6 scale or under
+adversarial conditions (near-duplicate names, conflicting values) that this fixture set
+doesn't contain.
 
 ### Phase 2
 
@@ -227,6 +242,9 @@ affected measurements re-run.
 | 2026-07-26 | E8 | `TBD — Phase 1` | OpenAI `text-embedding-3-small` | Hosted API required by BUILD P1 task 3 (free-tier deployment constraint excludes local models). Chosen for consistency with this project's OpenAI-compatible framing (ARCH §1), keeping a single vendor relationship across embeddings (Phase 1) and the eventual generative LLM (E9, Phase 2). See C5 for the trust-boundary reasoning this decision required. | None — no measurements taken yet |
 | 2026-07-26 | E15, R14 | *(absent)* | Added | Per-case vector index (BUILD P1 task 4) needed a named implementation choice and lifecycle. In-process brute-force cosine similarity chosen over FAISS/external vector DB — unjustified by per-case data volume and would violate the single-container constraint (ARCH N5, §9). Lifecycle mirrors R8 (process-memory, not durable). | None — no measurements taken yet |
 | 2026-07-26 | E16 | *(absent)* | Added: 10 synonym groups | Query construction (BUILD P1 task 5) needed a versioned starting point for its synonym table. Hand-authored, deliberately not tuned — recall@k (BUILD P1 tasks 7-8) is what will validate it, same treatment as E13/E14. | None — no measurements taken yet |
+| 2026-07-26 | V19 | *(absent)* | Added: k = 5 | Recall@k needed a fixed k before the Phase 1 measurement runs (BUILD P1 tasks 7-8), same discipline as V7. Fixed here, before any pairs are queried. | None — measurement not yet run |
+| 2026-07-27 | §5 Phase 1 recall@5 | *pending* | 1.000 overall (20/20), 1.000 native (16/16), 1.000 OCR (4/4) | Measured via `eval/harness/measure_recall.py` against `gemini-embedding-001` (E8), after the OpenAI-to-Gemini migration below. Stored run: `eval/harness/results/phase1_recall_result.json`. | This measurement itself, run against Gemini rather than the originally-planned OpenAI model — no prior OpenAI-based measurement was ever taken, so nothing else needed re-running |
+| 2026-07-27 | E8 | OpenAI `text-embedding-3-small` | Google Gemini `gemini-embedding-001` | The provisioned OpenAI account had no usable quota (`insufficient_quota`, verified via a live 429 from the API, not a code defect) when the Phase 1 recall@5 measurement was attempted. A working Gemini API key was verified live (model list, a direct `embedContent` call, and a batch call via the official `google-genai` SDK) before switching. The prior OpenAI implementation was **removed**, not kept as a dormant alternative: no `BUILD.md` task calls for multi-provider support, an unused code path would go untested and silently drift out of sync with future SDK versions, and it would have doubled the dependency/secret-management surface (CLAUDE §6, §9 — no unjustified dependency, no speculative configurability). The `embed_texts()` / `EmbeddingProviderError` contract in `app/retrieval/embedder.py` is unchanged; every existing test in `tests/retrieval/` and `tests/api/` passed unmodified after the swap, which is the actual proof the provider-neutral design held. If OpenAI is ever wanted again (e.g. for consistency with a future E9 choice), it is a small, contained re-implementation behind the same contract — nothing else in the codebase depends on which provider is behind it. | Recall@5 measurement re-run against Gemini (below) |
 
 ---
 

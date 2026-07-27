@@ -1,0 +1,165 @@
+{
+  "_methodology": "See eval/dataset/PHASE1_RETRIEVAL_LABELING_METHODOLOGY.md. Pairs authored by the project owner; deterministic fixtures; not an independently annotated dataset.",
+  "pairs": [
+    {
+      "pair_id": "kyc-id-001",
+      "field_label": "Full Name",
+      "expected_document_id": "doc-kyc-id-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Full Name: Ananya Sharma"
+    },
+    {
+      "pair_id": "kyc-id-002",
+      "field_label": "Date of Birth",
+      "expected_document_id": "doc-kyc-id-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Date of Birth: 14-03-1990"
+    },
+    {
+      "pair_id": "kyc-id-003",
+      "field_label": "PAN Number",
+      "expected_document_id": "doc-kyc-id-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "PAN Number: BXTPS4021K"
+    },
+    {
+      "pair_id": "kyc-id-004",
+      "field_label": "Aadhaar Number",
+      "expected_document_id": "doc-kyc-id-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Aadhaar Number: 4521 7896 3312"
+    },
+    {
+      "pair_id": "kyc-addr-001",
+      "field_label": "Address",
+      "expected_document_id": "doc-kyc-address-proof",
+      "expected_page_number": 1,
+      "text_source": "ocr",
+      "evidence_snippet": "Address: 42 MG Road, Andheri West"
+    },
+    {
+      "pair_id": "kyc-addr-002",
+      "field_label": "City",
+      "expected_document_id": "doc-kyc-address-proof",
+      "expected_page_number": 1,
+      "text_source": "ocr",
+      "evidence_snippet": "City: Mumbai"
+    },
+    {
+      "pair_id": "kyc-addr-003",
+      "field_label": "State",
+      "expected_document_id": "doc-kyc-address-proof",
+      "expected_page_number": 1,
+      "text_source": "ocr",
+      "evidence_snippet": "State: Maharashtra"
+    },
+    {
+      "pair_id": "kyc-addr-004",
+      "field_label": "PIN Code",
+      "expected_document_id": "doc-kyc-address-proof",
+      "expected_page_number": 1,
+      "text_source": "ocr",
+      "evidence_snippet": "PIN Code: 400058"
+    },
+    {
+      "pair_id": "insurance-001",
+      "field_label": "Policy Holder Name",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Policy Holder Name: Ananya Sharma"
+    },
+    {
+      "pair_id": "insurance-002",
+      "field_label": "Sum Insured",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Sum Insured: INR 5,00,000"
+    },
+    {
+      "pair_id": "insurance-003",
+      "field_label": "Annual Premium",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Annual Premium: INR 12,500"
+    },
+    {
+      "pair_id": "insurance-004",
+      "field_label": "Phone Number",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Phone Number: 9876543210"
+    },
+    {
+      "pair_id": "insurance-005",
+      "field_label": "Email Address",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Email Address: ananya.sharma@example.com"
+    },
+    {
+      "pair_id": "insurance-006",
+      "field_label": "Nominee Name",
+      "expected_document_id": "doc-insurance-application",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Nominee Name: Rohan Sharma"
+    },
+    {
+      "pair_id": "income-001",
+      "field_label": "Employee Name",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Employee Name: Ananya Sharma"
+    },
+    {
+      "pair_id": "income-002",
+      "field_label": "Employer",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Employer: TechCorp Solutions Pvt Ltd"
+    },
+    {
+      "pair_id": "income-003",
+      "field_label": "Designation",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Designation: Senior Software Engineer"
+    },
+    {
+      "pair_id": "income-004",
+      "field_label": "Monthly Gross Salary",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Monthly Gross Salary: INR 1,20,000"
+    },
+    {
+      "pair_id": "income-005",
+      "field_label": "Bank Account Number",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Bank Account Number: 002401123456789"
+    },
+    {
+      "pair_id": "income-006",
+      "field_label": "Bank Name",
+      "expected_document_id": "doc-income-proof",
+      "expected_page_number": 1,
+      "text_source": "native",
+      "evidence_snippet": "Bank Name: HDFC Bank"
+    }
+  ]
+}
