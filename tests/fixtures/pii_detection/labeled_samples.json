@@ -1,0 +1,42 @@
+[
+  {
+    "description": "Clean KYC-style single-page document, one field per line",
+    "text": "Applicant Full Name: Asha Rao\nDate of Birth: 15 June 1990\nPAN: ABCDE1234F\nAadhaar: 1234 5678 9010\nPhone: +91 9876543210\nEmail: asha.rao@example.com\nAddress: 123 MG Road, Sector 5, New Delhi, PIN 110001\nBank Account Number: 123456789012345",
+    "expected_entities": [
+      {"entity_type": "name", "text": "Asha Rao"},
+      {"entity_type": "date", "text": "15 June 1990"},
+      {"entity_type": "pan", "text": "ABCDE1234F"},
+      {"entity_type": "aadhaar", "text": "1234 5678 9010"},
+      {"entity_type": "phone", "text": "+91 9876543210"},
+      {"entity_type": "email", "text": "asha.rao@example.com"},
+      {"entity_type": "pin_code", "text": "110001"},
+      {"entity_type": "address", "text": "MG Road"},
+      {"entity_type": "account_number", "text": "123456789012345"}
+    ]
+  },
+  {
+    "description": "Insurance-style document with a passport and a different real pincode",
+    "text": "Nominee Full Name: Rohit Verma\nPassport Number: B7654321\nPolicy Issue Date: 01/03/2015\nNominee Phone: 9123456780\nResidential Address: 45 Park Street, Bangalore, PIN 560001\nSum Assured Account Reference: 987654321098",
+    "expected_entities": [
+      {"entity_type": "name", "text": "Rohit Verma"},
+      {"entity_type": "passport", "text": "B7654321"},
+      {"entity_type": "date", "text": "01/03/2015"},
+      {"entity_type": "phone", "text": "9123456780"},
+      {"entity_type": "pin_code", "text": "560001"},
+      {"entity_type": "address", "text": "Park Street"},
+      {"entity_type": "account_number", "text": "987654321098"}
+    ]
+  },
+  {
+    "description": "Deliberately hard cases the heuristic detectors are expected to miss: an all-caps name, an abbreviated-initial name, an abbreviated month, and a building-name address with no recognized street-suffix keyword. Included so recall is measured honestly rather than assumed -- BUILD.md's own risk table expects imperfect recall on names/addresses.",
+    "text": "Witness: MARY JANE SMITH\nGuardian: R. Kumar\nDate of Birth: 5th Jan 1985\nPassport No: P1234567\nOld reference PIN: 999999\nCorrespondence Address: Flat 4B Silver Heights, PIN 700001",
+    "expected_entities": [
+      {"entity_type": "name", "text": "MARY JANE SMITH", "known_miss": true},
+      {"entity_type": "name", "text": "R. Kumar", "known_miss": true},
+      {"entity_type": "date", "text": "5th Jan 1985", "known_miss": true},
+      {"entity_type": "passport", "text": "P1234567"},
+      {"entity_type": "pin_code", "text": "700001"},
+      {"entity_type": "address", "text": "Silver Heights", "known_miss": true}
+    ]
+  }
+]
