@@ -26,7 +26,7 @@ def test_successful_retrieval_returns_ranked_chunks_with_provenance(monkeypatch:
     case_id = "case-success"
     chunk = Chunk(document_id="doc-1", page_number=3, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk], _pan_vector)
-    monkeypatch.setattr("app.api.debug.embed_texts", _pan_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _pan_vector)
 
     client = TestClient(create_app())
     response = client.post(
@@ -50,7 +50,7 @@ def test_query_text_reflects_synonym_expansion(monkeypatch: pytest.MonkeyPatch) 
     case_id = "case-query-text"
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk], _pan_vector)
-    monkeypatch.setattr("app.api.debug.embed_texts", _pan_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _pan_vector)
 
     client = TestClient(create_app())
     response = client.post(
@@ -67,7 +67,7 @@ def test_score_is_returned(monkeypatch: pytest.MonkeyPatch) -> None:
     case_id = "case-score"
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk], _pan_vector)
-    monkeypatch.setattr("app.api.debug.embed_texts", _pan_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _pan_vector)
 
     client = TestClient(create_app())
     response = client.post(
@@ -93,7 +93,7 @@ def test_unknown_case_returns_404() -> None:
 def test_known_case_with_no_chunks_returns_200_with_empty_results(monkeypatch: pytest.MonkeyPatch) -> None:
     case_id = "case-empty"
     case_index_registry.get_or_create(case_id)  # created, nothing ever added to it
-    monkeypatch.setattr("app.api.debug.embed_texts", _pan_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _pan_vector)
 
     client = TestClient(create_app())
     response = client.post(
@@ -131,7 +131,7 @@ def test_cross_case_isolation_through_http_layer(monkeypatch: pytest.MonkeyPatch
 
     _seed_case(monkeypatch, case_a, [chunk_a], _uniform_vector)
     _seed_case(monkeypatch, case_b, [chunk_b], _uniform_vector)
-    monkeypatch.setattr("app.api.debug.embed_texts", _uniform_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
 
     client = TestClient(create_app())
     response = client.post(
@@ -151,7 +151,7 @@ def test_embedding_provider_failure_returns_502(monkeypatch: pytest.MonkeyPatch)
     def _raise(texts: list[str]) -> list[list[float]]:
         raise EmbeddingProviderError("simulated provider outage")
 
-    monkeypatch.setattr("app.api.debug.embed_texts", _raise)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _raise)
 
     client = TestClient(create_app())
     response = client.post(

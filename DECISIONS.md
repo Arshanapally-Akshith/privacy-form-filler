@@ -13,9 +13,9 @@ Single source of truth for pinned engineering constants and measured values.
 
 | | |
 |---|---|
-| **Status** | Phase 1, in progress |
-| **Last updated** | 2026-07-26 |
-| **Last change** | Phase 1 recall@5 measured: 1.000 overall (20/20) against `gemini-embedding-001`, after migrating the embedding provider from OpenAI (E8) following an account quota failure; `Settings` extra-field handling relaxed (R15); see §6 |
+| **Status** | Phase 2, in progress |
+| **Last updated** | 2026-07-27 |
+| **Last change** | Phase 2 tasks 1-2: form schema format pinned and the two `R9` schemas authored. Phase 2 task 3: extraction node added; E9 (generative LLM) pinned to `gemini-3.5-flash` after live verification against the project's Gemini account; see §6 |
 
 ---
 
@@ -31,7 +31,7 @@ Single source of truth for pinned engineering constants and measured values.
 | E6 | Retry budget per field | **TBD — Phase 5** | ARCH §7 requires a fixed budget; no value specified in any document |
 | E7 | Confidence score definition | **TBD — Phase 2** | BUILD P2, task 4 |
 | E8 | Embedding provider and model | Google Gemini `gemini-embedding-001`, hosted API (`google-genai` SDK). Originally pinned to OpenAI `text-embedding-3-small`; migrated 2026-07-27, see §6 change log for the reason and for why the OpenAI implementation was removed rather than kept as a dormant alternative. See C5 for the trust-boundary scope of this call — unchanged by the provider swap. | BUILD P1, task 3 |
-| E9 | LLM provider and model | **TBD — Phase 1** | Implied by BUILD P1/P2; not specified |
+| E9 | LLM provider and model | Google Gemini `gemini-3.5-flash`, hosted API (`google-genai` SDK), via structured-output mode (`response_mime_type="application/json"`, Pydantic `response_schema`). Verified live against the project's Gemini account before pinning: `gemini-2.5-flash` returns `404` ("no longer available to new users"); `gemini-2.0-flash-001` returned a transient `503`; `gemini-3.5-flash` and `gemini-3.5-flash-lite` both returned correctly parsed structured output — the full model chosen over the lite variant for extraction quality. Single-vendor consistency with E8, as anticipated in E8's own change-log entry. | BUILD P2, task 3 |
 | E10 | OCR engine | Tesseract, via `pytesseract`. CPU-only; no GPU runtime pulled in (unlike e.g. EasyOCR). | ARCH §6.1, D11; BUILD P1 task 1a |
 | E11 | Text-layer sufficiency threshold for OCR fallback | **Provisional: 20 characters.** Native page text shorter than this triggers OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | ARCH §6.1; BUILD P1 task 1b |
 | E12 | Minimum accepted image resolution | **Provisional: 600×600 px.** Standalone images below this on either dimension are rejected outright rather than sent through OCR. Validated only against the golden-file fixtures in `tests/ingest/`; not yet confirmed against a broader document sample. Do not treat as final. | BUILD P1 task 1c |
@@ -39,8 +39,9 @@ Single source of truth for pinned engineering constants and measured values.
 | E14 | Chunk overlap | **Provisional: 50 characters.** Not yet tuned; no recall@k measurement has run against it. | BUILD P1 task 2 |
 | E15 | Vector index implementation | In-process, per-case, pure-Python brute-force cosine similarity. No FAISS/ANN index, no external vector database, no numpy — unjustified by the per-case data volume (tens to low hundreds of chunks). | BUILD P1 task 4 |
 | E16 | Field-label synonym table | **Provisional.** 10 static synonym groups (`app/retrieval/query.py`, `FIELD_LABEL_SYNONYM_GROUPS`) seeded from the entity types already named in P12 — PAN, Aadhaar, DOB, passport, phone, email, address, PIN code, account number, name. Hand-authored, not tuned; recall@k (BUILD P1 tasks 7-8) is what will validate it. No LLM-based expansion. | BUILD P1 task 5 |
+| E17 | Per-field retrieval fan-in (`top_k` passed to the extraction node's retrieval call) | **Provisional: 5.** Not yet tuned; no accuracy measurement has run against it — same treatment as E13/E14/E16 in Phase 1. | BUILD P2 task 3 |
 
-E6–E16 are unresolved by design. Do not infer them; pin them in the stated phase and record
+E6, E7 are unresolved by design. Do not infer them; pin them in the stated phase and record
 them here in the same commit.
 
 ---
@@ -244,6 +245,8 @@ affected measurements re-run.
 | 2026-07-26 | E16 | *(absent)* | Added: 10 synonym groups | Query construction (BUILD P1 task 5) needed a versioned starting point for its synonym table. Hand-authored, deliberately not tuned — recall@k (BUILD P1 tasks 7-8) is what will validate it, same treatment as E13/E14. | None — no measurements taken yet |
 | 2026-07-26 | V19 | *(absent)* | Added: k = 5 | Recall@k needed a fixed k before the Phase 1 measurement runs (BUILD P1 tasks 7-8), same discipline as V7. Fixed here, before any pairs are queried. | None — measurement not yet run |
 | 2026-07-27 | §5 Phase 1 recall@5 | *pending* | 1.000 overall (20/20), 1.000 native (16/16), 1.000 OCR (4/4) | Measured via `eval/harness/measure_recall.py` against `gemini-embedding-001` (E8), after the OpenAI-to-Gemini migration below. Stored run: `eval/harness/results/phase1_recall_result.json`. | This measurement itself, run against Gemini rather than the originally-planned OpenAI model — no prior OpenAI-based measurement was ever taken, so nothing else needed re-running |
+| 2026-07-27 | E9 | `TBD — Phase 1` | Google Gemini `gemini-3.5-flash` | Pinned for BUILD P2 task 3 (extraction node). Verified live rather than assumed, the same discipline E8's migration used: `gemini-2.5-flash` (the model this project would otherwise have defaulted to, by analogy with common Gemini usage) returned `404 "no longer available to new users"` on this account; `gemini-2.0-flash-001` returned a transient `503`. `gemini-3.5-flash` and `gemini-3.5-flash-lite` both returned correctly parsed structured output against a live smoke prompt; the full model was chosen over the lite variant on the reasoning that extraction quality matters more than per-call cost for a project whose headline results are an accuracy comparison. Single-vendor consistency with E8, as anticipated in E8's own change-log entry below. | None — no extraction accuracy measurement has run yet (BUILD P2 task 8) |
+| 2026-07-27 | E17 | *(absent)* | Added: `top_k = 5` | Extraction node (BUILD P2 task 3) needed a retrieval fan-in constant no prior document named. Conventional starting value, deliberately not tuned — same treatment as E13/E14/E16. | None — no measurements taken yet |
 | 2026-07-27 | E8 | OpenAI `text-embedding-3-small` | Google Gemini `gemini-embedding-001` | The provisioned OpenAI account had no usable quota (`insufficient_quota`, verified via a live 429 from the API, not a code defect) when the Phase 1 recall@5 measurement was attempted. A working Gemini API key was verified live (model list, a direct `embedContent` call, and a batch call via the official `google-genai` SDK) before switching. The prior OpenAI implementation was **removed**, not kept as a dormant alternative: no `BUILD.md` task calls for multi-provider support, an unused code path would go untested and silently drift out of sync with future SDK versions, and it would have doubled the dependency/secret-management surface (CLAUDE §6, §9 — no unjustified dependency, no speculative configurability). The `embed_texts()` / `EmbeddingProviderError` contract in `app/retrieval/embedder.py` is unchanged; every existing test in `tests/retrieval/` and `tests/api/` passed unmodified after the swap, which is the actual proof the provider-neutral design held. If OpenAI is ever wanted again (e.g. for consistency with a future E9 choice), it is a small, contained re-implementation behind the same contract — nothing else in the codebase depends on which provider is behind it. | Recall@5 measurement re-run against Gemini (below) |
 
 ---
