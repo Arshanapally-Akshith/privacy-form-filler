@@ -1,6 +1,6 @@
-"""Extraction node (BUILD.md Phase 2, tasks 3-4): for each field, retrieve -> prompt ->
-parse structured output, including a confidence score. Direct LLM call for now -- the
-boundary layer arrives in Phase 4
+"""Extraction node (BUILD.md Phase 2, tasks 3-5): for each field, retrieve -> prompt ->
+parse structured output, including a confidence score and a hardened abstention path.
+Direct LLM call for now -- the boundary layer arrives in Phase 4
 (ARCHITECTURE.md Invariant I3 only applies from Phase 4 onward).
 
 Depends only on app.retrieval.retriever's public contract, not on the embedder, query
@@ -22,6 +22,12 @@ consider conclusive, returns None and is never invented (ARCHITECTURE.md Invaria
 G4). A failed LLM or retrieval call is not caught here and is left to propagate --
 CLAUDE.md §5 forbids treating a failed call as a silent abstention, since the two would
 otherwise be indistinguishable to a caller.
+
+Abstention path (BUILD.md Phase 2 task 5, CLAUDE.md protected Invariant I5): a returned
+value is normalized (trimmed) exactly once before being evaluated or returned, and an
+empty normalized value is treated the same as no value at all -- a whitespace-only string
+is not a value, it is a non-answer with a string type, and I5 requires abstaining on it
+rather than passing it through as if it were a genuine extraction.
 """
 
 from dataclasses import dataclass
@@ -73,6 +79,11 @@ def extract_field(
 
     if parsed.value is None or parsed.source_chunk_index is None:
         return _ABSTAINED
+
+    normalized_value = parsed.value.strip()
+    if not normalized_value:
+        # Whitespace-only or empty is not a value -- I5/G4: abstain, never invent.
+        return _ABSTAINED
     if not 0 <= parsed.source_chunk_index < len(evidence):
         # The model cited a chunk outside what was actually retrieved -- an ungrounded
         # answer cannot be trusted with provenance it doesn't have. Abstain (I5), don't guess.
@@ -84,7 +95,7 @@ def extract_field(
 
     source = evidence[parsed.source_chunk_index]
     return ExtractionResult(
-        value=parsed.value,
+        value=normalized_value,
         provenance=ExtractionProvenance(document_id=source.document_id, page_number=source.page_number),
         confidence=parsed.confidence,
     )

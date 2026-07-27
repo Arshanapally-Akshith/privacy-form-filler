@@ -1,16 +1,20 @@
-"""Extraction node tests (BUILD.md Phase 2, tasks 3-4).
+"""Extraction node tests (BUILD.md Phase 2, tasks 3-5).
 
 Abstention and provenance-correctness are the two tests BUILD.md names explicitly as
 written before implementation for this phase -- abstention because "it is the one an
 interviewer will probe" (I5/G4: no evidence -> missing, never invented), provenance because
 a citation that does not actually contain the value is worse than no citation. No real LLM
 or embedding calls -- both are monkeypatched, per CLAUDE.md §4.
+
+Every test whose name contains "abstention" enforces CLAUDE.md's protected Invariant I5
+(BUILD.md Phase 2 task 5) -- none may be weakened, skipped, or deleted to make a change
+pass; a failure here means the code is wrong, not the test.
 """
 
 import pytest
 from pydantic import ValidationError
 
-from app.config.form_schema import FieldType, FormFieldSpec
+from app.config.form_schema import FieldType, FormFieldSpec, load_form_schemas
 from app.extraction.extractor import _FieldExtractionResponse, extract_field
 from app.extraction.llm_client import LLMProviderError
 from app.ingest.chunker import Chunk
@@ -164,3 +168,83 @@ def test_out_of_range_confidence_is_rejected_at_the_schema_level(bad_confidence:
     silently clamped."""
     with pytest.raises(ValidationError):
         _FieldExtractionResponse(value="ABCDE1234F", source_chunk_index=0, confidence=bad_confidence)
+
+
+def test_empty_string_value_is_treated_as_abstention(monkeypatch: pytest.MonkeyPatch) -> None:
+    """I5/G4: a non-null but empty string is not a value -- it must abstain exactly like a
+    null value, not pass through as a "filled" result."""
+    case_id = "extractor-case-empty-string-value"
+    chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Name: Asha Rao")
+    _seed_case(monkeypatch, case_id, [chunk])
+
+    def _empty_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+        return _FieldExtractionResponse(value="", source_chunk_index=0, confidence=0.5)
+
+    monkeypatch.setattr("app.extraction.extractor.generate_structured", _empty_value)
+
+    result = extract_field(case_id=case_id, field=_FIELD)
+
+    assert result.value is None
+    assert result.provenance is None
+    assert result.confidence is None
+
+
+def test_whitespace_only_value_is_treated_as_abstention(monkeypatch: pytest.MonkeyPatch) -> None:
+    """I5/G4: whitespace is not a value, same treatment as an empty string."""
+    case_id = "extractor-case-whitespace-value"
+    chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Name: Asha Rao")
+    _seed_case(monkeypatch, case_id, [chunk])
+
+    def _whitespace_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+        return _FieldExtractionResponse(value="   \t  ", source_chunk_index=0, confidence=0.5)
+
+    monkeypatch.setattr("app.extraction.extractor.generate_structured", _whitespace_value)
+
+    result = extract_field(case_id=case_id, field=_FIELD)
+
+    assert result.value is None
+    assert result.provenance is None
+    assert result.confidence is None
+
+
+def test_extracted_value_is_trimmed_of_surrounding_whitespace(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A genuine value is normalized (trimmed) exactly once before being returned, not just
+    before being checked for emptiness."""
+    case_id = "extractor-case-untrimmed-value"
+    chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
+    _seed_case(monkeypatch, case_id, [chunk])
+
+    def _padded_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+        return _FieldExtractionResponse(value="  ABCDE1234F  ", source_chunk_index=0, confidence=0.9)
+
+    monkeypatch.setattr("app.extraction.extractor.generate_structured", _padded_value)
+
+    result = extract_field(case_id=case_id, field=_FIELD)
+
+    assert result.value == "ABCDE1234F"
+
+
+def test_abstention_holds_for_a_field_from_the_committed_insurance_schema(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The abstention path is not specific to the synthetic _FIELD fixture -- it holds for a
+    field drawn from one of the two real R9 schemas."""
+    schemas = {schema.id: schema for schema in load_form_schemas()}
+    nominee_field = next(
+        f for f in schemas["insurance_policy_application"].fields if f.name == "nominee_full_name"
+    )
+
+    case_id = "extractor-case-insurance-nominee-missing"
+    chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Applicant's own ID proof only")
+    _seed_case(monkeypatch, case_id, [chunk])
+
+    def _abstain(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+        return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
+
+    monkeypatch.setattr("app.extraction.extractor.generate_structured", _abstain)
+
+    result = extract_field(case_id=case_id, field=nominee_field)
+
+    assert result.value is None
+    assert result.provenance is None
+    assert result.confidence is None
