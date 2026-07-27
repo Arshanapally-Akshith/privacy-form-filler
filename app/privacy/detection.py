@@ -28,7 +28,6 @@ check entirely. Every other claimed entity, including any PIN_CODE or NAME it sp
 contains, keeps its own classification; nothing is reclassified.
 """
 
-import csv
 import re
 from dataclasses import dataclass
 from enum import Enum
@@ -41,9 +40,9 @@ from app.privacy.constants import (
     FIELD_LABEL_SUFFIX_WORDS,
     MONTH_NAMES,
     NAME_EXCLUSION_PHRASES,
-    PINCODE_DATASET_PATH,
     WEEKDAY_NAMES,
 )
+from app.privacy.pincode_dataset import KNOWN_PINCODES
 
 
 class EntityType(str, Enum):
@@ -104,17 +103,6 @@ def _verhoeff_checksum_valid(digits: str) -> bool:
     return checksum == 0
 
 
-# --- PIN code dataset membership (DECISIONS.md P6-P9) -------------------------------------
-
-
-def _load_known_pincodes() -> frozenset[str]:
-    with PINCODE_DATASET_PATH.open(encoding="utf-8", newline="") as f:
-        return frozenset(row["pincode"] for row in csv.DictReader(f))
-
-
-_KNOWN_PINCODES = _load_known_pincodes()
-
-
 # --- Per-type candidate detectors ----------------------------------------------------------
 # Each returns raw (start, end, matched_text) candidates, before precedence/overlap
 # resolution -- that happens once, centrally, in detect_entities().
@@ -167,7 +155,7 @@ def _detect_pin_code(text: str) -> list[_Candidate]:
     return [
         (start, end, matched)
         for start, end, matched in _regex_candidates(_PIN_CODE_PATTERN, text)
-        if matched in _KNOWN_PINCODES
+        if matched in KNOWN_PINCODES
     ]
 
 

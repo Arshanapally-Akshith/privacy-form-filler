@@ -1,11 +1,12 @@
-"""Pinned detection, tokenization, and generalization constants (BUILD.md Phase 3, tasks
-1-3). Named, not duplicated inline, per CLAUDE.md §6.
+"""Pinned detection, tokenization, generalization, and derivation constants (BUILD.md
+Phase 3, tasks 1-4). Named, not duplicated inline, per CLAUDE.md §6.
 """
 
 from pathlib import Path
 
-# Reuses the same committed, versioned dataset Derive will use (DECISIONS.md P6-P9) to
-# validate PIN-code candidates by dataset membership rather than a bare 6-digit regex.
+# The committed, versioned PIN code dataset (DECISIONS.md P6-P9). Loaded once by
+# app.privacy.pincode_dataset, shared by detection (PIN-code membership) and Derive
+# (district/state lookup) -- see that module for why a single shared loader replaced two.
 PINCODE_DATASET_PATH = Path(__file__).resolve().parent.parent / "config" / "data" / "pincode_district_state.csv"
 
 # --- Tokenization (BUILD.md Phase 3, task 2) ---------------------------------------------
@@ -125,3 +126,9 @@ MAX_PLAUSIBLE_AGE_YEARS = 130
 # Documented convention, not a silent guess: a Feb 29 DOB evaluated against a non-leap
 # reference year has no Feb 29 to compare against. Treated as falling on Feb 28 that year.
 LEAP_DAY_FALLBACK_MONTH_DAY = (2, 28)
+
+# --- Derive: PIN code -> district/state (BUILD.md Phase 3, task 4) ------------------------
+
+# Indian PIN codes are exactly 6 digits. Checked before any lookup -- malformed input is a
+# caller-bug failure mode distinct in kind from "valid PIN, not found."
+PIN_CODE_LENGTH = 6
