@@ -36,7 +36,11 @@ from app.privacy.dispatch import (
     resolve_action,
 )
 from app.privacy.generalize import generalize_dob
-from app.privacy.policy_config import PolicyConfig, load_policy_config
+from app.privacy.policy_config import (
+    PolicyConfig,
+    check_cooccurrence_guard,
+    load_policy_config,
+)
 from app.privacy.tokenize import reverse_entity
 
 CONFIGS_DIR = Path(__file__).resolve().parent.parent.parent / "app" / "config" / "policy_configs"
@@ -86,6 +90,13 @@ def test_strict_omits_unsupported_fields(field_name: str) -> None:
 def test_strict_permits_nothing_derived_or_generalized() -> None:
     config = load_policy_config(CONFIGS_DIR / "strict.json")
     assert config.permitted_cooccurrence_sets == []
+
+
+def test_strict_passes_the_cooccurrence_guard() -> None:
+    """No Derive field, so no derive_attributes entry is needed -- the guard passes
+    trivially, matching its empty permitted_cooccurrence_sets."""
+    config = load_policy_config(CONFIGS_DIR / "strict.json")
+    check_cooccurrence_guard(config)
 
 
 def test_strict_tokenize_fields_dispatch_correctly() -> None:
@@ -157,6 +168,11 @@ def test_age_state_permits_age_band_and_state() -> None:
     assert config.permitted_cooccurrence_sets == [["age_band", "state"]]
 
 
+def test_age_state_passes_the_cooccurrence_guard() -> None:
+    config = load_policy_config(CONFIGS_DIR / "age_state.json")
+    check_cooccurrence_guard(config, derive_attributes={"pin_code": DeriveAttribute.STATE})
+
+
 def test_age_state_generalize_dispatches_correctly() -> None:
     config = load_policy_config(CONFIGS_DIR / "age_state.json")
     reference_date = date(2026, 7, 28)
@@ -205,6 +221,11 @@ def test_ageband_city_permits_age_band_and_district_internally() -> None:
     precedent that the committed dataset provides district, not city."""
     config = load_policy_config(CONFIGS_DIR / "ageband_city.json")
     assert config.permitted_cooccurrence_sets == [["age_band", "district"]]
+
+
+def test_ageband_city_passes_the_cooccurrence_guard() -> None:
+    config = load_policy_config(CONFIGS_DIR / "ageband_city.json")
+    check_cooccurrence_guard(config, derive_attributes={"pin_code": DeriveAttribute.DISTRICT})
 
 
 def test_ageband_city_derive_exposes_district() -> None:

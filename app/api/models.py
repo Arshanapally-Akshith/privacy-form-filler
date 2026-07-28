@@ -2,6 +2,8 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
+from app.boundary.mode import PrivacyMode
+
 
 class FieldState(str, Enum):
     FILLED = "filled"
@@ -42,6 +44,7 @@ class CreateCaseResponse(BaseModel):
     case_id: str
     form_schema_id: str
     status: CaseStatus
+    privacy_mode: PrivacyMode
 
 
 class Progress(BaseModel):

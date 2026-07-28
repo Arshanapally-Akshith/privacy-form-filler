@@ -13,8 +13,10 @@ success response, so this is not a resource "created" from the client's perspect
 """
 
 from dataclasses import dataclass, field
+from datetime import date
 
 from app.api.models import CaseStatus, FieldRecord
+from app.boundary.mode import PrivacyMode
 
 
 @dataclass
@@ -22,6 +24,13 @@ class CaseRecord:
     case_id: str
     form_schema_id: str
     status: CaseStatus
+    # DECISIONS.md E1: age is generalized against the form's submission/creation date, not
+    # the source documents' dates. Captured once, here, at case creation, so every later
+    # generalize_dob call for this case reads the same value rather than re-deriving it.
+    submitted_at: date
+    # BUILD.md Phase 4 commit 2: the ablation mechanism. Fixed for the case's lifetime --
+    # set once at creation, read by _process_case for every field, never changed mid-flight.
+    privacy_mode: PrivacyMode
     fields: dict[str, FieldRecord] = field(default_factory=dict)  # insertion order = schema field order
 
 
@@ -29,8 +38,24 @@ class CaseStore:
     def __init__(self) -> None:
         self._cases: dict[str, CaseRecord] = {}
 
-    def create(self, case_id: str, form_schema_id: str) -> CaseRecord:
-        record = CaseRecord(case_id=case_id, form_schema_id=form_schema_id, status=CaseStatus.PROCESSING)
+    def create(
+        self,
+        case_id: str,
+        form_schema_id: str,
+        submitted_at: date | None = None,
+        privacy_mode: PrivacyMode = PrivacyMode.NONE,
+    ) -> CaseRecord:
+        # Real, request-time creation date -- not a test reading the clock (CLAUDE.md §4
+        # is about tests, not production code). Mirrors app.privacy.cli's own noqa
+        # precedent below, for the same "no timezone, DOB is date-only" reasoning.
+        resolved_submitted_at = submitted_at if submitted_at is not None else date.today()  # noqa: DTZ011
+        record = CaseRecord(
+            case_id=case_id,
+            form_schema_id=form_schema_id,
+            status=CaseStatus.PROCESSING,
+            submitted_at=resolved_submitted_at,
+            privacy_mode=privacy_mode,
+        )
         self._cases[case_id] = record
         return record
 

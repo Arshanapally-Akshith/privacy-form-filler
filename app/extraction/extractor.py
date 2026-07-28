@@ -1,7 +1,26 @@
-"""Extraction node (BUILD.md Phase 2, tasks 3-5): for each field, retrieve -> prompt ->
-parse structured output, including a confidence score and a hardened abstention path.
-Direct LLM call for now -- the boundary layer arrives in Phase 4
-(ARCHITECTURE.md Invariant I3 only applies from Phase 4 onward).
+"""Extraction node (BUILD.md Phase 2, tasks 3-5; boundary integration BUILD.md Phase 4,
+commit 4): for each field, retrieve -> prompt -> parse structured output, including a
+confidence score and a hardened abstention path.
+
+The LLM call routes through app.boundary.llm.generate_structured_protected -- the single
+call site Invariant I3 requires -- rather than app.extraction.llm_client.generate_structured
+directly. privacy_mode defaults to PrivacyMode.NONE, under which the boundary applies no
+protection at all and behaves identically to the pre-Phase-4 direct call; this keeps every
+existing caller of extract_field working unchanged unless it opts into a mode explicitly.
+
+field.name, field.policy_action_ref, and reference_date are forwarded to the boundary call
+unconditionally, regardless of privacy_mode (BUILD.md Phase 4 commit 6) -- this module has
+no branching on privacy_mode of its own; what to do with that data for a given mode is
+decided entirely inside app.boundary. reference_date is None unless the caller supplies
+one (DECISIONS.md E1: the form's submission date, app.api.case_store.CaseRecord.submitted_at
+-- extract_field has no case-record access of its own, so it is passed in, not looked up).
+
+capture (BUILD.md Phase 4 commit 7, optional, default None) is likewise forwarded
+unconditionally -- this is a testing/eval-harness hook (Invariant I2's outbound-PII
+assertion; see tests/boundary/test_outbound_pii_assertion.py), not a production feature, so
+it stops here rather than being threaded further into app.api.cases: no HTTP caller has a
+legitimate reason to request payload capture for their own request, and the public API is
+not expanded for it.
 
 Depends only on app.retrieval.retriever's public contract, not on the embedder, query
 module, or vector store directly -- retrieval implementation details stay behind that
@@ -31,12 +50,16 @@ rather than passing it through as if it were a genuine extraction.
 """
 
 from dataclasses import dataclass
+from datetime import date
 
 from pydantic import BaseModel, Field
 
+from app.boundary.capture import PayloadCapture
+from app.boundary.llm import generate_structured_protected
+from app.boundary.mode import PrivacyMode
 from app.config.form_schema import FormFieldSpec
 from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K
-from app.extraction.llm_client import LLMProviderError, generate_structured
+from app.extraction.llm_client import LLMProviderError
 from app.retrieval.retriever import RetrievedEvidence, retrieve_for_field
 
 
@@ -69,13 +92,27 @@ _ABSTAINED = ExtractionResult(value=None, provenance=None, confidence=None)
 
 
 def extract_field(
-    case_id: str, field: FormFieldSpec, top_k: int = DEFAULT_RETRIEVAL_TOP_K
+    case_id: str,
+    field: FormFieldSpec,
+    top_k: int = DEFAULT_RETRIEVAL_TOP_K,
+    privacy_mode: PrivacyMode = PrivacyMode.NONE,
+    reference_date: date | None = None,
+    capture: PayloadCapture | None = None,
 ) -> ExtractionResult:
     evidence = retrieve_for_field(case_id=case_id, field_label=field.label, top_k=top_k)
     if not evidence:
         return _ABSTAINED
 
-    parsed = generate_structured(_build_prompt(field, evidence), _FieldExtractionResponse)
+    parsed = generate_structured_protected(
+        _build_prompt(field, evidence),
+        _FieldExtractionResponse,
+        session_id=case_id,
+        privacy_mode=privacy_mode,
+        field_name=field.name,
+        policy_action_ref=field.policy_action_ref,
+        reference_date=reference_date,
+        capture=capture,
+    )
 
     if parsed.value is None or parsed.source_chunk_index is None:
         return _ABSTAINED

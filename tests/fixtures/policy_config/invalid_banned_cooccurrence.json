@@ -1,0 +1,11 @@
+{
+  "name": "test_banned_cooccurrence",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "date_of_birth": "generalize",
+    "pin_code": "derive"
+  },
+  "permitted_cooccurrence_sets": [
+    ["age_band", "district"]
+  ]
+}

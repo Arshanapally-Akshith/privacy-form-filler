@@ -109,6 +109,13 @@ WEEKDAY_NAMES = frozenset(
 # DECISIONS.md E2: 10 years, decade-aligned (band = [n*10, n*10+9]).
 AGE_BAND_WIDTH_YEARS = 10
 
+# The attribute name Generalize exposes, used by the co-occurrence guard
+# (app.privacy.policy_config) to compare against a config's permitted_cooccurrence_sets.
+# Pinned, not config-dependent: DECISIONS.md P3 defines exactly one Generalize mapping
+# (DOB -> age band) today, so unlike Derive's two live targets (state/district) there is
+# nothing for a caller to disambiguate.
+GENERALIZE_ATTRIBUTE_NAME = "age_band"
+
 # Four-digit years only, per the approved Commit 3 adjustment: two-digit years (%y) are
 # removed entirely rather than relying on Python's century-windowing heuristic (00-68 ->
 # 2000s, 69-99 -> 1900s), which is a real source of error for a DOB specifically -- an

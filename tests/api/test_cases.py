@@ -14,6 +14,8 @@ test's LLM stub trivial to reason about. Synthetic PDFs are built inline via fit
 time, mirroring tests/ingest/conftest.py's existing pattern -- no fixture files.
 """
 
+import re
+
 import fitz
 import httpx
 import pytest
@@ -28,6 +30,7 @@ from app.extraction.extractor import _FieldExtractionResponse
 from app.extraction.llm_client import LLMProviderError
 
 _TEST_SCHEMA_ID = "test_two_field_form"
+_TOKENIZE_SCHEMA_ID = "test_two_identifier_field_form"
 
 
 def _uniform_vector(texts: list[str]) -> list[list[float]]:
@@ -67,7 +70,36 @@ def two_field_schema(monkeypatch: pytest.MonkeyPatch) -> FormSchema:
     return schema
 
 
-def _stub_llm_finds_name_abstains_on_aadhaar(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+@pytest.fixture
+def two_identifier_field_schema(monkeypatch: pytest.MonkeyPatch) -> FormSchema:
+    """Both fields are Tokenize-compatible entity types (PAN, ACCOUNT_NUMBER) -- used only
+    by the privacy_mode=full_tokenize tests below, so the known NAME-type gap
+    (two_field_schema's full_name field, tested separately) never enters into them.
+    two_field_schema itself is untouched by this fixture."""
+    schema = FormSchema(
+        id=_TOKENIZE_SCHEMA_ID,
+        name="Test Two Identifier Field Form",
+        description="Minimal Tokenize-compatible schema for privacy_mode=full_tokenize tests.",
+        fields=[
+            FormFieldSpec(
+                name="pan_number", label="PAN Number", type=FieldType.IDENTIFIER, required=True, policy_action_ref="pan"
+            ),
+            FormFieldSpec(
+                name="account_number",
+                label="Account Number",
+                type=FieldType.IDENTIFIER,
+                required=True,
+                policy_action_ref="account_number",
+            ),
+        ],
+    )
+    monkeypatch.setitem(cases_module._FORM_SCHEMAS_BY_ID, _TOKENIZE_SCHEMA_ID, schema)
+    return schema
+
+
+def _stub_llm_finds_name_abstains_on_aadhaar(
+    prompt: str, response_schema: type, **kwargs: object
+) -> _FieldExtractionResponse:
     if "Field: Full Name." in prompt:
         return _FieldExtractionResponse(value="Asha Rao", source_chunk_index=0, confidence=0.92)
     return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
@@ -78,7 +110,9 @@ def _create_case(
 ) -> httpx.Response:
     monkeypatch.setattr("app.retrieval.store.embed_texts", _uniform_vector)
     monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _stub_llm_finds_name_abstains_on_aadhaar)
+    monkeypatch.setattr(
+        "app.extraction.extractor.generate_structured_protected", _stub_llm_finds_name_abstains_on_aadhaar
+    )
 
     return client.post(
         "/api/cases",
@@ -168,10 +202,10 @@ def test_provider_failure_returns_502_and_preserves_internal_failed_state(
     monkeypatch.setattr("app.retrieval.store.embed_texts", _uniform_vector)
     monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
 
-    def _raise(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _raise(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         raise LLMProviderError("simulated provider outage")
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _raise)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _raise)
 
     existing_ids = set(case_store._cases.keys())
     response = client.post(
@@ -297,3 +331,117 @@ def test_review_unknown_field_returns_404(two_field_schema: FormSchema, monkeypa
 def test_get_result_unknown_case_returns_404() -> None:
     client = TestClient(create_app())
     assert client.get("/api/cases/never-created/result").status_code == 404
+
+
+# --- privacy_mode (BUILD.md Phase 4, commit 5) --------------------------------------------
+
+
+def test_create_case_default_privacy_mode_is_none(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = TestClient(create_app())
+    response = _create_case(client, monkeypatch)
+    assert response.json()["privacy_mode"] == "none"
+
+
+def test_create_case_policy_engine_returns_501_and_creates_no_case(two_field_schema: FormSchema) -> None:
+    """policy_engine is a real, pinned mode (DECISIONS.md V1), just not implemented yet
+    (BUILD.md Phase 4 commit 6) -- rejected before any document is touched, same as the
+    other deterministic, request-time rejections above."""
+    client = TestClient(create_app())
+    existing_ids = set(case_store._cases.keys())
+
+    response = client.post(
+        "/api/cases",
+        data={"form_schema_id": _TEST_SCHEMA_ID, "privacy_mode": "policy_engine"},
+        files=[("documents", ("id.pdf", _pdf_bytes("text"), "application/pdf"))],
+    )
+
+    assert response.status_code == 501
+    assert set(case_store._cases.keys()) == existing_ids
+
+
+def test_create_case_invalid_privacy_mode_returns_422(two_field_schema: FormSchema) -> None:
+    client = TestClient(create_app())
+    response = client.post(
+        "/api/cases",
+        data={"form_schema_id": _TEST_SCHEMA_ID, "privacy_mode": "not_a_real_mode"},
+        files=[("documents", ("id.pdf", _pdf_bytes("text"), "application/pdf"))],
+    )
+    assert response.status_code == 422
+
+
+def _stub_llm_echoes_pan_from_evidence(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    if "Field: PAN Number." in prompt:
+        # Whatever the evidence actually says at this point -- under full_tokenize this is
+        # the *token*, not the real PAN, exactly as a real LLM would only ever see what was
+        # sent to it.
+        match = re.search(r"PAN Number:\s*(\S+)", prompt)
+        assert match is not None, "evidence text did not reach the prompt"
+        return _FieldExtractionResponse(value=match.group(1), source_chunk_index=0, confidence=0.9)
+    return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
+
+
+def test_full_tokenize_mode_returns_the_original_value_not_the_token(
+    two_identifier_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """BUILD.md Phase 4 testing requirement: "reversal integration -- values returned to
+    the user are original, not tokens." Only the real network call
+    (app.boundary.llm.generate_structured) is stubbed here, letting protect()/reverse() run
+    for real -- this proves the full round trip through the actual API, distinct from
+    tests/boundary/test_llm.py's isolated coverage of the same mechanism."""
+    client = TestClient(create_app())
+    monkeypatch.setattr("app.retrieval.store.embed_texts", _uniform_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
+    monkeypatch.setattr("app.boundary.llm.generate_structured", _stub_llm_echoes_pan_from_evidence)
+
+    response = client.post(
+        "/api/cases",
+        data={"form_schema_id": _TOKENIZE_SCHEMA_ID, "privacy_mode": "full_tokenize"},
+        files=[
+            (
+                "documents",
+                ("id_proof.pdf", _pdf_bytes("Applicant PAN Number: ABCDE1234F"), "application/pdf"),
+            )
+        ],
+    )
+
+    assert response.status_code == 201
+    assert response.json()["privacy_mode"] == "full_tokenize"
+    case_id = response.json()["case_id"]
+
+    fields = {f["name"]: f for f in client.get(f"/api/cases/{case_id}/fields").json()["fields"]}
+    assert fields["pan_number"]["value"] == "ABCDE1234F"
+
+
+def test_full_tokenize_mode_with_unsupported_entity_type_returns_500_and_preserves_failed_state(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """NAME has no FF1 alphabet (app.privacy.tokenize) -- an existing, already-documented
+    Phase 3 gap. Under privacy_mode=full_tokenize this must fail cleanly, not crash
+    unhandled -- mirrors test_provider_failure_returns_502_and_preserves_internal_failed_state's
+    shape for this distinct failure class (500, not 502: an internal engine limitation, not
+    an upstream provider outage)."""
+    client = TestClient(create_app())
+    monkeypatch.setattr("app.retrieval.store.embed_texts", _uniform_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
+
+    def _fail_if_called(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+        raise AssertionError("protect() should raise before the LLM is ever called")
+
+    monkeypatch.setattr("app.boundary.llm.generate_structured", _fail_if_called)
+
+    existing_ids = set(case_store._cases.keys())
+    response = client.post(
+        "/api/cases",
+        data={"form_schema_id": _TEST_SCHEMA_ID, "privacy_mode": "full_tokenize"},
+        files=[("documents", ("id_proof.pdf", _pdf_bytes("Applicant Full Name: Asha Rao"), "application/pdf"))],
+    )
+
+    assert response.status_code == 500
+    assert "case_id" not in response.json()
+
+    new_ids = set(case_store._cases.keys()) - existing_ids
+    assert len(new_ids) == 1
+    failed_record = case_store._cases[new_ids.pop()]
+    assert failed_record.status == CaseStatus.FAILED

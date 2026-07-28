@@ -48,10 +48,10 @@ def test_no_evidence_at_all_returns_abstention_without_calling_the_llm(
     case_index_registry.get_or_create(case_id)  # known case, nothing indexed
     monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
 
-    def _fail_if_called(prompt: str, response_schema: type) -> None:
+    def _fail_if_called(prompt: str, response_schema: type, **kwargs: object) -> None:
         raise AssertionError("LLM must not be called when there is no retrieved evidence")
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _fail_if_called)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _fail_if_called)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -66,10 +66,10 @@ def test_llm_abstention_on_unsupported_field_returns_missing_not_a_value(
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Name: Asha Rao")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _abstain(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _abstain(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _abstain)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _abstain)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -88,11 +88,11 @@ def test_extracted_value_has_provenance_pointing_at_the_chunk_that_contains_it(
     ]
     _seed_case(monkeypatch, case_id, chunks)
 
-    def _cite_second_chunk(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _cite_second_chunk(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         assert "ABCDE1234F" in prompt  # the evidence actually reached the prompt
         return _FieldExtractionResponse(value="ABCDE1234F", source_chunk_index=1, confidence=0.95)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _cite_second_chunk)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _cite_second_chunk)
 
     result = extract_field(case_id=case_id, field=_FIELD, top_k=5)
 
@@ -114,10 +114,10 @@ def test_out_of_range_source_chunk_index_is_treated_as_abstention(
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _hallucinate_index(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _hallucinate_index(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value="ABCDE1234F", source_chunk_index=7, confidence=0.9)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _hallucinate_index)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _hallucinate_index)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -136,10 +136,10 @@ def test_llm_provider_failure_propagates_rather_than_abstaining(monkeypatch: pyt
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _raise(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _raise(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         raise LLMProviderError("simulated provider outage")
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _raise)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _raise)
 
     with pytest.raises(LLMProviderError):
         extract_field(case_id=case_id, field=_FIELD)
@@ -152,10 +152,12 @@ def test_value_without_confidence_raises_rather_than_defaulting(monkeypatch: pyt
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _value_without_confidence(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _value_without_confidence(
+        prompt: str, response_schema: type, **kwargs: object
+    ) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value="ABCDE1234F", source_chunk_index=0, confidence=None)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _value_without_confidence)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _value_without_confidence)
 
     with pytest.raises(LLMProviderError):
         extract_field(case_id=case_id, field=_FIELD)
@@ -177,10 +179,10 @@ def test_empty_string_value_is_treated_as_abstention(monkeypatch: pytest.MonkeyP
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Name: Asha Rao")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _empty_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _empty_value(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value="", source_chunk_index=0, confidence=0.5)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _empty_value)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _empty_value)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -195,10 +197,10 @@ def test_whitespace_only_value_is_treated_as_abstention(monkeypatch: pytest.Monk
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Name: Asha Rao")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _whitespace_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _whitespace_value(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value="   \t  ", source_chunk_index=0, confidence=0.5)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _whitespace_value)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _whitespace_value)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -214,10 +216,10 @@ def test_extracted_value_is_trimmed_of_surrounding_whitespace(monkeypatch: pytes
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="PAN: ABCDE1234F")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _padded_value(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _padded_value(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value="  ABCDE1234F  ", source_chunk_index=0, confidence=0.9)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _padded_value)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _padded_value)
 
     result = extract_field(case_id=case_id, field=_FIELD)
 
@@ -238,10 +240,10 @@ def test_abstention_holds_for_a_field_from_the_committed_insurance_schema(
     chunk = Chunk(document_id="doc-1", page_number=1, chunk_index=0, text="Applicant's own ID proof only")
     _seed_case(monkeypatch, case_id, [chunk])
 
-    def _abstain(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+    def _abstain(prompt: str, response_schema: type, **kwargs: object) -> _FieldExtractionResponse:
         return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
 
-    monkeypatch.setattr("app.extraction.extractor.generate_structured", _abstain)
+    monkeypatch.setattr("app.extraction.extractor.generate_structured_protected", _abstain)
 
     result = extract_field(case_id=case_id, field=nominee_field)
 

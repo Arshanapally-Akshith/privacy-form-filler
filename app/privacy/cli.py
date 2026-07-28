@@ -33,7 +33,11 @@ from app.privacy.dispatch import (
     apply_action,
     resolve_action,
 )
-from app.privacy.policy_config import load_policy_config
+from app.privacy.policy_config import (
+    PolicyConfigError,
+    check_cooccurrence_guard,
+    load_policy_config,
+)
 from app.privacy.tokenize import reverse_entity
 
 _POLICY_CONFIGS_DIR = Path(__file__).resolve().parent.parent / "config" / "policy_configs"
@@ -301,6 +305,19 @@ def _demo_named_configs(reference_date: date) -> int:
     had_error = False
     for config_name in ("strict", "age_state", "ageband_city"):
         config = load_policy_config(_POLICY_CONFIGS_DIR / f"{config_name}.json")
+
+        # Loading and the co-occurrence guard are deliberately two explicit steps
+        # (app.privacy.policy_config's module docstring) -- this is the one real caller in
+        # the codebase today, standing in for the boundary layer's future call pattern.
+        pin_code_attribute = _CONFIG_DERIVE_ATTRIBUTES.get(config_name)
+        derive_attributes = {"pin_code": pin_code_attribute} if pin_code_attribute is not None else {}
+        try:
+            check_cooccurrence_guard(config, derive_attributes=derive_attributes)
+        except PolicyConfigError as exc:
+            had_error = True
+            print(f"\n{config_name}: FAILED co-occurrence guard: {exc}")
+            continue
+
         print(f"\n{config_name}:")
         for field_name, (entity_type, value) in _CONFIG_DEMO_FIELDS.items():
             explicit_action = config.field_actions.get(field_name)

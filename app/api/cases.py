@@ -7,14 +7,23 @@ orchestration graph -- that machinery belongs to Phase 5 (ARCHITECTURE.md §7), 
 even a lightweight queued/processing state machine here would be orchestration by another
 name.
 
-Two distinct failure classes on case creation:
-- Malformed input (unsupported file type, sub-minimum image resolution) is deterministic
-  and has nothing to do with an external provider -- rejected outright, 400, no case
-  created.
+Three distinct failure classes on case creation:
+- Malformed input (unsupported file type, sub-minimum image resolution, an unsupported
+  privacy_mode) is deterministic and has nothing to do with an external provider or
+  document content -- rejected outright, no case created. privacy_mode=policy_engine is
+  rejected here unconditionally: BUILD.md Phase 4 commit 6 made it fully functional at the
+  boundary layer (app.boundary.policy_engine), but selecting it through this API is a
+  separate, not-yet-made decision this endpoint's own request contract (frozen at commit 5)
+  does not expose yet -- rejecting it here is deliberate, not a placeholder for a gap.
 - A provider failure (embedding or LLM) after input is accepted still creates the case
   record and marks it FAILED internally (app.api.case_store, for diagnostics), but the
   HTTP response is 502 -- the caller is never handed a case_id for a resource whose primary
   processing already failed, so this is not a 201.
+- A privacy-engine dispatch failure (e.g. privacy_mode=full_tokenize hitting an entity type
+  Tokenize cannot execute -- an existing, already-documented Phase 3 gap, ARCH §5.1/§11)
+  is content-dependent, not something request-time validation can rule out. Same
+  FAILED/502-shaped treatment as a provider failure, but reported as 500 -- this is not an
+  upstream provider outage, it is our own engine's known limitation.
 """
 
 import logging
@@ -39,6 +48,7 @@ from app.api.models import (
     ReviewDecision,
     ReviewRequest,
 )
+from app.boundary.mode import PrivacyMode
 from app.config.form_schema import FormFieldSpec, FormSchema, load_form_schemas
 from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K
 from app.extraction.extractor import (
@@ -54,6 +64,7 @@ from app.ingest.parser import (
     UnsupportedDocumentTypeError,
     parse_document,
 )
+from app.privacy.dispatch import PolicyDispatchError
 from app.retrieval.embedder import EmbeddingProviderError
 from app.retrieval.store import case_index_registry, embed_chunks
 
@@ -75,18 +86,31 @@ _HUMAN_REVIEW_PAGE_NUMBER = 0
 async def create_case(
     form_schema_id: Annotated[str, Form()],
     documents: Annotated[list[UploadFile], File()],
+    privacy_mode: Annotated[PrivacyMode, Form()] = PrivacyMode.NONE,
 ) -> CreateCaseResponse:
     schema = _FORM_SCHEMAS_BY_ID.get(form_schema_id)
     if schema is None:
         raise HTTPException(status_code=404, detail=f"Unknown form_schema_id: {form_schema_id!r}")
+    if privacy_mode is PrivacyMode.POLICY_ENGINE:
+        # Functional at the boundary layer since BUILD.md Phase 4 commit 6
+        # (app.boundary.policy_engine) -- rejected here regardless, because letting a
+        # caller actually select it is a request-contract decision this endpoint (frozen at
+        # commit 5) does not make yet, not a placeholder for a missing implementation.
+        # Rejected before any document is touched, same as the schema check above:
+        # deterministic, request-time, unrelated to content.
+        raise HTTPException(
+            status_code=501, detail="privacy_mode=policy_engine is not yet supported"
+        )
 
     case_id = uuid4().hex
     chunks = await _ingest_documents(case_id, documents)
 
-    record = case_store.create(case_id, form_schema_id)
+    record = case_store.create(case_id, form_schema_id, privacy_mode=privacy_mode)
     _process_case(record, schema, chunks)
 
-    return CreateCaseResponse(case_id=case_id, form_schema_id=form_schema_id, status=record.status)
+    return CreateCaseResponse(
+        case_id=case_id, form_schema_id=form_schema_id, status=record.status, privacy_mode=privacy_mode
+    )
 
 
 @router.get(
@@ -203,13 +227,32 @@ def _process_case(record: CaseRecord, schema: FormSchema, chunks: list[Chunk]) -
     try:
         case_index_registry.get_or_create(record.case_id).add(embed_chunks(chunks))
         for schema_field in schema.fields:
-            result = extract_field(case_id=record.case_id, field=schema_field, top_k=DEFAULT_RETRIEVAL_TOP_K)
+            result = extract_field(
+                case_id=record.case_id,
+                field=schema_field,
+                top_k=DEFAULT_RETRIEVAL_TOP_K,
+                privacy_mode=record.privacy_mode,
+                reference_date=record.submitted_at,
+            )
             record.fields[schema_field.name] = _to_field_record(schema_field, result)
     except (EmbeddingProviderError, LLMProviderError) as exc:
         record.status = CaseStatus.FAILED
         logger.exception("case_processing_failed", extra={"case_id": record.case_id})
         raise HTTPException(
             status_code=502, detail=f"Provider request failed while processing case {record.case_id!r}"
+        ) from exc
+    except PolicyDispatchError as exc:
+        # TODO(BUILD.md Phase 4 commit 6+): temporary. app.privacy.dispatch's exceptions
+        # are caught directly here because nothing in the boundary layer translates them
+        # yet (app.boundary.payload.protect() deliberately lets them propagate unchanged --
+        # see its own docstring). Once the boundary owns a translation layer for privacy
+        # implementation failures, this API-level handler should catch a boundary-owned
+        # exception instead of reaching past app.boundary into app.privacy directly.
+        record.status = CaseStatus.FAILED
+        logger.exception("case_processing_failed", extra={"case_id": record.case_id})
+        raise HTTPException(
+            status_code=500,
+            detail=f"Privacy engine could not process case {record.case_id!r} under the active privacy_mode",
         ) from exc
 
     record.status = CaseStatus.COMPLETED
