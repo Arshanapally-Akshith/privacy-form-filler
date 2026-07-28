@@ -1,0 +1,14 @@
+{
+  "name": "age_state",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "date_of_birth": "generalize",
+    "pan_number": "tokenize",
+    "aadhaar_number": "tokenize",
+    "phone_number": "tokenize",
+    "pin_code": "derive",
+    "linked_account_number": "tokenize",
+    "annual_income": "pass_through"
+  },
+  "permitted_cooccurrence_sets": [["age_band", "state"]]
+}

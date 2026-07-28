@@ -1,0 +1,13 @@
+{
+  "name": "strict",
+  "dataset_version": "2026-07-26",
+  "field_actions": {
+    "pan_number": "tokenize",
+    "aadhaar_number": "tokenize",
+    "phone_number": "tokenize",
+    "pin_code": "tokenize",
+    "linked_account_number": "tokenize",
+    "annual_income": "pass_through"
+  },
+  "permitted_cooccurrence_sets": []
+}
