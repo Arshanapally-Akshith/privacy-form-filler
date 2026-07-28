@@ -33,8 +33,8 @@ markers = [
 ]
 
 [[tool.mypy.overrides]]
-# Neither library publishes type stubs or a py.typed marker.
-module = ["fitz", "pytesseract"]
+# None of these publish type stubs or a py.typed marker consumed by this project.
+module = ["fitz", "pytesseract", "jsonschema"]
 ignore_missing_imports = true
 
 [build-system]
