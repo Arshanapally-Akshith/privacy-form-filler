@@ -1,0 +1,1085 @@
+{
+  "measured_at": "2026-07-28T16:22:21.867481+00:00",
+  "modes": {
+    "full_tokenize": {
+      "accuracy": 0.0,
+      "accuracy_by_field_type": {
+        "date": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        "identifier": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 14
+        },
+        "location": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 8
+        },
+        "name": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 6
+        },
+        "numeric_financial": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        }
+      },
+      "field_results": [
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Rohan Mehta",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "12/03/1988",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "BXPRM4567K",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "234567890123",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "45 Lake View Apartments, Sector 12, Gurgaon, Haryana",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "122001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9812345678",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "rohan.mehta@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": "987654321012",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "950000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Priya Nair",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "05 August 1992",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "CZTPN7890L",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "345678901234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "12 Palm Grove Society, Andheri West, Mumbai, Maharashtra",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "400058",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9923456789",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Sunita Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "22/11/1975",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "78 MG Road, Koramangala, Bengaluru, Karnataka",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "560034",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9876501234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "sunita.iyer@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "1200000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": "Arjun Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Vikram Desai",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "30/01/1980",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "22 Riverside Colony, Vadodara, Gujarat",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "390001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9988776655",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "800000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": null,
+          "outcome": "error"
+        }
+      ],
+      "outcome_counts": {
+        "error": 36
+      },
+      "total_fields": 36
+    },
+    "none": {
+      "accuracy": 0.0,
+      "accuracy_by_field_type": {
+        "date": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        "identifier": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 14
+        },
+        "location": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 8
+        },
+        "name": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 6
+        },
+        "numeric_financial": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        }
+      },
+      "field_results": [
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 47.135775362s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '47s'}]}}",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Rohan Mehta",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 43.074474582s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "12/03/1988",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 38.862623825s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "BXPRM4567K",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 35.258274362s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "234567890123",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 31.149805798s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '31s'}]}}",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "45 Lake View Apartments, Sector 12, Gurgaon, Haryana",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 27.228687411s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '27s'}]}}",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "122001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 23.120107057s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9812345678",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 19.145600588s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "rohan.mehta@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 15.100271553s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15s'}]}}",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": "987654321012",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 11.312114388s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "950000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 7.304781389s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Priya Nair",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 3.162639635s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "05 August 1992",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 58.868098069s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '58s'}]}}",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "CZTPN7890L",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 55.296234645s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '55s'}]}}",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "345678901234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 51.346311461s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "12 Palm Grove Society, Andheri West, Mumbai, Maharashtra",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 47.263310876s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '47s'}]}}",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "400058",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 43.053771905s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9923456789",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 39.279125368s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 35.08292866s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 31.271711088s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '31s'}]}}",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 26.943570248s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Sunita Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 23.23560017s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "22/11/1975",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 19.203891601s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "78 MG Road, Koramangala, Bengaluru, Karnataka",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 15.244940587s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15s'}]}}",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "560034",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 11.221704644s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9876501234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 7.133757506s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "sunita.iyer@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 2.926866741s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "1200000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 59.263453018s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": "Arjun Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 55.173749362s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '55s'}]}}",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Vikram Desai",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 51.288877731s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "30/01/1980",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.883514904s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "22 Riverside Colony, Vadodara, Gujarat",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 43.246144691s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "390001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 39.253168643s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9988776655",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 35.244718804s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 31.263734721s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '31s'}]}}",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "800000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 27.204387941s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '27s'}]}}",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": null,
+          "outcome": "error"
+        }
+      ],
+      "outcome_counts": {
+        "error": 36
+      },
+      "total_fields": 36
+    },
+    "policy_engine": {
+      "accuracy": 0.0,
+      "accuracy_by_field_type": {
+        "date": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        "identifier": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 14
+        },
+        "location": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 8
+        },
+        "name": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 6
+        },
+        "numeric_financial": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 4
+        }
+      },
+      "field_results": [
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Rohan Mehta",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "12/03/1988",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "BXPRM4567K",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "234567890123",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "45 Lake View Apartments, Sector 12, Gurgaon, Haryana",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "122001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9812345678",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "rohan.mehta@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": "987654321012",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "950000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Priya Nair",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "05 August 1992",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pan_number",
+          "field_type": "identifier",
+          "ground_truth": "CZTPN7890L",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "aadhaar_number",
+          "field_type": "identifier",
+          "ground_truth": "345678901234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "12 Palm Grove Society, Andheri West, Mumbai, Maharashtra",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "400058",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9923456789",
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "linked_account_number",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "kyc_missing_optional_fields_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Sunita Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "22/11/1975",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "78 MG Road, Koramangala, Bengaluru, Karnataka",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "560034",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9876501234",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": "sunita.iyer@example.com",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "1200000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_complete_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": "Arjun Iyer",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "full_name",
+          "field_type": "name",
+          "ground_truth": "Vikram Desai",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "date_of_birth",
+          "field_type": "date",
+          "ground_truth": "30/01/1980",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "residential_address",
+          "field_type": "location",
+          "ground_truth": "22 Riverside Colony, Vadodara, Gujarat",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "pin_code",
+          "field_type": "location",
+          "ground_truth": "390001",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "phone_number",
+          "field_type": "identifier",
+          "ground_truth": "9988776655",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'email'",
+          "extracted_value": null,
+          "field_name": "email_address",
+          "field_type": "identifier",
+          "ground_truth": null,
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "annual_income",
+          "field_type": "numeric_financial",
+          "ground_truth": "800000",
+          "outcome": "error"
+        },
+        {
+          "case_id": "insurance_missing_required_nominee_1",
+          "error": "Tokenize has no defined alphabet for entity type 'name'",
+          "extracted_value": null,
+          "field_name": "nominee_full_name",
+          "field_type": "name",
+          "ground_truth": null,
+          "outcome": "error"
+        }
+      ],
+      "outcome_counts": {
+        "error": 36
+      },
+      "total_fields": 36
+    }
+  }
+}

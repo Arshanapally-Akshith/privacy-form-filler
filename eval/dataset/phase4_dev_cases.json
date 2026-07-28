@@ -1,0 +1,90 @@
+{
+  "description": "BUILD.md Phase 4 task 6: informal dev cases, re-run in all three privacy modes to record the first real accuracy signal per mode. Deliberately smaller than the Phase 6 evaluation dataset (50-60 semi-synthetic cases) -- four cases here, covering both committed form schemas, a complete case and an adversarial missing-field case for each, chosen to exercise every FieldType (identifier/date/location/name/numeric_financial) and both correct-fill and correct-abstention paths. Ground truth values map field name to the expected extracted string; a null ground truth means the field is genuinely absent from the evidence and correct behavior is to abstain.",
+  "reference_date": "2026-07-28",
+  "cases": [
+    {
+      "case_id": "kyc_complete_1",
+      "form_schema_id": "kyc_account_opening",
+      "documents": [
+        {
+          "document_id": "kyc_form_rohan",
+          "text": "KYC ACCOUNT OPENING FORM\n\nApplicant Full Name: Rohan Mehta\nDate of Birth: 12/03/1988\nPAN Number: BXPRM4567K\nAadhaar Number: 234567890123\nResidential Address: 45 Lake View Apartments, Sector 12, Gurgaon, Haryana\nPIN Code: 122001\nPhone Number: 9812345678\nEmail Address: rohan.mehta@example.com\nExisting Bank Account Number: 987654321012\nAnnual Income: 950000"
+        }
+      ],
+      "ground_truth": {
+        "full_name": "Rohan Mehta",
+        "date_of_birth": "12/03/1988",
+        "pan_number": "BXPRM4567K",
+        "aadhaar_number": "234567890123",
+        "residential_address": "45 Lake View Apartments, Sector 12, Gurgaon, Haryana",
+        "pin_code": "122001",
+        "phone_number": "9812345678",
+        "email_address": "rohan.mehta@example.com",
+        "linked_account_number": "987654321012",
+        "annual_income": "950000"
+      }
+    },
+    {
+      "case_id": "kyc_missing_optional_fields_1",
+      "form_schema_id": "kyc_account_opening",
+      "documents": [
+        {
+          "document_id": "kyc_form_priya",
+          "text": "KYC ACCOUNT OPENING FORM\n\nApplicant Full Name: Priya Nair\nDate of Birth: 05 August 1992\nPAN Number: CZTPN7890L\nAadhaar Number: 345678901234\nResidential Address: 12 Palm Grove Society, Andheri West, Mumbai, Maharashtra\nPIN Code: 400058\nPhone Number: 9923456789\n\nNo existing bank account. Email not provided. Income not disclosed."
+        }
+      ],
+      "ground_truth": {
+        "full_name": "Priya Nair",
+        "date_of_birth": "05 August 1992",
+        "pan_number": "CZTPN7890L",
+        "aadhaar_number": "345678901234",
+        "residential_address": "12 Palm Grove Society, Andheri West, Mumbai, Maharashtra",
+        "pin_code": "400058",
+        "phone_number": "9923456789",
+        "email_address": null,
+        "linked_account_number": null,
+        "annual_income": null
+      }
+    },
+    {
+      "case_id": "insurance_complete_1",
+      "form_schema_id": "insurance_policy_application",
+      "documents": [
+        {
+          "document_id": "insurance_form_sunita",
+          "text": "INSURANCE POLICY APPLICATION\n\nApplicant Name: Sunita Iyer\nDate of Birth: 22/11/1975\nAddress: 78 MG Road, Koramangala, Bengaluru, Karnataka\nPIN Code: 560034\nPhone Number: 9876501234\nEmail Address: sunita.iyer@example.com\nAnnual Income: 1200000\nNominee Full Name: Arjun Iyer"
+        }
+      ],
+      "ground_truth": {
+        "full_name": "Sunita Iyer",
+        "date_of_birth": "22/11/1975",
+        "residential_address": "78 MG Road, Koramangala, Bengaluru, Karnataka",
+        "pin_code": "560034",
+        "phone_number": "9876501234",
+        "email_address": "sunita.iyer@example.com",
+        "annual_income": "1200000",
+        "nominee_full_name": "Arjun Iyer"
+      }
+    },
+    {
+      "case_id": "insurance_missing_required_nominee_1",
+      "form_schema_id": "insurance_policy_application",
+      "documents": [
+        {
+          "document_id": "insurance_form_vikram",
+          "text": "INSURANCE POLICY APPLICATION\n\nApplicant Name: Vikram Desai\nDate of Birth: 30/01/1980\nAddress: 22 Riverside Colony, Vadodara, Gujarat\nPIN Code: 390001\nPhone Number: 9988776655\nAnnual Income: 800000\n\nNominee details to be provided at a later date. Email not on file."
+        }
+      ],
+      "ground_truth": {
+        "full_name": "Vikram Desai",
+        "date_of_birth": "30/01/1980",
+        "residential_address": "22 Riverside Colony, Vadodara, Gujarat",
+        "pin_code": "390001",
+        "phone_number": "9988776655",
+        "email_address": null,
+        "annual_income": "800000",
+        "nominee_full_name": null
+      }
+    }
+  ]
+}
