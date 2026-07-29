@@ -200,16 +200,15 @@ def test_graph_preserves_case_level_fields_untouched(monkeypatch: pytest.MonkeyP
     assert final.reference_date == _REFERENCE_DATE
 
 
-@pytest.mark.parametrize(
-    "decision", [VerifierDecision.ACCEPT, VerifierDecision.RE_RETRIEVE, VerifierDecision.ESCALATE]
-)
-def test_graph_processes_every_field_regardless_of_verifier_decision(
+@pytest.mark.parametrize("decision", [VerifierDecision.ACCEPT, VerifierDecision.ESCALATE])
+def test_graph_processes_every_field_exactly_once_for_non_retrying_decisions(
     monkeypatch: pytest.MonkeyPatch, decision: VerifierDecision
 ) -> None:
-    """Structurally linear as of this commit (`BUILD.md` Phase 5 commit 5): the verifier's
-    decision is computed and persisted, but has no effect on routing yet -- every field is
-    processed exactly once regardless of what the verifier decided. Commit 6 is what makes
-    the decision matter."""
+    """Accept and escalate never retry (`BUILD.md` Phase 5 commit 6, `ARCH §7`'s routing
+    table) -- every field is still processed exactly once for either decision. re_retrieve
+    is deliberately excluded here: since commit 6 it genuinely loops back through
+    verification up to the retry budget, which is dedicated coverage in
+    tests/orchestration/test_edges.py rather than this module's traversal-order tests."""
     responses = {"full_name": _ABSTAINED, "date_of_birth": _ABSTAINED, "pin_code": _ABSTAINED}
     calls = _stub_pipeline(monkeypatch, responses, verifier_decision=decision)
 
