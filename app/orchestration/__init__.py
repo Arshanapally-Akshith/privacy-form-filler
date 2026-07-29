@@ -1,3 +1,4 @@
+from app.orchestration.graph import build_graph, run_graph
 from app.orchestration.state import (
     FieldGraphState,
     OrchestrationState,
@@ -11,5 +12,7 @@ __all__ = [
     "OrchestrationState",
     "VerifierDecision",
     "VerifierTrace",
+    "build_graph",
     "new_orchestration_state",
+    "run_graph",
 ]
