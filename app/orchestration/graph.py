@@ -1,4 +1,4 @@
-"""Standalone orchestration graph (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, tasks 2-6).
+"""Standalone orchestration graph (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, tasks 2-8).
 
 Ports `app.api.cases._process_case`'s hand-written loop into a LangGraph graph, with the
 full routing table `ARCH §7` specifies:
@@ -13,7 +13,16 @@ attempt; a field can loop through verify/apply/retry more than once, but only up
 bounded retry budget (`DECISIONS.md` E6, enforced entirely inside
 `app.orchestration.nodes.apply_verifier_decision` -- no possibility of an unbounded loop,
 since that node is the only place `retry_count` is ever incremented and it never allows
-`retry_count` to exceed E6). No checkpointing yet -- that is a later Phase 5 commit.
+`retry_count` to exceed E6).
+
+Checkpointing (`BUILD.md` Phase 5 task 8; `DECISIONS.md` C1) is opt-in via an explicit
+`checkpointer` keyword on `build_graph`/`run_graph`, defaulting to `None` -- every existing
+caller (`app.api.cases._process_case`, every test that calls `run_graph(state)` positionally)
+keeps today's exact behavior, no checkpoint machinery, unchanged. `app.api.cases` is not
+touched by this commit and does not pass a checkpointer: checkpointing stays entirely
+inside this package, not exposed through the API. `thread_id` is always `state.case_id`
+(`resume_graph`'s `case_id` parameter, for the same reason) -- one case is one thread,
+matching the case-scoped session_id the boundary layer already uses everywhere else.
 
 Wired into the API since commit 4 (`app.api.cases._process_case` calls `run_graph`
 below). This module has no dependency on `app.api` at all -- only on
@@ -22,6 +31,7 @@ below). This module has no dependency on `app.api` at all -- only on
 
 from typing import Any
 
+from langgraph.checkpoint.base import BaseCheckpointSaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
@@ -68,7 +78,9 @@ def _route_after_verifier_decision(state: OrchestrationState) -> str:
     return _route_on_pending_fields(state)
 
 
-def build_graph() -> CompiledStateGraph[OrchestrationState, Any, Any, Any]:
+def build_graph(
+    checkpointer: BaseCheckpointSaver[str] | None = None,
+) -> CompiledStateGraph[OrchestrationState, Any, Any, Any]:
     graph: StateGraph[OrchestrationState, Any, Any, Any] = StateGraph(OrchestrationState)
     graph.add_node(EXTRACT_NEXT_FIELD_NODE, extract_next_field)
     graph.add_node(VERIFY_CURRENT_FIELD_NODE, verify_current_field)
@@ -80,11 +92,19 @@ def build_graph() -> CompiledStateGraph[OrchestrationState, Any, Any, Any]:
     graph.add_edge(VERIFY_CURRENT_FIELD_NODE, APPLY_VERIFIER_DECISION_NODE)
     graph.add_conditional_edges(APPLY_VERIFIER_DECISION_NODE, _route_after_verifier_decision)
     graph.add_edge(RETRY_CURRENT_FIELD_NODE, VERIFY_CURRENT_FIELD_NODE)
-    return graph.compile()
+    return graph.compile(checkpointer=checkpointer)
 
 
-def run_graph(state: OrchestrationState) -> OrchestrationState:
+def run_graph(
+    state: OrchestrationState, *, checkpointer: BaseCheckpointSaver[str] | None = None
+) -> OrchestrationState:
     """Run the graph to completion and return a typed `OrchestrationState`.
+
+    `checkpointer` is `None` by default: every existing caller (`app.api.cases
+    ._process_case`, and every test that predates this commit) gets exactly today's
+    behavior, a single uncheckpointed `.invoke()` call, unchanged. Passing a checkpointer
+    additionally threads `config={"configurable": {"thread_id": state.case_id}}` through
+    `.invoke()`, which is what makes the run resumable via `resume_graph` below.
 
     `CompiledStateGraph.invoke()` returns a plain `dict` of final channel values
     regardless of the state schema type -- verified directly against the installed
@@ -92,5 +112,27 @@ def run_graph(state: OrchestrationState) -> OrchestrationState:
     caller of this module, including commit 4's API integration, works with the same
     typed state throughout rather than a raw dict.
     """
-    result = build_graph().invoke(state)
+    compiled = build_graph(checkpointer=checkpointer)
+    if checkpointer is None:
+        result = compiled.invoke(state)
+    else:
+        result = compiled.invoke(state, config={"configurable": {"thread_id": state.case_id}})
+    return OrchestrationState(**result)
+
+
+def resume_graph(case_id: str, checkpointer: BaseCheckpointSaver[str]) -> OrchestrationState:
+    """Resume a previously interrupted run for `case_id` from its last persisted
+    checkpoint, continuing until completion (`BUILD.md` Phase 5 task 8; `DECISIONS.md` C1).
+
+    `checkpointer` must be the same saver *instance* the original run used -- the
+    checkpoint lives inside it, keyed by `thread_id` (`case_id`), not inside any particular
+    `CompiledStateGraph` object. The compiled graph built here is deliberately a fresh
+    object, proving resumption works by thread_id lookup in the checkpointer rather than by
+    reusing the original in-process `CompiledStateGraph` -- the same distinction the plan
+    for this commit calls out, and what `tests/orchestration/test_checkpoint.py` exercises
+    directly. Passing `None` as LangGraph's input (rather than a fresh `OrchestrationState`)
+    is how `.invoke()` is told to continue from the checkpoint instead of starting over.
+    """
+    compiled = build_graph(checkpointer=checkpointer)
+    result = compiled.invoke(None, config={"configurable": {"thread_id": case_id}})
     return OrchestrationState(**result)
