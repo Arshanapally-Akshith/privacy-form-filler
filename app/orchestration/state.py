@@ -80,9 +80,12 @@ class FieldGraphState:
 @dataclass
 class OrchestrationState:
     """Whole-case graph state -- exactly the fields `ARCH §7` names (case ID, form schema,
-    per-field records, retry counts, verifier traces), plus `pending_field_names` as the
-    minimum necessary bookkeeping for sequential traversal over `fields`. Nothing else is
-    added ahead of need.
+    per-field records, retry counts, verifier traces), plus the minimum bookkeeping two
+    graph nodes need to cooperate on one field in sequence: `pending_field_names` (which
+    field is next) and `current_field_name` (which field the most recent extraction was
+    for, so the verification step that follows it -- a separate graph node, per `BUILD.md`
+    Phase 5 commits 5/6 -- knows which field to verify without re-deriving it). Nothing
+    else is added ahead of need.
     """
 
     case_id: str
@@ -91,6 +94,7 @@ class OrchestrationState:
     reference_date: date
     fields: dict[str, FieldGraphState] = field(default_factory=dict)
     pending_field_names: list[str] = field(default_factory=list)
+    current_field_name: str | None = None
 
 
 def new_orchestration_state(

@@ -28,6 +28,8 @@ from app.api.models import CaseStatus
 from app.config.form_schema import FieldType, FormFieldSpec, FormSchema
 from app.extraction.extractor import _FieldExtractionResponse
 from app.extraction.llm_client import LLMProviderError
+from app.orchestration.state import VerifierDecision
+from app.orchestration.verifier import _VerifierResponse
 
 _TEST_SCHEMA_ID = "test_two_field_form"
 _TOKENIZE_SCHEMA_ID = "test_two_identifier_field_form"
@@ -105,6 +107,15 @@ def _stub_llm_finds_name_abstains_on_aadhaar(
     return _FieldExtractionResponse(value=None, source_chunk_index=None, confidence=None)
 
 
+def _stub_verifier_always_accepts(prompt: str, response_schema: type, **kwargs: object) -> _VerifierResponse:
+    """Since commit 5, every extracted field is also verified -- a second, independent
+    call through `generate_structured_protected` (`app.orchestration.verifier`'s own
+    import binding, distinct from `app.extraction.extractor`'s). Tests that stub
+    extraction must stub this too, or the verifier's call falls through to the real
+    provider (`CLAUDE.md` §4 forbids that)."""
+    return _VerifierResponse(decision=VerifierDecision.ACCEPT, reasoning="stub verifier: always accept")
+
+
 def _create_case(
     client: TestClient, monkeypatch: pytest.MonkeyPatch, schema_id: str = _TEST_SCHEMA_ID
 ) -> httpx.Response:
@@ -113,6 +124,7 @@ def _create_case(
     monkeypatch.setattr(
         "app.extraction.extractor.generate_structured_protected", _stub_llm_finds_name_abstains_on_aadhaar
     )
+    monkeypatch.setattr("app.orchestration.verifier.generate_structured_protected", _stub_verifier_always_accepts)
 
     return client.post(
         "/api/cases",
@@ -371,7 +383,16 @@ def test_create_case_invalid_privacy_mode_returns_422(two_field_schema: FormSche
     assert response.status_code == 422
 
 
-def _stub_llm_echoes_pan_from_evidence(prompt: str, response_schema: type) -> _FieldExtractionResponse:
+def _stub_llm_echoes_pan_from_evidence(
+    prompt: str, response_schema: type
+) -> _FieldExtractionResponse | _VerifierResponse:
+    """Patches `app.boundary.llm.generate_structured` -- the low-level call shared by
+    every caller of `generate_structured_protected` regardless of which module's own
+    import binding invoked it, so this one stub now serves both extraction's and (since
+    commit 5) the verifier's calls and must branch on `response_schema` to answer each
+    correctly."""
+    if response_schema is _VerifierResponse:
+        return _VerifierResponse(decision=VerifierDecision.ACCEPT, reasoning="stub verifier: always accept")
     if "Field: PAN Number." in prompt:
         # Whatever the evidence actually says at this point -- under full_tokenize this is
         # the *token*, not the real PAN, exactly as a real LLM would only ever see what was

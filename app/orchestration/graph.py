@@ -1,15 +1,16 @@
-"""Standalone orchestration graph (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, task 2).
+"""Standalone orchestration graph (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, tasks 2-4).
 
-Ports `app.api.cases._process_case`'s hand-written loop into a LangGraph graph with
-unchanged behavior: `extract_next_field` (wrapping `extract_field`) is invoked once per
-form-schema field, in schema-declared order, with the same arguments the existing loop
-already uses. No retries, no verifier, no conditional routing beyond "more fields pending
-or not," no checkpointing -- those are later Phase 5 commits.
+Ports `app.api.cases._process_case`'s hand-written loop into a LangGraph graph:
+`extract_next_field` is invoked once per form-schema field, in schema-declared order,
+immediately followed by `verify_current_field` for that same field. Structurally linear as
+of this commit -- verification always runs, its trace is always persisted, but its
+decision has no effect on routing yet; every field proceeds to the next one exactly as it
+did before the verifier existed. No retries, no conditional routing on the verifier's
+decision, no checkpointing -- those are later Phase 5 commits.
 
-Not wired into the API in this commit. `app.api.cases._process_case` is untouched and
-remains the live orchestrator until commit 4 swaps it for `run_graph` below. This module
-has no dependency on `app.api` at all -- only on `app.orchestration.nodes` and
-`app.orchestration.state`.
+Wired into the API since commit 4 (`app.api.cases._process_case` calls `run_graph`
+below). This module has no dependency on `app.api` at all -- only on
+`app.orchestration.nodes` and `app.orchestration.state`.
 """
 
 from typing import Any
@@ -17,7 +18,12 @@ from typing import Any
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
-from app.orchestration.nodes import EXTRACT_NEXT_FIELD_NODE, extract_next_field
+from app.orchestration.nodes import (
+    EXTRACT_NEXT_FIELD_NODE,
+    VERIFY_CURRENT_FIELD_NODE,
+    extract_next_field,
+    verify_current_field,
+)
 from app.orchestration.state import OrchestrationState
 
 
@@ -28,8 +34,10 @@ def _route_on_pending_fields(state: OrchestrationState) -> str:
 def build_graph() -> CompiledStateGraph[OrchestrationState, Any, Any, Any]:
     graph: StateGraph[OrchestrationState, Any, Any, Any] = StateGraph(OrchestrationState)
     graph.add_node(EXTRACT_NEXT_FIELD_NODE, extract_next_field)
+    graph.add_node(VERIFY_CURRENT_FIELD_NODE, verify_current_field)
     graph.add_conditional_edges(START, _route_on_pending_fields)
-    graph.add_conditional_edges(EXTRACT_NEXT_FIELD_NODE, _route_on_pending_fields)
+    graph.add_edge(EXTRACT_NEXT_FIELD_NODE, VERIFY_CURRENT_FIELD_NODE)
+    graph.add_conditional_edges(VERIFY_CURRENT_FIELD_NODE, _route_on_pending_fields)
     return graph.compile()
 
 

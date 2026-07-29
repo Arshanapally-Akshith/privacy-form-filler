@@ -1,14 +1,25 @@
-"""Node functions (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, task 2).
+"""Node functions (`ARCHITECTURE.md` §7; `BUILD.md` Phase 5, tasks 2-4).
 
 `extract_next_field` wraps `app.extraction.extractor.extract_field` unchanged -- same
 arguments (`case_id`, `field`, `top_k`, `privacy_mode`, `reference_date`), same return
-handling -- as `app.api.cases._process_case`'s hand-written loop, which this graph is
-built to replace in commit 4.
+handling -- as `app.api.cases._process_case`'s hand-written loop, which this graph
+replaced in commit 4.
 
-Dependency direction is one-directional: this module imports `app.extraction.extractor`,
-never the reverse. `extract_field` takes no graph-specific types, returns its own
-`ExtractionResult` unchanged, and has no knowledge that a LangGraph node calls it -- it is
-called here exactly as `app.api.cases._process_case` already calls it today.
+`verify_current_field` wraps `app.orchestration.verifier.verify_field`, run immediately
+after `extract_next_field` for the same field (`current_field_name`, set by
+`extract_next_field`, is how this node knows which field without re-deriving it). It
+re-retrieves the field's evidence via `retrieve_for_field` -- the same function
+`extract_field` already calls internally, with the same `field.label`/`top_k`, so it is
+guaranteed to see the identical evidence set extraction did -- rather than changing
+`extract_field`'s signature to also return its evidence. That is a deliberate, stated
+trade-off (one extra retrieval call per field, not free) made specifically to keep
+`extract_field` unchanged and the extractor unaware this graph exists at all, consistent
+with commit 3's "Graph -> Nodes -> Extractor" dependency direction.
+
+Dependency direction is one-directional throughout this module: it imports
+`app.extraction.extractor` and `app.orchestration.verifier`, never the reverse. Neither
+`extract_field` nor `verify_field` takes graph-specific types or knows a LangGraph node
+calls it.
 
 Node functions return a partial-update `dict` rather than mutating `state` in place. This
 is not a style preference: LangGraph applies a plain `LastValue` (whole-value overwrite)
@@ -33,8 +44,11 @@ from app.config.form_schema import FormFieldSpec, FormSchema
 from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K
 from app.extraction.extractor import ExtractionResult, extract_field
 from app.orchestration.state import FieldGraphState, OrchestrationState
+from app.orchestration.verifier import verify_field
+from app.retrieval.retriever import retrieve_for_field
 
 EXTRACT_NEXT_FIELD_NODE = "extract_next_field"
+VERIFY_CURRENT_FIELD_NODE = "verify_current_field"
 
 
 def extract_next_field(state: OrchestrationState) -> dict[str, Any]:
@@ -65,7 +79,50 @@ def extract_next_field(state: OrchestrationState) -> dict[str, Any]:
         verifier_traces=existing.verifier_traces,
     )
 
-    return {"pending_field_names": remaining, "fields": updated_fields}
+    return {
+        "pending_field_names": remaining,
+        "fields": updated_fields,
+        "current_field_name": field_name,
+    }
+
+
+def verify_current_field(state: OrchestrationState) -> dict[str, Any]:
+    """Verify `current_field_name` (set by the preceding `extract_next_field` step) and
+    append the resulting `VerifierTrace` -- persisted immediately, in this same commit
+    (`ARCH §7.1`: "from the first commit"). Structurally linear as of this commit: the
+    decision is computed and stored, but does not yet affect routing -- every field
+    proceeds to the next one regardless of what the verifier decided (`BUILD.md` Phase 5
+    commit 6 adds conditional routing on this decision)."""
+    field_name = state.current_field_name
+    if field_name is None:
+        raise AssertionError(
+            "verify_current_field ran with no current_field_name set -- "
+            "extract_next_field must always run immediately before this node"
+        )
+    field_spec = _field_spec_by_name(state.form_schema, field_name)
+    field_graph_state = state.fields[field_name]
+
+    evidence = retrieve_for_field(
+        case_id=state.case_id, field_label=field_spec.label, top_k=DEFAULT_RETRIEVAL_TOP_K
+    )
+    trace = verify_field(
+        case_id=state.case_id,
+        field=field_spec,
+        candidate_value=field_graph_state.record.value,
+        candidate_confidence=field_graph_state.record.confidence,
+        evidence=evidence,
+        privacy_mode=state.privacy_mode,
+        reference_date=state.reference_date,
+    )
+
+    updated_fields = dict(state.fields)
+    updated_fields[field_name] = FieldGraphState(
+        record=field_graph_state.record,
+        retry_count=field_graph_state.retry_count,
+        verifier_traces=[*field_graph_state.verifier_traces, trace],
+    )
+
+    return {"fields": updated_fields}
 
 
 def _field_spec_by_name(form_schema: FormSchema, field_name: str) -> FormFieldSpec:
