@@ -15,6 +15,7 @@ time, mirroring tests/ingest/conftest.py's existing pattern -- no fixture files.
 """
 
 import re
+from collections.abc import Callable
 
 import fitz
 import httpx
@@ -125,6 +126,42 @@ def _create_case(
         "app.extraction.extractor.generate_structured_protected", _stub_llm_finds_name_abstains_on_aadhaar
     )
     monkeypatch.setattr("app.orchestration.verifier.generate_structured_protected", _stub_verifier_always_accepts)
+
+    return client.post(
+        "/api/cases",
+        data={"form_schema_id": schema_id},
+        files=[("documents", ("id_proof.pdf", _pdf_bytes("Applicant Full Name: Asha Rao"), "application/pdf"))],
+    )
+
+
+def _stub_verifier_escalates_on(field_names: set[str]) -> Callable[..., _VerifierResponse]:
+    """Like `_stub_verifier_always_accepts`, but escalates for the given fields --
+    used to exercise `_recompute_case_status` (BUILD.md Phase 5, commit 9) without
+    depending on real verifier judgment."""
+
+    def _stub(prompt: str, response_schema: type, **kwargs: object) -> _VerifierResponse:
+        if kwargs.get("field_name") in field_names:
+            return _VerifierResponse(decision=VerifierDecision.ESCALATE, reasoning="stub: conflicting evidence")
+        return _VerifierResponse(decision=VerifierDecision.ACCEPT, reasoning="stub verifier: always accept")
+
+    return _stub
+
+
+def _create_case_with_flagged_fields(
+    client: TestClient,
+    monkeypatch: pytest.MonkeyPatch,
+    flagged_field_names: set[str],
+    schema_id: str = _TEST_SCHEMA_ID,
+) -> httpx.Response:
+    monkeypatch.setattr("app.retrieval.store.embed_texts", _uniform_vector)
+    monkeypatch.setattr("app.retrieval.retriever.embed_texts", _uniform_vector)
+    monkeypatch.setattr(
+        "app.extraction.extractor.generate_structured_protected", _stub_llm_finds_name_abstains_on_aadhaar
+    )
+    monkeypatch.setattr(
+        "app.orchestration.verifier.generate_structured_protected",
+        _stub_verifier_escalates_on(flagged_field_names),
+    )
 
     return client.post(
         "/api/cases",
@@ -338,6 +375,76 @@ def test_review_unknown_field_returns_404(two_field_schema: FormSchema, monkeypa
     response = client.post(f"/api/cases/{case_id}/fields/not_a_real_field/review", json={"decision": "approve"})
 
     assert response.status_code == 404
+
+
+# --- case-status recomputation (BUILD.md Phase 5, commit 9) --------------------------------
+
+
+def test_create_case_with_an_escalated_field_sets_case_status_human_review(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = TestClient(create_app())
+
+    response = _create_case_with_flagged_fields(client, monkeypatch, flagged_field_names={"full_name"})
+
+    assert response.status_code == 201
+    assert response.json()["status"] == "human_review"
+
+    case_id = response.json()["case_id"]
+    fields = {f["name"]: f for f in client.get(f"/api/cases/{case_id}/fields").json()["fields"]}
+    assert fields["full_name"]["state"] == "conflict"
+
+    status_response = client.get(f"/api/cases/{case_id}/status")
+    assert status_response.json()["status"] == "human_review"
+
+
+def test_reviewing_the_only_flagged_field_transitions_case_to_completed(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = TestClient(create_app())
+    case_id = _create_case_with_flagged_fields(
+        client, monkeypatch, flagged_field_names={"full_name"}
+    ).json()["case_id"]
+    assert client.get(f"/api/cases/{case_id}/status").json()["status"] == "human_review"
+
+    review_response = client.post(f"/api/cases/{case_id}/fields/full_name/review", json={"decision": "approve"})
+
+    assert review_response.status_code == 200
+    assert client.get(f"/api/cases/{case_id}/status").json()["status"] == "completed"
+
+
+def test_reviewing_one_of_two_flagged_fields_keeps_case_in_human_review(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = TestClient(create_app())
+    case_id = _create_case_with_flagged_fields(
+        client, monkeypatch, flagged_field_names={"full_name", "aadhaar_number"}
+    ).json()["case_id"]
+    assert client.get(f"/api/cases/{case_id}/status").json()["status"] == "human_review"
+
+    client.post(f"/api/cases/{case_id}/fields/full_name/review", json={"decision": "approve"})
+    assert client.get(f"/api/cases/{case_id}/status").json()["status"] == "human_review"
+
+    client.post(f"/api/cases/{case_id}/fields/aadhaar_number/review", json={"decision": "approve"})
+    assert client.get(f"/api/cases/{case_id}/status").json()["status"] == "completed"
+
+
+def test_get_result_is_blocked_until_the_flagged_field_is_reviewed(
+    two_field_schema: FormSchema, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = TestClient(create_app())
+    case_id = _create_case_with_flagged_fields(
+        client, monkeypatch, flagged_field_names={"full_name"}
+    ).json()["case_id"]
+
+    blocked_response = client.get(f"/api/cases/{case_id}/result")
+    assert blocked_response.status_code == 400
+
+    client.post(f"/api/cases/{case_id}/fields/full_name/review", json={"decision": "approve"})
+
+    unblocked_response = client.get(f"/api/cases/{case_id}/result")
+    assert unblocked_response.status_code == 200
+    assert unblocked_response.headers["content-type"] == "application/pdf"
 
 
 def test_get_result_unknown_case_returns_404() -> None:

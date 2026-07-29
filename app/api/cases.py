@@ -6,7 +6,12 @@ extracted and returns a terminal status directly. No queue, no BackgroundTasks -
 processing itself is delegated to the Phase 5 orchestration graph
 (app.orchestration.graph.run_graph, BUILD.md Phase 5 commit 4), but this handler still
 waits for it to finish and returns a terminal status synchronously, same as before that
-graph existed.
+graph existed. That terminal status is COMPLETED or, since BUILD.md Phase 5 commit 9,
+HUMAN_REVIEW -- whenever the graph leaves any field CONFLICT or LOW_CONFIDENCE
+(_recompute_case_status). review_field recomputes the same way after every review, so a
+case reverts to COMPLETED the moment its last flagged field is reviewed; neither this
+handler nor review_field ever resumes or re-enters the graph itself -- by the time either
+runs, the graph has already terminated for good.
 
 Three distinct failure classes on case creation:
 - Malformed input (unsupported file type, sub-minimum image resolution, an unsupported
@@ -165,6 +170,7 @@ async def review_field(case_id: str, field_name: str, review: ReviewRequest) -> 
         )
 
     record.fields[field_name] = updated
+    record.status = _recompute_case_status(record)
     return updated
 
 
@@ -253,7 +259,31 @@ def _process_case(record: CaseRecord, schema: FormSchema, chunks: list[Chunk]) -
             detail=f"Privacy engine could not process case {record.case_id!r} under the active privacy_mode",
         ) from exc
 
-    record.status = CaseStatus.COMPLETED
+    record.status = _recompute_case_status(record)
+
+
+_FLAGGED_FIELD_STATES = frozenset({FieldState.CONFLICT, FieldState.LOW_CONFIDENCE})
+
+
+def _recompute_case_status(record: CaseRecord) -> CaseStatus:
+    """The graph (`app.orchestration`) has already terminated by the time this runs --
+    called once after `_process_case` finishes populating `record.fields`, and again after
+    every `review_field` call. Neither caller resumes or re-enters the graph; this function
+    only derives a case-level status from the field states already present, which is what
+    keeps it deterministic and idempotent regardless of how many times or in what order
+    fields get reviewed.
+
+    `ARCH §7`'s routing table has no case-level status of its own -- `FieldState.CONFLICT`
+    (verifier escalation) and `FieldState.LOW_CONFIDENCE` (retry budget exhausted, BUILD.md
+    Phase 5 commit 6) are the two field states that mean "needs a human," so a case needs
+    human review exactly when at least one field is still in either. `HUMAN_REVIEW` reverts
+    to `COMPLETED` the moment the last flagged field is reviewed, since `review_field`
+    unconditionally sets a reviewed field's state to `HUMAN_REVIEWED` -- never CONFLICT or
+    LOW_CONFIDENCE -- so a fully-reviewed case can never re-trigger this branch on its own.
+    """
+    if any(field.state in _FLAGGED_FIELD_STATES for field in record.fields.values()):
+        return CaseStatus.HUMAN_REVIEW
+    return CaseStatus.COMPLETED
 
 
 def _to_extraction_result(field_name: str, record: FieldRecord) -> ExtractionResult:
