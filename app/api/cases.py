@@ -2,10 +2,11 @@
 already built -- ingest/chunk (Phase 1), retrieve + extract (tasks 3-5), fill (task 6).
 
 Synchronous, not background-processed: POST /api/cases blocks until every field has been
-extracted and returns a terminal status directly. No queue, no BackgroundTasks, no
-orchestration graph -- that machinery belongs to Phase 5 (ARCHITECTURE.md §7), and adding
-even a lightweight queued/processing state machine here would be orchestration by another
-name.
+extracted and returns a terminal status directly. No queue, no BackgroundTasks -- field
+processing itself is delegated to the Phase 5 orchestration graph
+(app.orchestration.graph.run_graph, BUILD.md Phase 5 commit 4), but this handler still
+waits for it to finish and returns a terminal status synchronously, same as before that
+graph existed.
 
 Three distinct failure classes on case creation:
 - Malformed input (unsupported file type, sub-minimum image resolution, an unsupported
@@ -49,13 +50,8 @@ from app.api.models import (
     ReviewRequest,
 )
 from app.boundary.mode import PrivacyMode
-from app.config.form_schema import FormFieldSpec, FormSchema, load_form_schemas
-from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K
-from app.extraction.extractor import (
-    ExtractionProvenance,
-    ExtractionResult,
-    extract_field,
-)
+from app.config.form_schema import FormSchema, load_form_schemas
+from app.extraction.extractor import ExtractionProvenance, ExtractionResult
 from app.extraction.llm_client import LLMProviderError
 from app.filling.pdf_filler import fill_form
 from app.ingest.chunker import Chunk, chunk_pages
@@ -64,6 +60,8 @@ from app.ingest.parser import (
     UnsupportedDocumentTypeError,
     parse_document,
 )
+from app.orchestration.graph import run_graph
+from app.orchestration.state import new_orchestration_state
 from app.privacy.dispatch import PolicyDispatchError
 from app.retrieval.embedder import EmbeddingProviderError
 from app.retrieval.store import case_index_registry, embed_chunks
@@ -226,15 +224,15 @@ async def _ingest_documents(case_id: str, documents: list[UploadFile]) -> list[C
 def _process_case(record: CaseRecord, schema: FormSchema, chunks: list[Chunk]) -> None:
     try:
         case_index_registry.get_or_create(record.case_id).add(embed_chunks(chunks))
-        for schema_field in schema.fields:
-            result = extract_field(
-                case_id=record.case_id,
-                field=schema_field,
-                top_k=DEFAULT_RETRIEVAL_TOP_K,
-                privacy_mode=record.privacy_mode,
-                reference_date=record.submitted_at,
-            )
-            record.fields[schema_field.name] = _to_field_record(schema_field, result)
+        state = new_orchestration_state(
+            case_id=record.case_id,
+            form_schema=schema,
+            privacy_mode=record.privacy_mode,
+            reference_date=record.submitted_at,
+        )
+        final_state = run_graph(state)
+        for field_name, field_state in final_state.fields.items():
+            record.fields[field_name] = field_state.record
     except (EmbeddingProviderError, LLMProviderError) as exc:
         record.status = CaseStatus.FAILED
         logger.exception("case_processing_failed", extra={"case_id": record.case_id})
@@ -256,25 +254,6 @@ def _process_case(record: CaseRecord, schema: FormSchema, chunks: list[Chunk]) -
         ) from exc
 
     record.status = CaseStatus.COMPLETED
-
-
-def _to_field_record(field: FormFieldSpec, result: ExtractionResult) -> FieldRecord:
-    if result.value is None:
-        return FieldRecord(name=field.name, label=field.label, state=FieldState.MISSING)
-
-    if result.provenance is None:
-        raise AssertionError(
-            f"ExtractionResult for field {field.name!r} has a value but no provenance -- "
-            "ExtractionResult invariant violated upstream"
-        )
-    return FieldRecord(
-        name=field.name,
-        label=field.label,
-        value=result.value,
-        confidence=result.confidence,
-        state=FieldState.FILLED,
-        provenance=Provenance(document_id=result.provenance.document_id, page_number=result.provenance.page_number),
-    )
 
 
 def _to_extraction_result(field_name: str, record: FieldRecord) -> ExtractionResult:
