@@ -1,0 +1,342 @@
+[
+  {
+    "condition": "clean_scan",
+    "document_type": "id_proof",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__id_proof__clean_scan.png",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__id_proof"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "id_proof",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__id_proof__photo_like.jpg",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__id_proof"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "address_proof",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__address_proof__clean_scan.png",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__address_proof"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "address_proof",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__address_proof__photo_like.jpg",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__address_proof"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "income_document",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__income_document__clean_scan.png",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__income_document"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "income_document",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__income_document__photo_like.jpg",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__income_document"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "academic_record",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__academic_record__clean_scan.png",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__academic_record"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "academic_record",
+    "form_schema_id": "kyc_account_opening",
+    "ground_truth": {
+      "aadhaar_number": "260959667479",
+      "annual_income": "1110000",
+      "date_of_birth": "17/11/2003",
+      "email_address": "nikhil.agarwal69@example.com",
+      "full_name": "Nikhil Agarwal",
+      "linked_account_number": "074837972376",
+      "pan_number": "KKGNR6978U",
+      "phone_number": "6021859019",
+      "pin_code": "600001",
+      "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+    },
+    "image_file": "phase6_ocr_kyc__academic_record__photo_like.jpg",
+    "source_case_id": "phase6_ocr_kyc",
+    "source_document_id": "phase6_ocr_kyc__academic_record"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "id_proof",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__id_proof__clean_scan.png",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__id_proof"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "id_proof",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__id_proof__photo_like.jpg",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__id_proof"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "address_proof",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__address_proof__clean_scan.png",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__address_proof"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "address_proof",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__address_proof__photo_like.jpg",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__address_proof"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "income_document",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__income_document__clean_scan.png",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__income_document"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "income_document",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__income_document__photo_like.jpg",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__income_document"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "academic_record",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__academic_record__clean_scan.png",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__academic_record"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "academic_record",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__academic_record__photo_like.jpg",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__academic_record"
+  },
+  {
+    "condition": "clean_scan",
+    "document_type": "nominee_declaration",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__nominee_declaration__clean_scan.png",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__nominee_declaration"
+  },
+  {
+    "condition": "photo_like",
+    "document_type": "nominee_declaration",
+    "form_schema_id": "insurance_policy_application",
+    "ground_truth": {
+      "annual_income": "1940000",
+      "date_of_birth": "27/10/1985",
+      "email_address": "anjali.reddy33@example.com",
+      "full_name": "Anjali Reddy",
+      "nominee_full_name": "Kabir Malhotra",
+      "phone_number": "7969504861",
+      "pin_code": "400001",
+      "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+    },
+    "image_file": "phase6_ocr_insurance__nominee_declaration__photo_like.jpg",
+    "source_case_id": "phase6_ocr_insurance",
+    "source_document_id": "phase6_ocr_insurance__nominee_declaration"
+  }
+]

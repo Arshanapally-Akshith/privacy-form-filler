@@ -29,6 +29,11 @@ Outcomes per field, per mode:
                            cannot execute, e.g. NAME; BUILD.md's own Phase 4 risk table
                            treats this as a finding to measure, not a bug to route around)
 
+Outcome classification and summary-metric aggregation are eval.harness.scoring's
+classify_outcome/summarize_field_results (Phase 6 Commit 7) -- this script defers to that
+shared implementation rather than keeping its own copy; the list above describes the
+outcomes themselves, not this file's own logic for computing them.
+
 A transient provider error (LLMProviderError) is retried before being counted as `error` --
 this is evaluation-harness robustness, not a change to the pinned retry policy
 (DECISIONS.md E6 is still TBD -- Phase 5); app.extraction/app.boundary are untouched. Each
@@ -78,6 +83,7 @@ from app.extraction.llm_client import LLMProviderError
 from app.ingest.chunker import chunk_pages
 from app.ingest.parser import parse_document
 from app.retrieval.store import case_index_registry, embed_chunks
+from eval.harness.scoring import classify_outcome, summarize_field_results
 
 DATASET_PATH = Path(__file__).resolve().parent.parent / "dataset" / "phase4_dev_cases.json"
 RESULT_PATH = Path(__file__).resolve().parent / "results" / "phase4_dev_case_result.json"
@@ -168,17 +174,6 @@ def _extract_with_retry(
     return None, last_provider_error
 
 
-def _classify(ground_truth_value: str | None, result: ExtractionResult | None, error: Exception | None) -> str:
-    if error is not None:
-        return "error"
-    assert result is not None
-    if result.value is None:
-        return "correct_abstention" if ground_truth_value is None else "incorrect_abstention"
-    if ground_truth_value is None:
-        return "hallucination"
-    return "correct" if result.value.strip().casefold() == ground_truth_value.strip().casefold() else "incorrect_value"
-
-
 def run_measurement(payload: dict[str, Any]) -> dict[str, Any]:
     schemas_by_id = {schema.id: schema for schema in load_form_schemas()}
     reference_date = date.fromisoformat(payload["reference_date"])
@@ -197,7 +192,7 @@ def run_measurement(payload: dict[str, Any]) -> dict[str, Any]:
             for field in schema.fields:
                 ground_truth_value = case["ground_truth"].get(field.name)
                 result, error = _extract_with_retry(run_case_id, field, mode, reference_date)
-                outcome = _classify(ground_truth_value, result, error)
+                outcome = classify_outcome(ground_truth_value, result, error)
                 print(f"    {field.name}: {outcome}", flush=True)
                 field_results.append(
                     {
@@ -211,35 +206,9 @@ def run_measurement(payload: dict[str, Any]) -> dict[str, Any]:
                     }
                 )
 
-        per_mode[mode.value] = _summarize(field_results)
+        per_mode[mode.value] = summarize_field_results(field_results)
 
     return per_mode
-
-
-def _summarize(field_results: list[dict[str, Any]]) -> dict[str, Any]:
-    total = len(field_results)
-    outcome_counts: dict[str, int] = {}
-    for r in field_results:
-        outcome_counts[r["outcome"]] = outcome_counts.get(r["outcome"], 0) + 1
-
-    correct = outcome_counts.get("correct", 0) + outcome_counts.get("correct_abstention", 0)
-
-    by_field_type: dict[str, dict[str, Any]] = {}
-    for r in field_results:
-        bucket = by_field_type.setdefault(r["field_type"], {"total": 0, "correct": 0})
-        bucket["total"] += 1
-        if r["outcome"] in ("correct", "correct_abstention"):
-            bucket["correct"] += 1
-    for bucket in by_field_type.values():
-        bucket["accuracy"] = bucket["correct"] / bucket["total"] if bucket["total"] else 0.0
-
-    return {
-        "total_fields": total,
-        "accuracy": (correct / total) if total else 0.0,
-        "outcome_counts": outcome_counts,
-        "accuracy_by_field_type": by_field_type,
-        "field_results": field_results,
-    }
 
 
 def main() -> None:

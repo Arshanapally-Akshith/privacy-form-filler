@@ -1,0 +1,3761 @@
+{
+  "cases": [
+    {
+      "adversarial": null,
+      "case_id": "phase6_ocr_kyc",
+      "documents": [
+        {
+          "document_id": "phase6_ocr_kyc__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Nikhil Agarwal\nDate of Birth: 17/11/2003\nPAN Number: KKGNR6978U\nAadhaar Number: 260959667479\nPhone Number: 6021859019\nEmail Address: nikhil.agarwal69@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "phase6_ocr_kyc__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 172 Model Colony, Koramangala, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "phase6_ocr_kyc__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1110000\nBank Account Number: 074837972376\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "phase6_ocr_kyc__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Nikhil Agarwal, born 17/11/2003, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "260959667479",
+        "annual_income": "1110000",
+        "date_of_birth": "17/11/2003",
+        "email_address": "nikhil.agarwal69@example.com",
+        "full_name": "Nikhil Agarwal",
+        "linked_account_number": "074837972376",
+        "pan_number": "KKGNR6978U",
+        "phone_number": "6021859019",
+        "pin_code": "600001",
+        "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "260959667479",
+        "annual_income": 1110000,
+        "city": "Chennai",
+        "date_of_birth": "2003-11-17",
+        "email_address": "nikhil.agarwal69@example.com",
+        "full_name": "Nikhil Agarwal",
+        "linked_account_number": "074837972376",
+        "pan_number": "KKGNR6978U",
+        "phone_number": "6021859019",
+        "pin_code": "600001",
+        "residential_address": "172 Model Colony, Koramangala, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_001",
+      "documents": [
+        {
+          "document_id": "kyc_clean_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Arjun Reddy\nDate of Birth: 12/08/1988\nPAN Number: KDKFP5293O\nAadhaar Number: 020806535318\nPhone Number: 9134054854\nEmail Address: arjun.reddy97@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 83 Civil Lines, Satellite, Pune, Maharashtra\nPIN Code: 411001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 750000\nBank Account Number: 181308383987\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Arjun Reddy, born 12/08/1988, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "020806535318",
+        "annual_income": "750000",
+        "date_of_birth": "12/08/1988",
+        "email_address": "arjun.reddy97@example.com",
+        "full_name": "Arjun Reddy",
+        "linked_account_number": "181308383987",
+        "pan_number": "KDKFP5293O",
+        "phone_number": "9134054854",
+        "pin_code": "411001",
+        "residential_address": "83 Civil Lines, Satellite, Pune, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "020806535318",
+        "annual_income": 750000,
+        "city": "Pune",
+        "date_of_birth": "1988-08-12",
+        "email_address": "arjun.reddy97@example.com",
+        "full_name": "Arjun Reddy",
+        "linked_account_number": "181308383987",
+        "pan_number": "KDKFP5293O",
+        "phone_number": "9134054854",
+        "pin_code": "411001",
+        "residential_address": "83 Civil Lines, Satellite, Pune, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_002",
+      "documents": [
+        {
+          "document_id": "kyc_clean_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Shreya Desai\nDate of Birth: 08/03/1998\nPAN Number: FCMYZ2804V\nAadhaar Number: 905168807311\nPhone Number: 8872122492\nEmail Address: shreya.desai95@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 32 Civil Lines, Andheri West, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_002__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1510000\nBank Account Number: 494789758409\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_002__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Shreya Desai, born 08/03/1998, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "905168807311",
+        "annual_income": "1510000",
+        "date_of_birth": "08/03/1998",
+        "email_address": "shreya.desai95@example.com",
+        "full_name": "Shreya Desai",
+        "linked_account_number": "494789758409",
+        "pan_number": "FCMYZ2804V",
+        "phone_number": "8872122492",
+        "pin_code": "560001",
+        "residential_address": "32 Civil Lines, Andheri West, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "905168807311",
+        "annual_income": 1510000,
+        "city": "Bengaluru",
+        "date_of_birth": "1998-03-08",
+        "email_address": "shreya.desai95@example.com",
+        "full_name": "Shreya Desai",
+        "linked_account_number": "494789758409",
+        "pan_number": "FCMYZ2804V",
+        "phone_number": "8872122492",
+        "pin_code": "560001",
+        "residential_address": "32 Civil Lines, Andheri West, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_003",
+      "documents": [
+        {
+          "document_id": "kyc_clean_003__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Aditya Iyer\nDate of Birth: 22/05/1971\nPAN Number: IVXPV5836W\nAadhaar Number: 064474049276\nPhone Number: 8000872611\nEmail Address: aditya.iyer36@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_003__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 13 Lake View Apartments, Sector 12, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_003__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1880000\nBank Account Number: 545817013120\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_003__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Aditya Iyer, born 22/05/1971, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "064474049276",
+        "annual_income": "1880000",
+        "date_of_birth": "22/05/1971",
+        "email_address": "aditya.iyer36@example.com",
+        "full_name": "Aditya Iyer",
+        "linked_account_number": "545817013120",
+        "pan_number": "IVXPV5836W",
+        "phone_number": "8000872611",
+        "pin_code": "560001",
+        "residential_address": "13 Lake View Apartments, Sector 12, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "064474049276",
+        "annual_income": 1880000,
+        "city": "Bengaluru",
+        "date_of_birth": "1971-05-22",
+        "email_address": "aditya.iyer36@example.com",
+        "full_name": "Aditya Iyer",
+        "linked_account_number": "545817013120",
+        "pan_number": "IVXPV5836W",
+        "phone_number": "8000872611",
+        "pin_code": "560001",
+        "residential_address": "13 Lake View Apartments, Sector 12, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_004",
+      "documents": [
+        {
+          "document_id": "kyc_clean_004__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Divya Bose\nDate of Birth: 01/11/1999\nPAN Number: FUWER5592U\nAadhaar Number: 295326378535\nPhone Number: 7084509762\nEmail Address: divya.bose36@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_004__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 18 Station Road, Sector 12, Kolkata, West Bengal\nPIN Code: 700001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_004__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 740000\nBank Account Number: 232804252372\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_004__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Divya Bose, born 01/11/1999, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "295326378535",
+        "annual_income": "740000",
+        "date_of_birth": "01/11/1999",
+        "email_address": "divya.bose36@example.com",
+        "full_name": "Divya Bose",
+        "linked_account_number": "232804252372",
+        "pan_number": "FUWER5592U",
+        "phone_number": "7084509762",
+        "pin_code": "700001",
+        "residential_address": "18 Station Road, Sector 12, Kolkata, West Bengal"
+      },
+      "primary_identity": {
+        "aadhaar_number": "295326378535",
+        "annual_income": 740000,
+        "city": "Kolkata",
+        "date_of_birth": "1999-11-01",
+        "email_address": "divya.bose36@example.com",
+        "full_name": "Divya Bose",
+        "linked_account_number": "232804252372",
+        "pan_number": "FUWER5592U",
+        "phone_number": "7084509762",
+        "pin_code": "700001",
+        "residential_address": "18 Station Road, Sector 12, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_005",
+      "documents": [
+        {
+          "document_id": "kyc_clean_005__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Meera Nair\nDate of Birth: 15/09/1974\nPAN Number: VRECW6656T\nAadhaar Number: 201319384950\nPhone Number: 6088934852\nEmail Address: meera.nair32@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_005__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 146 Park Street, Koramangala, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_005__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1500000\nBank Account Number: 412859181555\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_005__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Meera Nair, born 15/09/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "201319384950",
+        "annual_income": "1500000",
+        "date_of_birth": "15/09/1974",
+        "email_address": "meera.nair32@example.com",
+        "full_name": "Meera Nair",
+        "linked_account_number": "412859181555",
+        "pan_number": "VRECW6656T",
+        "phone_number": "6088934852",
+        "pin_code": "560001",
+        "residential_address": "146 Park Street, Koramangala, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "201319384950",
+        "annual_income": 1500000,
+        "city": "Bengaluru",
+        "date_of_birth": "1974-09-15",
+        "email_address": "meera.nair32@example.com",
+        "full_name": "Meera Nair",
+        "linked_account_number": "412859181555",
+        "pan_number": "VRECW6656T",
+        "phone_number": "6088934852",
+        "pin_code": "560001",
+        "residential_address": "146 Park Street, Koramangala, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_006",
+      "documents": [
+        {
+          "document_id": "kyc_clean_006__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Anjali Verma\nDate of Birth: 02/08/1995\nPAN Number: CFBRD8532M\nAadhaar Number: 031495698498\nPhone Number: 9371014197\nEmail Address: anjali.verma46@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_006__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 113 Ring Road, Banjara Hills, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_006__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2330000\nBank Account Number: 041022261691\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_006__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Anjali Verma, born 02/08/1995, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "031495698498",
+        "annual_income": "2330000",
+        "date_of_birth": "02/08/1995",
+        "email_address": "anjali.verma46@example.com",
+        "full_name": "Anjali Verma",
+        "linked_account_number": "041022261691",
+        "pan_number": "CFBRD8532M",
+        "phone_number": "9371014197",
+        "pin_code": "560001",
+        "residential_address": "113 Ring Road, Banjara Hills, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "031495698498",
+        "annual_income": 2330000,
+        "city": "Bengaluru",
+        "date_of_birth": "1995-08-02",
+        "email_address": "anjali.verma46@example.com",
+        "full_name": "Anjali Verma",
+        "linked_account_number": "041022261691",
+        "pan_number": "CFBRD8532M",
+        "phone_number": "9371014197",
+        "pin_code": "560001",
+        "residential_address": "113 Ring Road, Banjara Hills, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_007",
+      "documents": [
+        {
+          "document_id": "kyc_clean_007__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Reyansh Reddy\nDate of Birth: 01/01/1991\nPAN Number: RQGFJ4439O\nAadhaar Number: 691843044277\nPhone Number: 6353868015\nEmail Address: reyansh.reddy10@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_007__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 51 Civil Lines, Kothrud, New Delhi, Delhi\nPIN Code: 110001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_007__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 560000\nBank Account Number: 157409322923\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_007__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Reyansh Reddy, born 01/01/1991, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "691843044277",
+        "annual_income": "560000",
+        "date_of_birth": "01/01/1991",
+        "email_address": "reyansh.reddy10@example.com",
+        "full_name": "Reyansh Reddy",
+        "linked_account_number": "157409322923",
+        "pan_number": "RQGFJ4439O",
+        "phone_number": "6353868015",
+        "pin_code": "110001",
+        "residential_address": "51 Civil Lines, Kothrud, New Delhi, Delhi"
+      },
+      "primary_identity": {
+        "aadhaar_number": "691843044277",
+        "annual_income": 560000,
+        "city": "New Delhi",
+        "date_of_birth": "1991-01-01",
+        "email_address": "reyansh.reddy10@example.com",
+        "full_name": "Reyansh Reddy",
+        "linked_account_number": "157409322923",
+        "pan_number": "RQGFJ4439O",
+        "phone_number": "6353868015",
+        "pin_code": "110001",
+        "residential_address": "51 Civil Lines, Kothrud, New Delhi, Delhi",
+        "state": "Delhi"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_008",
+      "documents": [
+        {
+          "document_id": "kyc_clean_008__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Anjali Reddy\nDate of Birth: 20/07/1989\nPAN Number: NRFQI5312H\nAadhaar Number: 234219364831\nPhone Number: 8725749968\nEmail Address: anjali.reddy82@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_008__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 128 Civil Lines, Hazratganj, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_008__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 750000\nBank Account Number: 729550764708\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_008__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Anjali Reddy, born 20/07/1989, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "234219364831",
+        "annual_income": "750000",
+        "date_of_birth": "20/07/1989",
+        "email_address": "anjali.reddy82@example.com",
+        "full_name": "Anjali Reddy",
+        "linked_account_number": "729550764708",
+        "pan_number": "NRFQI5312H",
+        "phone_number": "8725749968",
+        "pin_code": "500001",
+        "residential_address": "128 Civil Lines, Hazratganj, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "234219364831",
+        "annual_income": 750000,
+        "city": "Hyderabad",
+        "date_of_birth": "1989-07-20",
+        "email_address": "anjali.reddy82@example.com",
+        "full_name": "Anjali Reddy",
+        "linked_account_number": "729550764708",
+        "pan_number": "NRFQI5312H",
+        "phone_number": "8725749968",
+        "pin_code": "500001",
+        "residential_address": "128 Civil Lines, Hazratganj, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_009",
+      "documents": [
+        {
+          "document_id": "kyc_clean_009__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Anjali Malhotra\nDate of Birth: 06/05/1997\nPAN Number: VCWPQ4344B\nAadhaar Number: 993489713681\nPhone Number: 9588294482\nEmail Address: anjali.malhotra49@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_009__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 159 Lake View Apartments, Satellite, Mumbai, Maharashtra\nPIN Code: 400001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_009__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 630000\nBank Account Number: 696938776531\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_009__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Anjali Malhotra, born 06/05/1997, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "993489713681",
+        "annual_income": "630000",
+        "date_of_birth": "06/05/1997",
+        "email_address": "anjali.malhotra49@example.com",
+        "full_name": "Anjali Malhotra",
+        "linked_account_number": "696938776531",
+        "pan_number": "VCWPQ4344B",
+        "phone_number": "9588294482",
+        "pin_code": "400001",
+        "residential_address": "159 Lake View Apartments, Satellite, Mumbai, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "993489713681",
+        "annual_income": 630000,
+        "city": "Mumbai",
+        "date_of_birth": "1997-05-06",
+        "email_address": "anjali.malhotra49@example.com",
+        "full_name": "Anjali Malhotra",
+        "linked_account_number": "696938776531",
+        "pan_number": "VCWPQ4344B",
+        "phone_number": "9588294482",
+        "pin_code": "400001",
+        "residential_address": "159 Lake View Apartments, Satellite, Mumbai, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_010",
+      "documents": [
+        {
+          "document_id": "kyc_clean_010__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Karan Kapoor\nDate of Birth: 21/10/1987\nPAN Number: CYKRQ2989J\nAadhaar Number: 578648396100\nPhone Number: 7751309102\nEmail Address: karan.kapoor81@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_010__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 114 MG Road, Kothrud, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_010__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 870000\nBank Account Number: 915182395289\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_010__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Karan Kapoor, born 21/10/1987, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "578648396100",
+        "annual_income": "870000",
+        "date_of_birth": "21/10/1987",
+        "email_address": "karan.kapoor81@example.com",
+        "full_name": "Karan Kapoor",
+        "linked_account_number": "915182395289",
+        "pan_number": "CYKRQ2989J",
+        "phone_number": "7751309102",
+        "pin_code": "600001",
+        "residential_address": "114 MG Road, Kothrud, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "578648396100",
+        "annual_income": 870000,
+        "city": "Chennai",
+        "date_of_birth": "1987-10-21",
+        "email_address": "karan.kapoor81@example.com",
+        "full_name": "Karan Kapoor",
+        "linked_account_number": "915182395289",
+        "pan_number": "CYKRQ2989J",
+        "phone_number": "7751309102",
+        "pin_code": "600001",
+        "residential_address": "114 MG Road, Kothrud, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_011",
+      "documents": [
+        {
+          "document_id": "kyc_clean_011__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kavya Desai\nDate of Birth: 07/07/1997\nPAN Number: FDQUG8814Z\nAadhaar Number: 735460268062\nPhone Number: 6627866725\nEmail Address: kavya.desai68@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_011__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 172 Model Colony, Sector 12, Jaipur, Rajasthan\nPIN Code: 302001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_011__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2080000\nBank Account Number: 077257226532\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_011__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kavya Desai, born 07/07/1997, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "735460268062",
+        "annual_income": "2080000",
+        "date_of_birth": "07/07/1997",
+        "email_address": "kavya.desai68@example.com",
+        "full_name": "Kavya Desai",
+        "linked_account_number": "077257226532",
+        "pan_number": "FDQUG8814Z",
+        "phone_number": "6627866725",
+        "pin_code": "302001",
+        "residential_address": "172 Model Colony, Sector 12, Jaipur, Rajasthan"
+      },
+      "primary_identity": {
+        "aadhaar_number": "735460268062",
+        "annual_income": 2080000,
+        "city": "Jaipur",
+        "date_of_birth": "1997-07-07",
+        "email_address": "kavya.desai68@example.com",
+        "full_name": "Kavya Desai",
+        "linked_account_number": "077257226532",
+        "pan_number": "FDQUG8814Z",
+        "phone_number": "6627866725",
+        "pin_code": "302001",
+        "residential_address": "172 Model Colony, Sector 12, Jaipur, Rajasthan",
+        "state": "Rajasthan"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_012",
+      "documents": [
+        {
+          "document_id": "kyc_clean_012__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Priya Chatterjee\nDate of Birth: 17/09/1969\nPAN Number: BPEJX8109K\nAadhaar Number: 720829943307\nPhone Number: 9198909235\nEmail Address: priya.chatterjee15@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_012__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 177 Green Park, Satellite, Jaipur, Rajasthan\nPIN Code: 302001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_012__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1170000\nBank Account Number: 221195752450\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_012__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Priya Chatterjee, born 17/09/1969, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "720829943307",
+        "annual_income": "1170000",
+        "date_of_birth": "17/09/1969",
+        "email_address": "priya.chatterjee15@example.com",
+        "full_name": "Priya Chatterjee",
+        "linked_account_number": "221195752450",
+        "pan_number": "BPEJX8109K",
+        "phone_number": "9198909235",
+        "pin_code": "302001",
+        "residential_address": "177 Green Park, Satellite, Jaipur, Rajasthan"
+      },
+      "primary_identity": {
+        "aadhaar_number": "720829943307",
+        "annual_income": 1170000,
+        "city": "Jaipur",
+        "date_of_birth": "1969-09-17",
+        "email_address": "priya.chatterjee15@example.com",
+        "full_name": "Priya Chatterjee",
+        "linked_account_number": "221195752450",
+        "pan_number": "BPEJX8109K",
+        "phone_number": "9198909235",
+        "pin_code": "302001",
+        "residential_address": "177 Green Park, Satellite, Jaipur, Rajasthan",
+        "state": "Rajasthan"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_013",
+      "documents": [
+        {
+          "document_id": "kyc_clean_013__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ritu Nair\nDate of Birth: 20/02/2003\nPAN Number: QVREN5169I\nAadhaar Number: 236041143342\nPhone Number: 6032652468\nEmail Address: ritu.nair18@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_013__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 6 Gandhi Nagar, Vaishali Nagar, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_013__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2220000\nBank Account Number: 339280225078\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_013__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ritu Nair, born 20/02/2003, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "236041143342",
+        "annual_income": "2220000",
+        "date_of_birth": "20/02/2003",
+        "email_address": "ritu.nair18@example.com",
+        "full_name": "Ritu Nair",
+        "linked_account_number": "339280225078",
+        "pan_number": "QVREN5169I",
+        "phone_number": "6032652468",
+        "pin_code": "600001",
+        "residential_address": "6 Gandhi Nagar, Vaishali Nagar, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "236041143342",
+        "annual_income": 2220000,
+        "city": "Chennai",
+        "date_of_birth": "2003-02-20",
+        "email_address": "ritu.nair18@example.com",
+        "full_name": "Ritu Nair",
+        "linked_account_number": "339280225078",
+        "pan_number": "QVREN5169I",
+        "phone_number": "6032652468",
+        "pin_code": "600001",
+        "residential_address": "6 Gandhi Nagar, Vaishali Nagar, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_014",
+      "documents": [
+        {
+          "document_id": "kyc_clean_014__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Mehta\nDate of Birth: 02/05/1992\nPAN Number: RFFMF9031H\nAadhaar Number: 804391712774\nPhone Number: 6396972829\nEmail Address: ravi.mehta81@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_014__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 65 Church Street, Anna Nagar, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_014__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 930000\nBank Account Number: 848714564894\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_014__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ravi Mehta, born 02/05/1992, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "804391712774",
+        "annual_income": "930000",
+        "date_of_birth": "02/05/1992",
+        "email_address": "ravi.mehta81@example.com",
+        "full_name": "Ravi Mehta",
+        "linked_account_number": "848714564894",
+        "pan_number": "RFFMF9031H",
+        "phone_number": "6396972829",
+        "pin_code": "500001",
+        "residential_address": "65 Church Street, Anna Nagar, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "804391712774",
+        "annual_income": 930000,
+        "city": "Hyderabad",
+        "date_of_birth": "1992-05-02",
+        "email_address": "ravi.mehta81@example.com",
+        "full_name": "Ravi Mehta",
+        "linked_account_number": "848714564894",
+        "pan_number": "RFFMF9031H",
+        "phone_number": "6396972829",
+        "pin_code": "500001",
+        "residential_address": "65 Church Street, Anna Nagar, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_015",
+      "documents": [
+        {
+          "document_id": "kyc_clean_015__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Arnav Gupta\nDate of Birth: 14/07/1974\nPAN Number: MWZXM1126C\nAadhaar Number: 359928858185\nPhone Number: 8849258320\nEmail Address: arnav.gupta37@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_015__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 173 Station Road, Salt Lake, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_015__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 800000\nBank Account Number: 708026990472\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_015__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Arnav Gupta, born 14/07/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "359928858185",
+        "annual_income": "800000",
+        "date_of_birth": "14/07/1974",
+        "email_address": "arnav.gupta37@example.com",
+        "full_name": "Arnav Gupta",
+        "linked_account_number": "708026990472",
+        "pan_number": "MWZXM1126C",
+        "phone_number": "8849258320",
+        "pin_code": "500001",
+        "residential_address": "173 Station Road, Salt Lake, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "359928858185",
+        "annual_income": 800000,
+        "city": "Hyderabad",
+        "date_of_birth": "1974-07-14",
+        "email_address": "arnav.gupta37@example.com",
+        "full_name": "Arnav Gupta",
+        "linked_account_number": "708026990472",
+        "pan_number": "MWZXM1126C",
+        "phone_number": "8849258320",
+        "pin_code": "500001",
+        "residential_address": "173 Station Road, Salt Lake, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_016",
+      "documents": [
+        {
+          "document_id": "kyc_clean_016__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kavya Kapoor\nDate of Birth: 23/06/1989\nPAN Number: IDTAB6533F\nAadhaar Number: 400041467789\nPhone Number: 7776539203\nEmail Address: kavya.kapoor20@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_016__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 187 Park Street, Andheri West, New Delhi, Delhi\nPIN Code: 110001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_016__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 670000\nBank Account Number: 360643102781\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_016__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kavya Kapoor, born 23/06/1989, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "400041467789",
+        "annual_income": "670000",
+        "date_of_birth": "23/06/1989",
+        "email_address": "kavya.kapoor20@example.com",
+        "full_name": "Kavya Kapoor",
+        "linked_account_number": "360643102781",
+        "pan_number": "IDTAB6533F",
+        "phone_number": "7776539203",
+        "pin_code": "110001",
+        "residential_address": "187 Park Street, Andheri West, New Delhi, Delhi"
+      },
+      "primary_identity": {
+        "aadhaar_number": "400041467789",
+        "annual_income": 670000,
+        "city": "New Delhi",
+        "date_of_birth": "1989-06-23",
+        "email_address": "kavya.kapoor20@example.com",
+        "full_name": "Kavya Kapoor",
+        "linked_account_number": "360643102781",
+        "pan_number": "IDTAB6533F",
+        "phone_number": "7776539203",
+        "pin_code": "110001",
+        "residential_address": "187 Park Street, Andheri West, New Delhi, Delhi",
+        "state": "Delhi"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_017",
+      "documents": [
+        {
+          "document_id": "kyc_clean_017__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Arjun Menon\nDate of Birth: 05/09/1992\nPAN Number: KYUUW4136K\nAadhaar Number: 839945297730\nPhone Number: 6079355373\nEmail Address: arjun.menon91@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_017__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 107 Lake View Apartments, Vaishali Nagar, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_017__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1710000\nBank Account Number: 912941598673\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_017__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Arjun Menon, born 05/09/1992, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "839945297730",
+        "annual_income": "1710000",
+        "date_of_birth": "05/09/1992",
+        "email_address": "arjun.menon91@example.com",
+        "full_name": "Arjun Menon",
+        "linked_account_number": "912941598673",
+        "pan_number": "KYUUW4136K",
+        "phone_number": "6079355373",
+        "pin_code": "560001",
+        "residential_address": "107 Lake View Apartments, Vaishali Nagar, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "839945297730",
+        "annual_income": 1710000,
+        "city": "Bengaluru",
+        "date_of_birth": "1992-09-05",
+        "email_address": "arjun.menon91@example.com",
+        "full_name": "Arjun Menon",
+        "linked_account_number": "912941598673",
+        "pan_number": "KYUUW4136K",
+        "phone_number": "6079355373",
+        "pin_code": "560001",
+        "residential_address": "107 Lake View Apartments, Vaishali Nagar, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_018",
+      "documents": [
+        {
+          "document_id": "kyc_clean_018__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kavya Gupta\nDate of Birth: 17/11/2000\nPAN Number: VTIYM6087W\nAadhaar Number: 423762824006\nPhone Number: 9378346250\nEmail Address: kavya.gupta67@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_018__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 157 Church Street, Sector 12, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_018__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 520000\nBank Account Number: 658400411768\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_018__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kavya Gupta, born 17/11/2000, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "423762824006",
+        "annual_income": "520000",
+        "date_of_birth": "17/11/2000",
+        "email_address": "kavya.gupta67@example.com",
+        "full_name": "Kavya Gupta",
+        "linked_account_number": "658400411768",
+        "pan_number": "VTIYM6087W",
+        "phone_number": "9378346250",
+        "pin_code": "226001",
+        "residential_address": "157 Church Street, Sector 12, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "423762824006",
+        "annual_income": 520000,
+        "city": "Lucknow",
+        "date_of_birth": "2000-11-17",
+        "email_address": "kavya.gupta67@example.com",
+        "full_name": "Kavya Gupta",
+        "linked_account_number": "658400411768",
+        "pan_number": "VTIYM6087W",
+        "phone_number": "9378346250",
+        "pin_code": "226001",
+        "residential_address": "157 Church Street, Sector 12, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_019",
+      "documents": [
+        {
+          "document_id": "kyc_clean_019__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Meera Desai\nDate of Birth: 28/10/1996\nPAN Number: SROXM7329D\nAadhaar Number: 975485081850\nPhone Number: 7782809364\nEmail Address: meera.desai41@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_019__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 8 MG Road, Koramangala, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_019__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2150000\nBank Account Number: 321289862657\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_019__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Meera Desai, born 28/10/1996, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "975485081850",
+        "annual_income": "2150000",
+        "date_of_birth": "28/10/1996",
+        "email_address": "meera.desai41@example.com",
+        "full_name": "Meera Desai",
+        "linked_account_number": "321289862657",
+        "pan_number": "SROXM7329D",
+        "phone_number": "7782809364",
+        "pin_code": "560001",
+        "residential_address": "8 MG Road, Koramangala, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "975485081850",
+        "annual_income": 2150000,
+        "city": "Bengaluru",
+        "date_of_birth": "1996-10-28",
+        "email_address": "meera.desai41@example.com",
+        "full_name": "Meera Desai",
+        "linked_account_number": "321289862657",
+        "pan_number": "SROXM7329D",
+        "phone_number": "7782809364",
+        "pin_code": "560001",
+        "residential_address": "8 MG Road, Koramangala, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_020",
+      "documents": [
+        {
+          "document_id": "kyc_clean_020__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Chatterjee\nDate of Birth: 10/03/1991\nPAN Number: TBMUW0617V\nAadhaar Number: 588787484177\nPhone Number: 8848503259\nEmail Address: ravi.chatterjee48@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_020__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 84 Station Road, Vaishali Nagar, Mumbai, Maharashtra\nPIN Code: 400001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_020__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 630000\nBank Account Number: 814861211656\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_020__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ravi Chatterjee, born 10/03/1991, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "588787484177",
+        "annual_income": "630000",
+        "date_of_birth": "10/03/1991",
+        "email_address": "ravi.chatterjee48@example.com",
+        "full_name": "Ravi Chatterjee",
+        "linked_account_number": "814861211656",
+        "pan_number": "TBMUW0617V",
+        "phone_number": "8848503259",
+        "pin_code": "400001",
+        "residential_address": "84 Station Road, Vaishali Nagar, Mumbai, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "588787484177",
+        "annual_income": 630000,
+        "city": "Mumbai",
+        "date_of_birth": "1991-03-10",
+        "email_address": "ravi.chatterjee48@example.com",
+        "full_name": "Ravi Chatterjee",
+        "linked_account_number": "814861211656",
+        "pan_number": "TBMUW0617V",
+        "phone_number": "8848503259",
+        "pin_code": "400001",
+        "residential_address": "84 Station Road, Vaishali Nagar, Mumbai, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "kyc_clean_021",
+      "documents": [
+        {
+          "document_id": "kyc_clean_021__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Sharma\nDate of Birth: 27/01/1989\nPAN Number: WEBWL0738Y\nAadhaar Number: 554201850254\nPhone Number: 9814015106\nEmail Address: ravi.sharma54@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_clean_021__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 73 Gandhi Nagar, Hazratganj, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_clean_021__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2110000\nBank Account Number: 735463397737\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_clean_021__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ravi Sharma, born 27/01/1989, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "554201850254",
+        "annual_income": "2110000",
+        "date_of_birth": "27/01/1989",
+        "email_address": "ravi.sharma54@example.com",
+        "full_name": "Ravi Sharma",
+        "linked_account_number": "735463397737",
+        "pan_number": "WEBWL0738Y",
+        "phone_number": "9814015106",
+        "pin_code": "560001",
+        "residential_address": "73 Gandhi Nagar, Hazratganj, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "554201850254",
+        "annual_income": 2110000,
+        "city": "Bengaluru",
+        "date_of_birth": "1989-01-27",
+        "email_address": "ravi.sharma54@example.com",
+        "full_name": "Ravi Sharma",
+        "linked_account_number": "735463397737",
+        "pan_number": "WEBWL0738Y",
+        "phone_number": "9814015106",
+        "pin_code": "560001",
+        "residential_address": "73 Gandhi Nagar, Hazratganj, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "conflict",
+        "detail": {
+          "conflicting_document_type": "academic_record",
+          "conflicting_value": "17/03/1962",
+          "field": "date_of_birth",
+          "primary_document_type": "id_proof",
+          "primary_value": "17/03/1967"
+        }
+      },
+      "case_id": "kyc_conflict_001",
+      "documents": [
+        {
+          "document_id": "kyc_conflict_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ritu Iyer\nDate of Birth: 17/03/1967\nPAN Number: YWZHG8459T\nAadhaar Number: 958798919978\nPhone Number: 9277861776\nEmail Address: ritu.iyer14@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_conflict_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 78 Model Colony, Andheri West, Ahmedabad, Gujarat\nPIN Code: 380001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_conflict_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2270000\nBank Account Number: 837072727086\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_conflict_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ritu Iyer, born 17/03/1962, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "958798919978",
+        "annual_income": "2270000",
+        "date_of_birth": "17/03/1967",
+        "email_address": "ritu.iyer14@example.com",
+        "full_name": "Ritu Iyer",
+        "linked_account_number": "837072727086",
+        "pan_number": "YWZHG8459T",
+        "phone_number": "9277861776",
+        "pin_code": "380001",
+        "residential_address": "78 Model Colony, Andheri West, Ahmedabad, Gujarat"
+      },
+      "primary_identity": {
+        "aadhaar_number": "958798919978",
+        "annual_income": 2270000,
+        "city": "Ahmedabad",
+        "date_of_birth": "1967-03-17",
+        "email_address": "ritu.iyer14@example.com",
+        "full_name": "Ritu Iyer",
+        "linked_account_number": "837072727086",
+        "pan_number": "YWZHG8459T",
+        "phone_number": "9277861776",
+        "pin_code": "380001",
+        "residential_address": "78 Model Colony, Andheri West, Ahmedabad, Gujarat",
+        "state": "Gujarat"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "958798919978",
+          "annual_income": 2270000,
+          "city": "Ahmedabad",
+          "date_of_birth": "1962-03-17",
+          "email_address": "ritu.iyer14@example.com",
+          "full_name": "Ritu Iyer",
+          "linked_account_number": "837072727086",
+          "pan_number": "YWZHG8459T",
+          "phone_number": "9277861776",
+          "pin_code": "380001",
+          "residential_address": "78 Model Colony, Andheri West, Ahmedabad, Gujarat",
+          "state": "Gujarat"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "conflict",
+        "detail": {
+          "conflicting_document_type": "academic_record",
+          "conflicting_value": "Arnav Menon",
+          "field": "full_name",
+          "primary_document_type": "id_proof",
+          "primary_value": "Ravi Kumar"
+        }
+      },
+      "case_id": "kyc_conflict_002",
+      "documents": [
+        {
+          "document_id": "kyc_conflict_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Kumar\nDate of Birth: 07/08/1991\nPAN Number: KKQTN7946J\nAadhaar Number: 814459064461\nPhone Number: 9315947768\nEmail Address: ravi.kumar48@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_conflict_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 152 Green Park, Anna Nagar, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_conflict_002__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 620000\nBank Account Number: 806908567288\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_conflict_002__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Arnav Menon, born 07/08/1991, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "814459064461",
+        "annual_income": "620000",
+        "date_of_birth": "07/08/1991",
+        "email_address": "ravi.kumar48@example.com",
+        "full_name": "Ravi Kumar",
+        "linked_account_number": "806908567288",
+        "pan_number": "KKQTN7946J",
+        "phone_number": "9315947768",
+        "pin_code": "500001",
+        "residential_address": "152 Green Park, Anna Nagar, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "814459064461",
+        "annual_income": 620000,
+        "city": "Hyderabad",
+        "date_of_birth": "1991-08-07",
+        "email_address": "ravi.kumar48@example.com",
+        "full_name": "Ravi Kumar",
+        "linked_account_number": "806908567288",
+        "pan_number": "KKQTN7946J",
+        "phone_number": "9315947768",
+        "pin_code": "500001",
+        "residential_address": "152 Green Park, Anna Nagar, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "814459064461",
+          "annual_income": 620000,
+          "city": "Hyderabad",
+          "date_of_birth": "1991-08-07",
+          "email_address": "ravi.kumar48@example.com",
+          "full_name": "Arnav Menon",
+          "linked_account_number": "806908567288",
+          "pan_number": "KKQTN7946J",
+          "phone_number": "9315947768",
+          "pin_code": "500001",
+          "residential_address": "152 Green Park, Anna Nagar, Hyderabad, Telangana",
+          "state": "Telangana"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "missing_field",
+        "detail": {
+          "omitted_document_type": "address_proof",
+          "omitted_fields": "pin_code,residential_address",
+          "omitted_required_fields": "pin_code,residential_address"
+        }
+      },
+      "case_id": "kyc_missing_field_001",
+      "documents": [
+        {
+          "document_id": "kyc_missing_field_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Kapoor\nDate of Birth: 27/12/1990\nPAN Number: VNEKA8517U\nAadhaar Number: 097333720800\nPhone Number: 7931123969\nEmail Address: kabir.kapoor81@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_missing_field_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2050000\nBank Account Number: 381248166193\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_missing_field_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Kapoor, born 27/12/1990, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "097333720800",
+        "annual_income": "2050000",
+        "date_of_birth": "27/12/1990",
+        "email_address": "kabir.kapoor81@example.com",
+        "full_name": "Kabir Kapoor",
+        "linked_account_number": "381248166193",
+        "pan_number": "VNEKA8517U",
+        "phone_number": "7931123969",
+        "pin_code": null,
+        "residential_address": null
+      },
+      "primary_identity": {
+        "aadhaar_number": "097333720800",
+        "annual_income": 2050000,
+        "city": "Kolkata",
+        "date_of_birth": "1990-12-27",
+        "email_address": "kabir.kapoor81@example.com",
+        "full_name": "Kabir Kapoor",
+        "linked_account_number": "381248166193",
+        "pan_number": "VNEKA8517U",
+        "phone_number": "7931123969",
+        "pin_code": "700001",
+        "residential_address": "46 Station Road, Andheri West, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "near_duplicate_name",
+        "detail": {
+          "duplicate_document_type": "academic_record",
+          "duplicate_name": "Nehd Sharma",
+          "primary_name": "Neha Sharma"
+        }
+      },
+      "case_id": "kyc_near_duplicate_001",
+      "documents": [
+        {
+          "document_id": "kyc_near_duplicate_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Neha Sharma\nDate of Birth: 11/07/1993\nPAN Number: FEMYB5369R\nAadhaar Number: 114759006562\nPhone Number: 7406554272\nEmail Address: neha.sharma69@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_near_duplicate_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 137 Gandhi Nagar, Banjara Hills, Ahmedabad, Gujarat\nPIN Code: 380001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_near_duplicate_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 820000\nBank Account Number: 833268333675\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_near_duplicate_001__academic_record_duplicate",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Nehd Sharma, born 27/05/1990, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "114759006562",
+        "annual_income": "820000",
+        "date_of_birth": "11/07/1993",
+        "email_address": "neha.sharma69@example.com",
+        "full_name": "Neha Sharma",
+        "linked_account_number": "833268333675",
+        "pan_number": "FEMYB5369R",
+        "phone_number": "7406554272",
+        "pin_code": "380001",
+        "residential_address": "137 Gandhi Nagar, Banjara Hills, Ahmedabad, Gujarat"
+      },
+      "primary_identity": {
+        "aadhaar_number": "114759006562",
+        "annual_income": 820000,
+        "city": "Ahmedabad",
+        "date_of_birth": "1993-07-11",
+        "email_address": "neha.sharma69@example.com",
+        "full_name": "Neha Sharma",
+        "linked_account_number": "833268333675",
+        "pan_number": "FEMYB5369R",
+        "phone_number": "7406554272",
+        "pin_code": "380001",
+        "residential_address": "137 Gandhi Nagar, Banjara Hills, Ahmedabad, Gujarat",
+        "state": "Gujarat"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "817755536351",
+          "annual_income": 980000,
+          "city": "Ahmedabad",
+          "date_of_birth": "1990-05-27",
+          "email_address": "aadhya.reddy12@example.com",
+          "full_name": "Nehd Sharma",
+          "linked_account_number": "989943492005",
+          "pan_number": "BMLZA3144Q",
+          "phone_number": "8665537874",
+          "pin_code": "380001",
+          "residential_address": "87 MG Road, Vaishali Nagar, Ahmedabad, Gujarat",
+          "state": "Gujarat"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "near_duplicate_name",
+        "detail": {
+          "duplicate_document_type": "academic_record",
+          "duplicate_name": "Ishaaf Reddy",
+          "primary_name": "Ishaan Reddy"
+        }
+      },
+      "case_id": "kyc_near_duplicate_002",
+      "documents": [
+        {
+          "document_id": "kyc_near_duplicate_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ishaan Reddy\nDate of Birth: 25/08/1973\nPAN Number: RMVHU9362W\nAadhaar Number: 733528258824\nPhone Number: 8964229745\nEmail Address: ishaan.reddy23@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_near_duplicate_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 158 Ring Road, Anna Nagar, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_near_duplicate_002__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 980000\nBank Account Number: 990340929981\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_near_duplicate_002__academic_record_duplicate",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ishaaf Reddy, born 09/08/2002, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "733528258824",
+        "annual_income": "980000",
+        "date_of_birth": "25/08/1973",
+        "email_address": "ishaan.reddy23@example.com",
+        "full_name": "Ishaan Reddy",
+        "linked_account_number": "990340929981",
+        "pan_number": "RMVHU9362W",
+        "phone_number": "8964229745",
+        "pin_code": "226001",
+        "residential_address": "158 Ring Road, Anna Nagar, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "733528258824",
+        "annual_income": 980000,
+        "city": "Lucknow",
+        "date_of_birth": "1973-08-25",
+        "email_address": "ishaan.reddy23@example.com",
+        "full_name": "Ishaan Reddy",
+        "linked_account_number": "990340929981",
+        "pan_number": "RMVHU9362W",
+        "phone_number": "8964229745",
+        "pin_code": "226001",
+        "residential_address": "158 Ring Road, Anna Nagar, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "187090551708",
+          "annual_income": 1320000,
+          "city": "Pune",
+          "date_of_birth": "2002-08-09",
+          "email_address": "ritu.agarwal30@example.com",
+          "full_name": "Ishaaf Reddy",
+          "linked_account_number": "294343327197",
+          "pan_number": "DJRCG8483V",
+          "phone_number": "7256944143",
+          "pin_code": "411001",
+          "residential_address": "14 Green Park, Banjara Hills, Pune, Maharashtra",
+          "state": "Maharashtra"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "unusual_format",
+        "detail": {
+          "canonical_ground_truth_value": "10/11/1990",
+          "document_format_value": "10 November 1990",
+          "field": "date_of_birth"
+        }
+      },
+      "case_id": "kyc_unusual_format_001",
+      "documents": [
+        {
+          "document_id": "kyc_unusual_format_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Reddy\nDate of Birth: 10 November 1990\nPAN Number: MHVPF9239U\nAadhaar Number: 393702653293\nPhone Number: 9320718580\nEmail Address: ravi.reddy55@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "kyc_unusual_format_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 49 MG Road, Koramangala, Ahmedabad, Gujarat\nPIN Code: 380001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "kyc_unusual_format_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1730000\nBank Account Number: 945775702343\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "kyc_unusual_format_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ravi Reddy, born 10/11/1990, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        }
+      ],
+      "form_schema_id": "kyc_account_opening",
+      "ground_truth": {
+        "aadhaar_number": "393702653293",
+        "annual_income": "1730000",
+        "date_of_birth": "10/11/1990",
+        "email_address": "ravi.reddy55@example.com",
+        "full_name": "Ravi Reddy",
+        "linked_account_number": "945775702343",
+        "pan_number": "MHVPF9239U",
+        "phone_number": "9320718580",
+        "pin_code": "380001",
+        "residential_address": "49 MG Road, Koramangala, Ahmedabad, Gujarat"
+      },
+      "primary_identity": {
+        "aadhaar_number": "393702653293",
+        "annual_income": 1730000,
+        "city": "Ahmedabad",
+        "date_of_birth": "1990-11-10",
+        "email_address": "ravi.reddy55@example.com",
+        "full_name": "Ravi Reddy",
+        "linked_account_number": "945775702343",
+        "pan_number": "MHVPF9239U",
+        "phone_number": "9320718580",
+        "pin_code": "380001",
+        "residential_address": "49 MG Road, Koramangala, Ahmedabad, Gujarat",
+        "state": "Gujarat"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": []
+    },
+    {
+      "adversarial": null,
+      "case_id": "phase6_ocr_insurance",
+      "documents": [
+        {
+          "document_id": "phase6_ocr_insurance__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Anjali Reddy\nDate of Birth: 27/10/1985\nPAN Number: AXKLX1272E\nAadhaar Number: 783847152031\nPhone Number: 7969504861\nEmail Address: anjali.reddy33@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "phase6_ocr_insurance__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 5 Park Street, Banjara Hills, Mumbai, Maharashtra\nPIN Code: 400001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "phase6_ocr_insurance__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1940000\nBank Account Number: 233421584751\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "phase6_ocr_insurance__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Anjali Reddy, born 27/10/1985, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "phase6_ocr_insurance__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Kabir Malhotra\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1940000",
+        "date_of_birth": "27/10/1985",
+        "email_address": "anjali.reddy33@example.com",
+        "full_name": "Anjali Reddy",
+        "nominee_full_name": "Kabir Malhotra",
+        "phone_number": "7969504861",
+        "pin_code": "400001",
+        "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "783847152031",
+        "annual_income": 1940000,
+        "city": "Mumbai",
+        "date_of_birth": "1985-10-27",
+        "email_address": "anjali.reddy33@example.com",
+        "full_name": "Anjali Reddy",
+        "linked_account_number": "233421584751",
+        "pan_number": "AXKLX1272E",
+        "phone_number": "7969504861",
+        "pin_code": "400001",
+        "residential_address": "5 Park Street, Banjara Hills, Mumbai, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "986757312941",
+          "annual_income": 620000,
+          "city": "Bengaluru",
+          "date_of_birth": "1985-12-08",
+          "email_address": "kabir.malhotra50@example.com",
+          "full_name": "Kabir Malhotra",
+          "linked_account_number": "845807700159",
+          "pan_number": "PGJKY6271S",
+          "phone_number": "9676359628",
+          "pin_code": "560001",
+          "residential_address": "56 Church Street, Andheri West, Bengaluru, Karnataka",
+          "state": "Karnataka"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_001",
+      "documents": [
+        {
+          "document_id": "insurance_clean_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ritu Agarwal\nDate of Birth: 18/04/1977\nPAN Number: BRPMA3033Z\nAadhaar Number: 850552740186\nPhone Number: 7494601118\nEmail Address: ritu.agarwal22@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 165 Model Colony, Salt Lake, Pune, Maharashtra\nPIN Code: 411001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 380000\nBank Account Number: 132496070653\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ritu Agarwal, born 18/04/1977, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_001__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Reyansh Verma\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "380000",
+        "date_of_birth": "18/04/1977",
+        "email_address": "ritu.agarwal22@example.com",
+        "full_name": "Ritu Agarwal",
+        "nominee_full_name": "Reyansh Verma",
+        "phone_number": "7494601118",
+        "pin_code": "411001",
+        "residential_address": "165 Model Colony, Salt Lake, Pune, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "850552740186",
+        "annual_income": 380000,
+        "city": "Pune",
+        "date_of_birth": "1977-04-18",
+        "email_address": "ritu.agarwal22@example.com",
+        "full_name": "Ritu Agarwal",
+        "linked_account_number": "132496070653",
+        "pan_number": "BRPMA3033Z",
+        "phone_number": "7494601118",
+        "pin_code": "411001",
+        "residential_address": "165 Model Colony, Salt Lake, Pune, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "704183994133",
+          "annual_income": 1510000,
+          "city": "Jaipur",
+          "date_of_birth": "1982-05-11",
+          "email_address": "reyansh.verma98@example.com",
+          "full_name": "Reyansh Verma",
+          "linked_account_number": "846408775403",
+          "pan_number": "LWLXR7710U",
+          "phone_number": "8388706998",
+          "pin_code": "302001",
+          "residential_address": "19 Civil Lines, Anna Nagar, Jaipur, Rajasthan",
+          "state": "Rajasthan"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_002",
+      "documents": [
+        {
+          "document_id": "insurance_clean_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ananya Gupta\nDate of Birth: 22/09/1986\nPAN Number: JTFZS4640E\nAadhaar Number: 411865008460\nPhone Number: 6923929256\nEmail Address: ananya.gupta60@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 67 Gandhi Nagar, Satellite, New Delhi, Delhi\nPIN Code: 110001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_002__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1200000\nBank Account Number: 892743198487\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_002__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ananya Gupta, born 22/09/1986, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_002__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Shreya Singh\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1200000",
+        "date_of_birth": "22/09/1986",
+        "email_address": "ananya.gupta60@example.com",
+        "full_name": "Ananya Gupta",
+        "nominee_full_name": "Shreya Singh",
+        "phone_number": "6923929256",
+        "pin_code": "110001",
+        "residential_address": "67 Gandhi Nagar, Satellite, New Delhi, Delhi"
+      },
+      "primary_identity": {
+        "aadhaar_number": "411865008460",
+        "annual_income": 1200000,
+        "city": "New Delhi",
+        "date_of_birth": "1986-09-22",
+        "email_address": "ananya.gupta60@example.com",
+        "full_name": "Ananya Gupta",
+        "linked_account_number": "892743198487",
+        "pan_number": "JTFZS4640E",
+        "phone_number": "6923929256",
+        "pin_code": "110001",
+        "residential_address": "67 Gandhi Nagar, Satellite, New Delhi, Delhi",
+        "state": "Delhi"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "939659064993",
+          "annual_income": 1290000,
+          "city": "Kolkata",
+          "date_of_birth": "1967-01-20",
+          "email_address": "shreya.singh37@example.com",
+          "full_name": "Shreya Singh",
+          "linked_account_number": "894758651461",
+          "pan_number": "LFTMD8663Z",
+          "phone_number": "7649116844",
+          "pin_code": "700001",
+          "residential_address": "128 Civil Lines, Banjara Hills, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_003",
+      "documents": [
+        {
+          "document_id": "insurance_clean_003__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Menon\nDate of Birth: 21/04/1984\nPAN Number: EZOVU7346A\nAadhaar Number: 488548517381\nPhone Number: 7724350988\nEmail Address: kabir.menon38@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_003__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 198 Green Park, Anna Nagar, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_003__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2460000\nBank Account Number: 596119533903\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_003__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Menon, born 21/04/1984, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_003__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Ritu Patel\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2460000",
+        "date_of_birth": "21/04/1984",
+        "email_address": "kabir.menon38@example.com",
+        "full_name": "Kabir Menon",
+        "nominee_full_name": "Ritu Patel",
+        "phone_number": "7724350988",
+        "pin_code": "600001",
+        "residential_address": "198 Green Park, Anna Nagar, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "488548517381",
+        "annual_income": 2460000,
+        "city": "Chennai",
+        "date_of_birth": "1984-04-21",
+        "email_address": "kabir.menon38@example.com",
+        "full_name": "Kabir Menon",
+        "linked_account_number": "596119533903",
+        "pan_number": "EZOVU7346A",
+        "phone_number": "7724350988",
+        "pin_code": "600001",
+        "residential_address": "198 Green Park, Anna Nagar, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "021928091910",
+          "annual_income": 1160000,
+          "city": "Jaipur",
+          "date_of_birth": "1979-06-18",
+          "email_address": "ritu.patel89@example.com",
+          "full_name": "Ritu Patel",
+          "linked_account_number": "277389192348",
+          "pan_number": "CIGNX4700Q",
+          "phone_number": "7756402816",
+          "pin_code": "302001",
+          "residential_address": "132 Ring Road, Andheri West, Jaipur, Rajasthan",
+          "state": "Rajasthan"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_004",
+      "documents": [
+        {
+          "document_id": "insurance_clean_004__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Divya Reddy\nDate of Birth: 18/04/1958\nPAN Number: KWUVZ6138Z\nAadhaar Number: 456838470604\nPhone Number: 7975218805\nEmail Address: divya.reddy49@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_004__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 95 Civil Lines, Satellite, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_004__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1120000\nBank Account Number: 287708515361\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_004__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Divya Reddy, born 18/04/1958, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_004__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Pooja Agarwal\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1120000",
+        "date_of_birth": "18/04/1958",
+        "email_address": "divya.reddy49@example.com",
+        "full_name": "Divya Reddy",
+        "nominee_full_name": "Pooja Agarwal",
+        "phone_number": "7975218805",
+        "pin_code": "600001",
+        "residential_address": "95 Civil Lines, Satellite, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "456838470604",
+        "annual_income": 1120000,
+        "city": "Chennai",
+        "date_of_birth": "1958-04-18",
+        "email_address": "divya.reddy49@example.com",
+        "full_name": "Divya Reddy",
+        "linked_account_number": "287708515361",
+        "pan_number": "KWUVZ6138Z",
+        "phone_number": "7975218805",
+        "pin_code": "600001",
+        "residential_address": "95 Civil Lines, Satellite, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "058508654307",
+          "annual_income": 820000,
+          "city": "Kolkata",
+          "date_of_birth": "1995-09-17",
+          "email_address": "pooja.agarwal91@example.com",
+          "full_name": "Pooja Agarwal",
+          "linked_account_number": "037095551661",
+          "pan_number": "YYXTK1901A",
+          "phone_number": "9247952591",
+          "pin_code": "700001",
+          "residential_address": "101 Station Road, Sector 12, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_005",
+      "documents": [
+        {
+          "document_id": "insurance_clean_005__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Gupta\nDate of Birth: 18/04/1964\nPAN Number: YBKFD1334Y\nAadhaar Number: 581727263735\nPhone Number: 9330097338\nEmail Address: kabir.gupta72@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_005__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 165 Church Street, Satellite, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_005__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 440000\nBank Account Number: 025826764035\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_005__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Gupta, born 18/04/1964, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_005__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Ishaan Pillai\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "440000",
+        "date_of_birth": "18/04/1964",
+        "email_address": "kabir.gupta72@example.com",
+        "full_name": "Kabir Gupta",
+        "nominee_full_name": "Ishaan Pillai",
+        "phone_number": "9330097338",
+        "pin_code": "500001",
+        "residential_address": "165 Church Street, Satellite, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "581727263735",
+        "annual_income": 440000,
+        "city": "Hyderabad",
+        "date_of_birth": "1964-04-18",
+        "email_address": "kabir.gupta72@example.com",
+        "full_name": "Kabir Gupta",
+        "linked_account_number": "025826764035",
+        "pan_number": "YBKFD1334Y",
+        "phone_number": "9330097338",
+        "pin_code": "500001",
+        "residential_address": "165 Church Street, Satellite, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "238261252661",
+          "annual_income": 2320000,
+          "city": "Kolkata",
+          "date_of_birth": "1995-03-01",
+          "email_address": "ishaan.pillai82@example.com",
+          "full_name": "Ishaan Pillai",
+          "linked_account_number": "258361580829",
+          "pan_number": "CDZVU4108O",
+          "phone_number": "6253148504",
+          "pin_code": "700001",
+          "residential_address": "109 Station Road, Banjara Hills, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_006",
+      "documents": [
+        {
+          "document_id": "insurance_clean_006__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Iyer\nDate of Birth: 02/05/1992\nPAN Number: KLWQD7628Z\nAadhaar Number: 276320592195\nPhone Number: 8858399742\nEmail Address: kabir.iyer88@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_006__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 81 Model Colony, Satellite, Kolkata, West Bengal\nPIN Code: 700001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_006__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 640000\nBank Account Number: 838029966032\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_006__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Iyer, born 02/05/1992, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_006__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Arjun Gupta\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "640000",
+        "date_of_birth": "02/05/1992",
+        "email_address": "kabir.iyer88@example.com",
+        "full_name": "Kabir Iyer",
+        "nominee_full_name": "Arjun Gupta",
+        "phone_number": "8858399742",
+        "pin_code": "700001",
+        "residential_address": "81 Model Colony, Satellite, Kolkata, West Bengal"
+      },
+      "primary_identity": {
+        "aadhaar_number": "276320592195",
+        "annual_income": 640000,
+        "city": "Kolkata",
+        "date_of_birth": "1992-05-02",
+        "email_address": "kabir.iyer88@example.com",
+        "full_name": "Kabir Iyer",
+        "linked_account_number": "838029966032",
+        "pan_number": "KLWQD7628Z",
+        "phone_number": "8858399742",
+        "pin_code": "700001",
+        "residential_address": "81 Model Colony, Satellite, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "024854809297",
+          "annual_income": 1370000,
+          "city": "Kolkata",
+          "date_of_birth": "1996-11-01",
+          "email_address": "arjun.gupta24@example.com",
+          "full_name": "Arjun Gupta",
+          "linked_account_number": "264534792228",
+          "pan_number": "SSGYB4686L",
+          "phone_number": "8328273498",
+          "pin_code": "700001",
+          "residential_address": "173 Church Street, Satellite, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_007",
+      "documents": [
+        {
+          "document_id": "insurance_clean_007__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ishaan Iyer\nDate of Birth: 26/02/1993\nPAN Number: YWTTD5640D\nAadhaar Number: 569635606466\nPhone Number: 6100601163\nEmail Address: ishaan.iyer45@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_007__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 140 Model Colony, Satellite, Ahmedabad, Gujarat\nPIN Code: 380001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_007__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2360000\nBank Account Number: 061923909312\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_007__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ishaan Iyer, born 26/02/1993, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_007__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Vihaan Iyer\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2360000",
+        "date_of_birth": "26/02/1993",
+        "email_address": "ishaan.iyer45@example.com",
+        "full_name": "Ishaan Iyer",
+        "nominee_full_name": "Vihaan Iyer",
+        "phone_number": "6100601163",
+        "pin_code": "380001",
+        "residential_address": "140 Model Colony, Satellite, Ahmedabad, Gujarat"
+      },
+      "primary_identity": {
+        "aadhaar_number": "569635606466",
+        "annual_income": 2360000,
+        "city": "Ahmedabad",
+        "date_of_birth": "1993-02-26",
+        "email_address": "ishaan.iyer45@example.com",
+        "full_name": "Ishaan Iyer",
+        "linked_account_number": "061923909312",
+        "pan_number": "YWTTD5640D",
+        "phone_number": "6100601163",
+        "pin_code": "380001",
+        "residential_address": "140 Model Colony, Satellite, Ahmedabad, Gujarat",
+        "state": "Gujarat"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "047923903230",
+          "annual_income": 610000,
+          "city": "Pune",
+          "date_of_birth": "1976-10-08",
+          "email_address": "vihaan.iyer16@example.com",
+          "full_name": "Vihaan Iyer",
+          "linked_account_number": "138484601095",
+          "pan_number": "MTSMZ6862K",
+          "phone_number": "6411525397",
+          "pin_code": "411001",
+          "residential_address": "7 Lake View Apartments, Vaishali Nagar, Pune, Maharashtra",
+          "state": "Maharashtra"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_008",
+      "documents": [
+        {
+          "document_id": "insurance_clean_008__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ishaan Joshi\nDate of Birth: 01/05/1983\nPAN Number: NKVNY9002B\nAadhaar Number: 587078891847\nPhone Number: 8360987140\nEmail Address: ishaan.joshi15@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_008__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 127 Church Street, Salt Lake, Hyderabad, Telangana\nPIN Code: 500001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_008__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2170000\nBank Account Number: 358982679751\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_008__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ishaan Joshi, born 01/05/1983, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_008__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Sanjay Agarwal\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2170000",
+        "date_of_birth": "01/05/1983",
+        "email_address": "ishaan.joshi15@example.com",
+        "full_name": "Ishaan Joshi",
+        "nominee_full_name": "Sanjay Agarwal",
+        "phone_number": "8360987140",
+        "pin_code": "500001",
+        "residential_address": "127 Church Street, Salt Lake, Hyderabad, Telangana"
+      },
+      "primary_identity": {
+        "aadhaar_number": "587078891847",
+        "annual_income": 2170000,
+        "city": "Hyderabad",
+        "date_of_birth": "1983-05-01",
+        "email_address": "ishaan.joshi15@example.com",
+        "full_name": "Ishaan Joshi",
+        "linked_account_number": "358982679751",
+        "pan_number": "NKVNY9002B",
+        "phone_number": "8360987140",
+        "pin_code": "500001",
+        "residential_address": "127 Church Street, Salt Lake, Hyderabad, Telangana",
+        "state": "Telangana"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "129654121578",
+          "annual_income": 1140000,
+          "city": "Chennai",
+          "date_of_birth": "1985-06-23",
+          "email_address": "sanjay.agarwal50@example.com",
+          "full_name": "Sanjay Agarwal",
+          "linked_account_number": "321345988434",
+          "pan_number": "IXEFJ2620J",
+          "phone_number": "9395845343",
+          "pin_code": "600001",
+          "residential_address": "34 Park Street, Sector 12, Chennai, Tamil Nadu",
+          "state": "Tamil Nadu"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_009",
+      "documents": [
+        {
+          "document_id": "insurance_clean_009__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Nikhil Pillai\nDate of Birth: 22/07/1974\nPAN Number: HHTSY4862U\nAadhaar Number: 899360707505\nPhone Number: 9140873269\nEmail Address: nikhil.pillai21@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_009__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 189 Ring Road, Salt Lake, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_009__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2290000\nBank Account Number: 205785664489\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_009__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Nikhil Pillai, born 22/07/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_009__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Ravi Reddy\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2290000",
+        "date_of_birth": "22/07/1974",
+        "email_address": "nikhil.pillai21@example.com",
+        "full_name": "Nikhil Pillai",
+        "nominee_full_name": "Ravi Reddy",
+        "phone_number": "9140873269",
+        "pin_code": "600001",
+        "residential_address": "189 Ring Road, Salt Lake, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "899360707505",
+        "annual_income": 2290000,
+        "city": "Chennai",
+        "date_of_birth": "1974-07-22",
+        "email_address": "nikhil.pillai21@example.com",
+        "full_name": "Nikhil Pillai",
+        "linked_account_number": "205785664489",
+        "pan_number": "HHTSY4862U",
+        "phone_number": "9140873269",
+        "pin_code": "600001",
+        "residential_address": "189 Ring Road, Salt Lake, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "979604316739",
+          "annual_income": 1580000,
+          "city": "Ahmedabad",
+          "date_of_birth": "1991-02-21",
+          "email_address": "ravi.reddy80@example.com",
+          "full_name": "Ravi Reddy",
+          "linked_account_number": "449829330565",
+          "pan_number": "DVESD5767I",
+          "phone_number": "7496192689",
+          "pin_code": "380001",
+          "residential_address": "17 Model Colony, Salt Lake, Ahmedabad, Gujarat",
+          "state": "Gujarat"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_010",
+      "documents": [
+        {
+          "document_id": "insurance_clean_010__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Neha Bose\nDate of Birth: 19/09/1998\nPAN Number: VTZFL1852Z\nAadhaar Number: 482333809378\nPhone Number: 7940133060\nEmail Address: neha.bose95@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_010__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 35 Lake View Apartments, Kothrud, New Delhi, Delhi\nPIN Code: 110001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_010__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2120000\nBank Account Number: 895248504363\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_010__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Neha Bose, born 19/09/1998, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_010__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Priya Menon\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2120000",
+        "date_of_birth": "19/09/1998",
+        "email_address": "neha.bose95@example.com",
+        "full_name": "Neha Bose",
+        "nominee_full_name": "Priya Menon",
+        "phone_number": "7940133060",
+        "pin_code": "110001",
+        "residential_address": "35 Lake View Apartments, Kothrud, New Delhi, Delhi"
+      },
+      "primary_identity": {
+        "aadhaar_number": "482333809378",
+        "annual_income": 2120000,
+        "city": "New Delhi",
+        "date_of_birth": "1998-09-19",
+        "email_address": "neha.bose95@example.com",
+        "full_name": "Neha Bose",
+        "linked_account_number": "895248504363",
+        "pan_number": "VTZFL1852Z",
+        "phone_number": "7940133060",
+        "pin_code": "110001",
+        "residential_address": "35 Lake View Apartments, Kothrud, New Delhi, Delhi",
+        "state": "Delhi"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "833136954139",
+          "annual_income": 1510000,
+          "city": "Chennai",
+          "date_of_birth": "1964-11-19",
+          "email_address": "priya.menon18@example.com",
+          "full_name": "Priya Menon",
+          "linked_account_number": "258403266668",
+          "pan_number": "YLCXN8316R",
+          "phone_number": "7693146255",
+          "pin_code": "600001",
+          "residential_address": "82 Gandhi Nagar, Banjara Hills, Chennai, Tamil Nadu",
+          "state": "Tamil Nadu"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_011",
+      "documents": [
+        {
+          "document_id": "insurance_clean_011__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Aarav Kumar\nDate of Birth: 20/11/1995\nPAN Number: XDTVU2298C\nAadhaar Number: 549469031156\nPhone Number: 6055296457\nEmail Address: aarav.kumar99@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_011__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 171 MG Road, Vaishali Nagar, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_011__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2370000\nBank Account Number: 127699887980\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_011__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Aarav Kumar, born 20/11/1995, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_011__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Karan Kapoor\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2370000",
+        "date_of_birth": "20/11/1995",
+        "email_address": "aarav.kumar99@example.com",
+        "full_name": "Aarav Kumar",
+        "nominee_full_name": "Karan Kapoor",
+        "phone_number": "6055296457",
+        "pin_code": "600001",
+        "residential_address": "171 MG Road, Vaishali Nagar, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "549469031156",
+        "annual_income": 2370000,
+        "city": "Chennai",
+        "date_of_birth": "1995-11-20",
+        "email_address": "aarav.kumar99@example.com",
+        "full_name": "Aarav Kumar",
+        "linked_account_number": "127699887980",
+        "pan_number": "XDTVU2298C",
+        "phone_number": "6055296457",
+        "pin_code": "600001",
+        "residential_address": "171 MG Road, Vaishali Nagar, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "096688945099",
+          "annual_income": 790000,
+          "city": "New Delhi",
+          "date_of_birth": "1983-11-07",
+          "email_address": "karan.kapoor84@example.com",
+          "full_name": "Karan Kapoor",
+          "linked_account_number": "989587136352",
+          "pan_number": "TQUJG8906E",
+          "phone_number": "9068200118",
+          "pin_code": "110001",
+          "residential_address": "91 Lake View Apartments, Salt Lake, New Delhi, Delhi",
+          "state": "Delhi"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_012",
+      "documents": [
+        {
+          "document_id": "insurance_clean_012__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Pillai\nDate of Birth: 25/08/1970\nPAN Number: CVFQV3148P\nAadhaar Number: 483568336493\nPhone Number: 8885956398\nEmail Address: kabir.pillai66@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_012__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 89 Civil Lines, Koramangala, Jaipur, Rajasthan\nPIN Code: 302001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_012__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 790000\nBank Account Number: 507679751072\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_012__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Pillai, born 25/08/1970, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_012__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Pooja Singh\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "790000",
+        "date_of_birth": "25/08/1970",
+        "email_address": "kabir.pillai66@example.com",
+        "full_name": "Kabir Pillai",
+        "nominee_full_name": "Pooja Singh",
+        "phone_number": "8885956398",
+        "pin_code": "302001",
+        "residential_address": "89 Civil Lines, Koramangala, Jaipur, Rajasthan"
+      },
+      "primary_identity": {
+        "aadhaar_number": "483568336493",
+        "annual_income": 790000,
+        "city": "Jaipur",
+        "date_of_birth": "1970-08-25",
+        "email_address": "kabir.pillai66@example.com",
+        "full_name": "Kabir Pillai",
+        "linked_account_number": "507679751072",
+        "pan_number": "CVFQV3148P",
+        "phone_number": "8885956398",
+        "pin_code": "302001",
+        "residential_address": "89 Civil Lines, Koramangala, Jaipur, Rajasthan",
+        "state": "Rajasthan"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "871283883764",
+          "annual_income": 1580000,
+          "city": "Jaipur",
+          "date_of_birth": "1994-07-24",
+          "email_address": "pooja.singh86@example.com",
+          "full_name": "Pooja Singh",
+          "linked_account_number": "735701128935",
+          "pan_number": "IVKTQ0071J",
+          "phone_number": "6554034911",
+          "pin_code": "302001",
+          "residential_address": "50 Green Park, Koramangala, Jaipur, Rajasthan",
+          "state": "Rajasthan"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_013",
+      "documents": [
+        {
+          "document_id": "insurance_clean_013__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ravi Gupta\nDate of Birth: 24/01/1981\nPAN Number: HORVI0076Y\nAadhaar Number: 919546633169\nPhone Number: 6701302106\nEmail Address: ravi.gupta91@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_013__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 11 Station Road, Andheri West, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_013__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1570000\nBank Account Number: 599131400372\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_013__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ravi Gupta, born 24/01/1981, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_013__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Kavya Gupta\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1570000",
+        "date_of_birth": "24/01/1981",
+        "email_address": "ravi.gupta91@example.com",
+        "full_name": "Ravi Gupta",
+        "nominee_full_name": "Kavya Gupta",
+        "phone_number": "6701302106",
+        "pin_code": "226001",
+        "residential_address": "11 Station Road, Andheri West, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "919546633169",
+        "annual_income": 1570000,
+        "city": "Lucknow",
+        "date_of_birth": "1981-01-24",
+        "email_address": "ravi.gupta91@example.com",
+        "full_name": "Ravi Gupta",
+        "linked_account_number": "599131400372",
+        "pan_number": "HORVI0076Y",
+        "phone_number": "6701302106",
+        "pin_code": "226001",
+        "residential_address": "11 Station Road, Andheri West, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "898941594946",
+          "annual_income": 2300000,
+          "city": "Hyderabad",
+          "date_of_birth": "2004-04-26",
+          "email_address": "kavya.gupta11@example.com",
+          "full_name": "Kavya Gupta",
+          "linked_account_number": "415885629554",
+          "pan_number": "OGIRE0009I",
+          "phone_number": "8975309198",
+          "pin_code": "500001",
+          "residential_address": "83 Lake View Apartments, Vaishali Nagar, Hyderabad, Telangana",
+          "state": "Telangana"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_014",
+      "documents": [
+        {
+          "document_id": "insurance_clean_014__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Deepak Verma\nDate of Birth: 04/12/1986\nPAN Number: NRXLJ0379H\nAadhaar Number: 838375758314\nPhone Number: 9691835322\nEmail Address: deepak.verma44@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_014__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 64 MG Road, Hazratganj, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_014__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 510000\nBank Account Number: 176540026108\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_014__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Deepak Verma, born 04/12/1986, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_014__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Deepak Patel\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "510000",
+        "date_of_birth": "04/12/1986",
+        "email_address": "deepak.verma44@example.com",
+        "full_name": "Deepak Verma",
+        "nominee_full_name": "Deepak Patel",
+        "phone_number": "9691835322",
+        "pin_code": "226001",
+        "residential_address": "64 MG Road, Hazratganj, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "838375758314",
+        "annual_income": 510000,
+        "city": "Lucknow",
+        "date_of_birth": "1986-12-04",
+        "email_address": "deepak.verma44@example.com",
+        "full_name": "Deepak Verma",
+        "linked_account_number": "176540026108",
+        "pan_number": "NRXLJ0379H",
+        "phone_number": "9691835322",
+        "pin_code": "226001",
+        "residential_address": "64 MG Road, Hazratganj, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "278740492123",
+          "annual_income": 2150000,
+          "city": "New Delhi",
+          "date_of_birth": "1974-07-06",
+          "email_address": "deepak.patel43@example.com",
+          "full_name": "Deepak Patel",
+          "linked_account_number": "105752942099",
+          "pan_number": "XNJDF2561C",
+          "phone_number": "8607283230",
+          "pin_code": "110001",
+          "residential_address": "23 MG Road, Anna Nagar, New Delhi, Delhi",
+          "state": "Delhi"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_015",
+      "documents": [
+        {
+          "document_id": "insurance_clean_015__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Pooja Kumar\nDate of Birth: 12/05/1975\nPAN Number: VCJES0926D\nAadhaar Number: 012921158215\nPhone Number: 6855388414\nEmail Address: pooja.kumar74@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_015__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 191 Model Colony, Banjara Hills, Pune, Maharashtra\nPIN Code: 411001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_015__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2360000\nBank Account Number: 883149523384\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_015__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Pooja Kumar, born 12/05/1975, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_015__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Rohan Rao\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2360000",
+        "date_of_birth": "12/05/1975",
+        "email_address": "pooja.kumar74@example.com",
+        "full_name": "Pooja Kumar",
+        "nominee_full_name": "Rohan Rao",
+        "phone_number": "6855388414",
+        "pin_code": "411001",
+        "residential_address": "191 Model Colony, Banjara Hills, Pune, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "012921158215",
+        "annual_income": 2360000,
+        "city": "Pune",
+        "date_of_birth": "1975-05-12",
+        "email_address": "pooja.kumar74@example.com",
+        "full_name": "Pooja Kumar",
+        "linked_account_number": "883149523384",
+        "pan_number": "VCJES0926D",
+        "phone_number": "6855388414",
+        "pin_code": "411001",
+        "residential_address": "191 Model Colony, Banjara Hills, Pune, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "421606374948",
+          "annual_income": 800000,
+          "city": "Ahmedabad",
+          "date_of_birth": "1992-09-21",
+          "email_address": "rohan.rao69@example.com",
+          "full_name": "Rohan Rao",
+          "linked_account_number": "042916987749",
+          "pan_number": "RIUIL6548F",
+          "phone_number": "9259348174",
+          "pin_code": "380001",
+          "residential_address": "7 Station Road, Andheri West, Ahmedabad, Gujarat",
+          "state": "Gujarat"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_016",
+      "documents": [
+        {
+          "document_id": "insurance_clean_016__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Sanjay Sharma\nDate of Birth: 19/11/1981\nPAN Number: JCJNJ3575A\nAadhaar Number: 514585696700\nPhone Number: 8846986619\nEmail Address: sanjay.sharma70@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_016__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 138 Ring Road, Koramangala, Kolkata, West Bengal\nPIN Code: 700001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_016__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1680000\nBank Account Number: 649463130541\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_016__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Sanjay Sharma, born 19/11/1981, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_016__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Divya Rao\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1680000",
+        "date_of_birth": "19/11/1981",
+        "email_address": "sanjay.sharma70@example.com",
+        "full_name": "Sanjay Sharma",
+        "nominee_full_name": "Divya Rao",
+        "phone_number": "8846986619",
+        "pin_code": "700001",
+        "residential_address": "138 Ring Road, Koramangala, Kolkata, West Bengal"
+      },
+      "primary_identity": {
+        "aadhaar_number": "514585696700",
+        "annual_income": 1680000,
+        "city": "Kolkata",
+        "date_of_birth": "1981-11-19",
+        "email_address": "sanjay.sharma70@example.com",
+        "full_name": "Sanjay Sharma",
+        "linked_account_number": "649463130541",
+        "pan_number": "JCJNJ3575A",
+        "phone_number": "8846986619",
+        "pin_code": "700001",
+        "residential_address": "138 Ring Road, Koramangala, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "927532337015",
+          "annual_income": 1910000,
+          "city": "Hyderabad",
+          "date_of_birth": "1975-01-24",
+          "email_address": "divya.rao84@example.com",
+          "full_name": "Divya Rao",
+          "linked_account_number": "870823416009",
+          "pan_number": "LFGPH2127Q",
+          "phone_number": "6951729837",
+          "pin_code": "500001",
+          "residential_address": "41 Model Colony, Sector 12, Hyderabad, Telangana",
+          "state": "Telangana"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_017",
+      "documents": [
+        {
+          "document_id": "insurance_clean_017__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Anjali Chatterjee\nDate of Birth: 20/02/1982\nPAN Number: SOBYC2091T\nAadhaar Number: 234291352724\nPhone Number: 8211072006\nEmail Address: anjali.chatterjee20@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_017__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 194 Ring Road, Hazratganj, Kolkata, West Bengal\nPIN Code: 700001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_017__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2170000\nBank Account Number: 496843065993\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_017__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Anjali Chatterjee, born 20/02/1982, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_017__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Karan Pillai\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2170000",
+        "date_of_birth": "20/02/1982",
+        "email_address": "anjali.chatterjee20@example.com",
+        "full_name": "Anjali Chatterjee",
+        "nominee_full_name": "Karan Pillai",
+        "phone_number": "8211072006",
+        "pin_code": "700001",
+        "residential_address": "194 Ring Road, Hazratganj, Kolkata, West Bengal"
+      },
+      "primary_identity": {
+        "aadhaar_number": "234291352724",
+        "annual_income": 2170000,
+        "city": "Kolkata",
+        "date_of_birth": "1982-02-20",
+        "email_address": "anjali.chatterjee20@example.com",
+        "full_name": "Anjali Chatterjee",
+        "linked_account_number": "496843065993",
+        "pan_number": "SOBYC2091T",
+        "phone_number": "8211072006",
+        "pin_code": "700001",
+        "residential_address": "194 Ring Road, Hazratganj, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "858316887427",
+          "annual_income": 1820000,
+          "city": "Jaipur",
+          "date_of_birth": "1994-08-05",
+          "email_address": "karan.pillai13@example.com",
+          "full_name": "Karan Pillai",
+          "linked_account_number": "459862816726",
+          "pan_number": "RREGA3004M",
+          "phone_number": "6049785133",
+          "pin_code": "302001",
+          "residential_address": "179 MG Road, Banjara Hills, Jaipur, Rajasthan",
+          "state": "Rajasthan"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_018",
+      "documents": [
+        {
+          "document_id": "insurance_clean_018__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Deepak Desai\nDate of Birth: 08/09/1986\nPAN Number: CVUUF3360P\nAadhaar Number: 803961063847\nPhone Number: 9269638779\nEmail Address: deepak.desai46@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_018__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 23 Model Colony, Hazratganj, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_018__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1770000\nBank Account Number: 178216072124\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_018__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Deepak Desai, born 08/09/1986, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_018__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Sunita Rao\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1770000",
+        "date_of_birth": "08/09/1986",
+        "email_address": "deepak.desai46@example.com",
+        "full_name": "Deepak Desai",
+        "nominee_full_name": "Sunita Rao",
+        "phone_number": "9269638779",
+        "pin_code": "600001",
+        "residential_address": "23 Model Colony, Hazratganj, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "803961063847",
+        "annual_income": 1770000,
+        "city": "Chennai",
+        "date_of_birth": "1986-09-08",
+        "email_address": "deepak.desai46@example.com",
+        "full_name": "Deepak Desai",
+        "linked_account_number": "178216072124",
+        "pan_number": "CVUUF3360P",
+        "phone_number": "9269638779",
+        "pin_code": "600001",
+        "residential_address": "23 Model Colony, Hazratganj, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "898416561411",
+          "annual_income": 1510000,
+          "city": "Chennai",
+          "date_of_birth": "1994-11-01",
+          "email_address": "sunita.rao75@example.com",
+          "full_name": "Sunita Rao",
+          "linked_account_number": "745596947955",
+          "pan_number": "AEEOK2146Z",
+          "phone_number": "9264704539",
+          "pin_code": "600001",
+          "residential_address": "50 Green Park, Sector 12, Chennai, Tamil Nadu",
+          "state": "Tamil Nadu"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_019",
+      "documents": [
+        {
+          "document_id": "insurance_clean_019__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Kabir Pillai\nDate of Birth: 06/02/1978\nPAN Number: NSIVY6352M\nAadhaar Number: 373509850057\nPhone Number: 7048687718\nEmail Address: kabir.pillai92@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_019__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 14 Gandhi Nagar, Kothrud, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_019__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1600000\nBank Account Number: 796435689281\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_019__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Kabir Pillai, born 06/02/1978, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_019__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Arjun Agarwal\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1600000",
+        "date_of_birth": "06/02/1978",
+        "email_address": "kabir.pillai92@example.com",
+        "full_name": "Kabir Pillai",
+        "nominee_full_name": "Arjun Agarwal",
+        "phone_number": "7048687718",
+        "pin_code": "560001",
+        "residential_address": "14 Gandhi Nagar, Kothrud, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "373509850057",
+        "annual_income": 1600000,
+        "city": "Bengaluru",
+        "date_of_birth": "1978-02-06",
+        "email_address": "kabir.pillai92@example.com",
+        "full_name": "Kabir Pillai",
+        "linked_account_number": "796435689281",
+        "pan_number": "NSIVY6352M",
+        "phone_number": "7048687718",
+        "pin_code": "560001",
+        "residential_address": "14 Gandhi Nagar, Kothrud, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "188079988318",
+          "annual_income": 680000,
+          "city": "Pune",
+          "date_of_birth": "1969-02-11",
+          "email_address": "arjun.agarwal44@example.com",
+          "full_name": "Arjun Agarwal",
+          "linked_account_number": "894652326512",
+          "pan_number": "PSMXZ4431A",
+          "phone_number": "7648225189",
+          "pin_code": "411001",
+          "residential_address": "148 Model Colony, Hazratganj, Pune, Maharashtra",
+          "state": "Maharashtra"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_020",
+      "documents": [
+        {
+          "document_id": "insurance_clean_020__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Rohan Iyer\nDate of Birth: 14/05/1989\nPAN Number: WDNNG2693B\nAadhaar Number: 259983861964\nPhone Number: 6476658375\nEmail Address: rohan.iyer33@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_020__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 162 Church Street, Banjara Hills, Pune, Maharashtra\nPIN Code: 411001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_020__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 910000\nBank Account Number: 884020059923\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_020__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Rohan Iyer, born 14/05/1989, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_020__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Anjali Iyer\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "910000",
+        "date_of_birth": "14/05/1989",
+        "email_address": "rohan.iyer33@example.com",
+        "full_name": "Rohan Iyer",
+        "nominee_full_name": "Anjali Iyer",
+        "phone_number": "6476658375",
+        "pin_code": "411001",
+        "residential_address": "162 Church Street, Banjara Hills, Pune, Maharashtra"
+      },
+      "primary_identity": {
+        "aadhaar_number": "259983861964",
+        "annual_income": 910000,
+        "city": "Pune",
+        "date_of_birth": "1989-05-14",
+        "email_address": "rohan.iyer33@example.com",
+        "full_name": "Rohan Iyer",
+        "linked_account_number": "884020059923",
+        "pan_number": "WDNNG2693B",
+        "phone_number": "6476658375",
+        "pin_code": "411001",
+        "residential_address": "162 Church Street, Banjara Hills, Pune, Maharashtra",
+        "state": "Maharashtra"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "670282053838",
+          "annual_income": 640000,
+          "city": "Bengaluru",
+          "date_of_birth": "1997-12-19",
+          "email_address": "anjali.iyer46@example.com",
+          "full_name": "Anjali Iyer",
+          "linked_account_number": "304477521370",
+          "pan_number": "HCIQX0329S",
+          "phone_number": "8623322315",
+          "pin_code": "560001",
+          "residential_address": "79 Park Street, Koramangala, Bengaluru, Karnataka",
+          "state": "Karnataka"
+        }
+      ]
+    },
+    {
+      "adversarial": null,
+      "case_id": "insurance_clean_021",
+      "documents": [
+        {
+          "document_id": "insurance_clean_021__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Aadhya Nair\nDate of Birth: 01/09/1969\nPAN Number: PQHAI1866M\nAadhaar Number: 615604392214\nPhone Number: 8030051264\nEmail Address: aadhya.nair52@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_clean_021__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 11 Ring Road, Salt Lake, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_clean_021__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 300000\nBank Account Number: 756180233535\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_clean_021__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Aadhya Nair, born 01/09/1969, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_clean_021__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Vihaan Singh\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "300000",
+        "date_of_birth": "01/09/1969",
+        "email_address": "aadhya.nair52@example.com",
+        "full_name": "Aadhya Nair",
+        "nominee_full_name": "Vihaan Singh",
+        "phone_number": "8030051264",
+        "pin_code": "560001",
+        "residential_address": "11 Ring Road, Salt Lake, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "615604392214",
+        "annual_income": 300000,
+        "city": "Bengaluru",
+        "date_of_birth": "1969-09-01",
+        "email_address": "aadhya.nair52@example.com",
+        "full_name": "Aadhya Nair",
+        "linked_account_number": "756180233535",
+        "pan_number": "PQHAI1866M",
+        "phone_number": "8030051264",
+        "pin_code": "560001",
+        "residential_address": "11 Ring Road, Salt Lake, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "826315679176",
+          "annual_income": 900000,
+          "city": "Chennai",
+          "date_of_birth": "1995-12-16",
+          "email_address": "vihaan.singh65@example.com",
+          "full_name": "Vihaan Singh",
+          "linked_account_number": "591028109133",
+          "pan_number": "XDDZF8864E",
+          "phone_number": "7982498832",
+          "pin_code": "600001",
+          "residential_address": "101 Church Street, Vaishali Nagar, Chennai, Tamil Nadu",
+          "state": "Tamil Nadu"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "conflict",
+        "detail": {
+          "conflicting_document_type": "academic_record",
+          "conflicting_value": "17/03/1974",
+          "field": "date_of_birth",
+          "primary_document_type": "id_proof",
+          "primary_value": "17/03/1979"
+        }
+      },
+      "case_id": "insurance_conflict_001",
+      "documents": [
+        {
+          "document_id": "insurance_conflict_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Divya Verma\nDate of Birth: 17/03/1979\nPAN Number: WREYP8317U\nAadhaar Number: 690236686060\nPhone Number: 7835131770\nEmail Address: divya.verma51@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_conflict_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 113 Lake View Apartments, Satellite, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_conflict_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 390000\nBank Account Number: 493584537241\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_conflict_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Divya Verma, born 17/03/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_conflict_001__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Ishaan Verma\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "390000",
+        "date_of_birth": "17/03/1979",
+        "email_address": "divya.verma51@example.com",
+        "full_name": "Divya Verma",
+        "nominee_full_name": "Ishaan Verma",
+        "phone_number": "7835131770",
+        "pin_code": "226001",
+        "residential_address": "113 Lake View Apartments, Satellite, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "690236686060",
+        "annual_income": 390000,
+        "city": "Lucknow",
+        "date_of_birth": "1979-03-17",
+        "email_address": "divya.verma51@example.com",
+        "full_name": "Divya Verma",
+        "linked_account_number": "493584537241",
+        "pan_number": "WREYP8317U",
+        "phone_number": "7835131770",
+        "pin_code": "226001",
+        "residential_address": "113 Lake View Apartments, Satellite, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "690236686060",
+          "annual_income": 390000,
+          "city": "Lucknow",
+          "date_of_birth": "1974-03-17",
+          "email_address": "divya.verma51@example.com",
+          "full_name": "Divya Verma",
+          "linked_account_number": "493584537241",
+          "pan_number": "WREYP8317U",
+          "phone_number": "7835131770",
+          "pin_code": "226001",
+          "residential_address": "113 Lake View Apartments, Satellite, Lucknow, Uttar Pradesh",
+          "state": "Uttar Pradesh"
+        },
+        {
+          "aadhaar_number": "370697508679",
+          "annual_income": 2000000,
+          "city": "Hyderabad",
+          "date_of_birth": "1979-10-28",
+          "email_address": "ishaan.verma31@example.com",
+          "full_name": "Ishaan Verma",
+          "linked_account_number": "686946112355",
+          "pan_number": "BOZSK9156R",
+          "phone_number": "8990873088",
+          "pin_code": "500001",
+          "residential_address": "44 Lake View Apartments, Koramangala, Hyderabad, Telangana",
+          "state": "Telangana"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "missing_field",
+        "detail": {
+          "omitted_document_type": "address_proof",
+          "omitted_fields": "pin_code,residential_address",
+          "omitted_required_fields": "pin_code,residential_address"
+        }
+      },
+      "case_id": "insurance_missing_field_001",
+      "documents": [
+        {
+          "document_id": "insurance_missing_field_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Meera Gupta\nDate of Birth: 03/12/1994\nPAN Number: YWSSG8122F\nAadhaar Number: 876816104948\nPhone Number: 7325495338\nEmail Address: meera.gupta53@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_missing_field_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 2340000\nBank Account Number: 431912484920\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_missing_field_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Meera Gupta, born 03/12/1994, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_missing_field_001__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Aditya Mehta\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "2340000",
+        "date_of_birth": "03/12/1994",
+        "email_address": "meera.gupta53@example.com",
+        "full_name": "Meera Gupta",
+        "nominee_full_name": "Aditya Mehta",
+        "phone_number": "7325495338",
+        "pin_code": null,
+        "residential_address": null
+      },
+      "primary_identity": {
+        "aadhaar_number": "876816104948",
+        "annual_income": 2340000,
+        "city": "Chennai",
+        "date_of_birth": "1994-12-03",
+        "email_address": "meera.gupta53@example.com",
+        "full_name": "Meera Gupta",
+        "linked_account_number": "431912484920",
+        "pan_number": "YWSSG8122F",
+        "phone_number": "7325495338",
+        "pin_code": "600001",
+        "residential_address": "125 Park Street, Koramangala, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "779885276753",
+          "annual_income": 2310000,
+          "city": "Kolkata",
+          "date_of_birth": "1981-08-18",
+          "email_address": "aditya.mehta30@example.com",
+          "full_name": "Aditya Mehta",
+          "linked_account_number": "659511814287",
+          "pan_number": "XTRLR6417N",
+          "phone_number": "9947554313",
+          "pin_code": "700001",
+          "residential_address": "169 Gandhi Nagar, Anna Nagar, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "missing_field",
+        "detail": {
+          "omitted_document_type": "income_document",
+          "omitted_fields": "annual_income",
+          "omitted_required_fields": "annual_income"
+        }
+      },
+      "case_id": "insurance_missing_field_002",
+      "documents": [
+        {
+          "document_id": "insurance_missing_field_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Neha Bose\nDate of Birth: 14/11/1976\nPAN Number: MQNCD5011D\nAadhaar Number: 059969393557\nPhone Number: 7963276113\nEmail Address: neha.bose27@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_missing_field_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 113 Model Colony, Salt Lake, Kolkata, West Bengal\nPIN Code: 700001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_missing_field_002__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Neha Bose, born 14/11/1976, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_missing_field_002__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Diya Malhotra\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": null,
+        "date_of_birth": "14/11/1976",
+        "email_address": "neha.bose27@example.com",
+        "full_name": "Neha Bose",
+        "nominee_full_name": "Diya Malhotra",
+        "phone_number": "7963276113",
+        "pin_code": "700001",
+        "residential_address": "113 Model Colony, Salt Lake, Kolkata, West Bengal"
+      },
+      "primary_identity": {
+        "aadhaar_number": "059969393557",
+        "annual_income": 1090000,
+        "city": "Kolkata",
+        "date_of_birth": "1976-11-14",
+        "email_address": "neha.bose27@example.com",
+        "full_name": "Neha Bose",
+        "linked_account_number": "509353326004",
+        "pan_number": "MQNCD5011D",
+        "phone_number": "7963276113",
+        "pin_code": "700001",
+        "residential_address": "113 Model Colony, Salt Lake, Kolkata, West Bengal",
+        "state": "West Bengal"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "325917403172",
+          "annual_income": 1440000,
+          "city": "Chennai",
+          "date_of_birth": "1988-09-14",
+          "email_address": "diya.malhotra48@example.com",
+          "full_name": "Diya Malhotra",
+          "linked_account_number": "198444738626",
+          "pan_number": "TZBDX7944V",
+          "phone_number": "9972411909",
+          "pin_code": "600001",
+          "residential_address": "186 Gandhi Nagar, Satellite, Chennai, Tamil Nadu",
+          "state": "Tamil Nadu"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "near_duplicate_name",
+        "detail": {
+          "duplicate_document_type": "academic_record",
+          "duplicate_name": "Ishaas Bose",
+          "primary_name": "Ishaan Bose"
+        }
+      },
+      "case_id": "insurance_near_duplicate_001",
+      "documents": [
+        {
+          "document_id": "insurance_near_duplicate_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Ishaan Bose\nDate of Birth: 14/10/1986\nPAN Number: PGVIT5596K\nAadhaar Number: 207243079029\nPhone Number: 9637871765\nEmail Address: ishaan.bose40@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_near_duplicate_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 47 Gandhi Nagar, Anna Nagar, Lucknow, Uttar Pradesh\nPIN Code: 226001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_near_duplicate_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1110000\nBank Account Number: 110545778439\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_near_duplicate_001__academic_record_duplicate",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Ishaas Bose, born 17/08/1990, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_near_duplicate_001__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Saanvi Malhotra\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1110000",
+        "date_of_birth": "14/10/1986",
+        "email_address": "ishaan.bose40@example.com",
+        "full_name": "Ishaan Bose",
+        "nominee_full_name": "Saanvi Malhotra",
+        "phone_number": "9637871765",
+        "pin_code": "226001",
+        "residential_address": "47 Gandhi Nagar, Anna Nagar, Lucknow, Uttar Pradesh"
+      },
+      "primary_identity": {
+        "aadhaar_number": "207243079029",
+        "annual_income": 1110000,
+        "city": "Lucknow",
+        "date_of_birth": "1986-10-14",
+        "email_address": "ishaan.bose40@example.com",
+        "full_name": "Ishaan Bose",
+        "linked_account_number": "110545778439",
+        "pan_number": "PGVIT5596K",
+        "phone_number": "9637871765",
+        "pin_code": "226001",
+        "residential_address": "47 Gandhi Nagar, Anna Nagar, Lucknow, Uttar Pradesh",
+        "state": "Uttar Pradesh"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "860481289500",
+          "annual_income": 1750000,
+          "city": "Ahmedabad",
+          "date_of_birth": "1990-08-17",
+          "email_address": "deepak.sharma14@example.com",
+          "full_name": "Ishaas Bose",
+          "linked_account_number": "199491619432",
+          "pan_number": "GEJPV6441I",
+          "phone_number": "8587091087",
+          "pin_code": "380001",
+          "residential_address": "53 Green Park, Anna Nagar, Ahmedabad, Gujarat",
+          "state": "Gujarat"
+        },
+        {
+          "aadhaar_number": "794253890194",
+          "annual_income": 1140000,
+          "city": "New Delhi",
+          "date_of_birth": "1974-07-03",
+          "email_address": "saanvi.malhotra79@example.com",
+          "full_name": "Saanvi Malhotra",
+          "linked_account_number": "497303874537",
+          "pan_number": "KFKXX3604D",
+          "phone_number": "6565022533",
+          "pin_code": "110001",
+          "residential_address": "11 Park Street, Hazratganj, New Delhi, Delhi",
+          "state": "Delhi"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "unusual_format",
+        "detail": {
+          "canonical_ground_truth_value": "08/02/1974",
+          "document_format_value": "08 February 1974",
+          "field": "date_of_birth"
+        }
+      },
+      "case_id": "insurance_unusual_format_001",
+      "documents": [
+        {
+          "document_id": "insurance_unusual_format_001__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Arnav Verma\nDate of Birth: 08 February 1974\nPAN Number: XRGCC4814V\nAadhaar Number: 516642226835\nPhone Number: 8055117068\nEmail Address: arnav.verma45@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_unusual_format_001__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 1 MG Road, Vaishali Nagar, Bengaluru, Karnataka\nPIN Code: 560001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_unusual_format_001__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1410000\nBank Account Number: 726126705499\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_unusual_format_001__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Arnav Verma, born 08/02/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_unusual_format_001__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Saanvi Joshi\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1410000",
+        "date_of_birth": "08/02/1974",
+        "email_address": "arnav.verma45@example.com",
+        "full_name": "Arnav Verma",
+        "nominee_full_name": "Saanvi Joshi",
+        "phone_number": "8055117068",
+        "pin_code": "560001",
+        "residential_address": "1 MG Road, Vaishali Nagar, Bengaluru, Karnataka"
+      },
+      "primary_identity": {
+        "aadhaar_number": "516642226835",
+        "annual_income": 1410000,
+        "city": "Bengaluru",
+        "date_of_birth": "1974-02-08",
+        "email_address": "arnav.verma45@example.com",
+        "full_name": "Arnav Verma",
+        "linked_account_number": "726126705499",
+        "pan_number": "XRGCC4814V",
+        "phone_number": "8055117068",
+        "pin_code": "560001",
+        "residential_address": "1 MG Road, Vaishali Nagar, Bengaluru, Karnataka",
+        "state": "Karnataka"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "618659161517",
+          "annual_income": 1340000,
+          "city": "Kolkata",
+          "date_of_birth": "1985-05-15",
+          "email_address": "saanvi.joshi10@example.com",
+          "full_name": "Saanvi Joshi",
+          "linked_account_number": "083227809654",
+          "pan_number": "KERTH0101D",
+          "phone_number": "9772300185",
+          "pin_code": "700001",
+          "residential_address": "155 MG Road, Banjara Hills, Kolkata, West Bengal",
+          "state": "West Bengal"
+        }
+      ]
+    },
+    {
+      "adversarial": {
+        "adversarial_type": "unusual_format",
+        "detail": {
+          "canonical_ground_truth_value": "6560410750",
+          "document_format_value": "+91-6560410750",
+          "field": "phone_number"
+        }
+      },
+      "case_id": "insurance_unusual_format_002",
+      "documents": [
+        {
+          "document_id": "insurance_unusual_format_002__id_proof",
+          "document_type": "id_proof",
+          "text": "GOVERNMENT OF INDIA\nIDENTITY PROOF DOCUMENT\n\nFull Name: Meera Joshi\nDate of Birth: 17/03/1974\nPAN Number: WMGHZ0874S\nAadhaar Number: 746058153417\nPhone Number: +91-6560410750\nEmail Address: meera.joshi67@example.com\n\nThis document certifies the identity of the above named individual for the purpose of account opening and KYC verification."
+        },
+        {
+          "document_id": "insurance_unusual_format_002__address_proof",
+          "document_type": "address_proof",
+          "text": "ELECTRICITY BILL - ADDRESS PROOF\n\nAddress: 172 Civil Lines, Kothrud, Chennai, Tamil Nadu\nPIN Code: 600001\n\nBilling Period: June 2026"
+        },
+        {
+          "document_id": "insurance_unusual_format_002__income_document",
+          "document_type": "income_document",
+          "text": "SALARY CERTIFICATE\n\nAnnual Income: 1730000\nBank Account Number: 427297680816\n\nThis certifies that the above named individual draws the stated annual income and holds the stated bank account, as of the current financial year."
+        },
+        {
+          "document_id": "insurance_unusual_format_002__academic_record",
+          "document_type": "academic_record",
+          "text": "DEGREE CERTIFICATE\n\nThis is to certify that Meera Joshi, born 17/03/1974, has been awarded the degree of Bachelor of Science by this university, having satisfactorily completed the prescribed course of study and all examinations connected therewith."
+        },
+        {
+          "document_id": "insurance_unusual_format_002__nominee_declaration",
+          "document_type": "nominee_declaration",
+          "text": "NOMINEE DECLARATION\n\nNominee Full Name: Aadhya Gupta\nRelationship to Policy Holder: Spouse\n\nThe above named individual is declared as nominee for this insurance policy."
+        }
+      ],
+      "form_schema_id": "insurance_policy_application",
+      "ground_truth": {
+        "annual_income": "1730000",
+        "date_of_birth": "17/03/1974",
+        "email_address": "meera.joshi67@example.com",
+        "full_name": "Meera Joshi",
+        "nominee_full_name": "Aadhya Gupta",
+        "phone_number": "6560410750",
+        "pin_code": "600001",
+        "residential_address": "172 Civil Lines, Kothrud, Chennai, Tamil Nadu"
+      },
+      "primary_identity": {
+        "aadhaar_number": "746058153417",
+        "annual_income": 1730000,
+        "city": "Chennai",
+        "date_of_birth": "1974-03-17",
+        "email_address": "meera.joshi67@example.com",
+        "full_name": "Meera Joshi",
+        "linked_account_number": "427297680816",
+        "pan_number": "WMGHZ0874S",
+        "phone_number": "6560410750",
+        "pin_code": "600001",
+        "residential_address": "172 Civil Lines, Kothrud, Chennai, Tamil Nadu",
+        "state": "Tamil Nadu"
+      },
+      "reference_date": "2026-07-29",
+      "secondary_identities": [
+        {
+          "aadhaar_number": "543137131273",
+          "annual_income": 370000,
+          "city": "Bengaluru",
+          "date_of_birth": "1977-07-22",
+          "email_address": "aadhya.gupta72@example.com",
+          "full_name": "Aadhya Gupta",
+          "linked_account_number": "276254593169",
+          "pan_number": "VWDYZ8751Q",
+          "phone_number": "9510982596",
+          "pin_code": "560001",
+          "residential_address": "99 Civil Lines, Anna Nagar, Bengaluru, Karnataka",
+          "state": "Karnataka"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "case_count": 56,
+    "dataset_version": "1.0.0",
+    "generated_at": "2026-07-29T06:21:30.014678+00:00",
+    "generator_commit": "cb77ebd95c4540b959f03ffd2e92cabe96160598",
+    "generator_seed": 60000,
+    "identity_generator_version": "1.0.0",
+    "ocr_manifest_path": "fixtures/phase6_ocr/manifest.json",
+    "reference_date": "2026-07-29"
+  }
+}
