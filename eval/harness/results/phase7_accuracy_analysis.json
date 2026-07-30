@@ -1,0 +1,343 @@
+{
+  "limitations": [
+    "The (privacy mode x field type) accuracy matrix cannot be meaningfully populated from this execution: across all three modes combined, only 1 of 1,512 attempted field-runs produced a scoreable outcome (the other 1,511 are provider quota failures, not model errors -- see error_breakdown per mode). That single data point is not statistically meaningful and does not cover most field types.",
+    "OCR-vs-native accuracy comparison: not available (measure_ocr_accuracy.py's own run is environment_blocked -- Tesseract unavailable).",
+    "Verifier audit: not yet run.",
+    "Failure-case table (5-8 concrete examples): cannot be built from real extraction failures -- the only errors on record are provider quota failures, not extraction mistakes.",
+    "CI regression thresholds: not yet pinned -- no accuracy baseline exists to pin them from."
+  ],
+  "modes": {
+    "full_tokenize": {
+      "by_field_type": {
+        "date": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 56
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        },
+        "identifier": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 196
+          },
+          "error_total": 196,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 196,
+          "scoreable_fields": 0,
+          "total_fields": 196
+        },
+        "location": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 112
+          },
+          "error_total": 112,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 112,
+          "scoreable_fields": 0,
+          "total_fields": 112
+        },
+        "name": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 84
+          },
+          "error_total": 84,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 84,
+          "scoreable_fields": 0,
+          "total_fields": 84
+        },
+        "numeric_financial": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 56
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        }
+      },
+      "overall": {
+        "accuracy_over_scoreable": null,
+        "correct": 0,
+        "correct_abstention": 0,
+        "error_breakdown": {
+          "provider_quota_embedding": 504
+        },
+        "error_total": 504,
+        "hallucination": 0,
+        "incorrect_abstention": 0,
+        "incorrect_value": 0,
+        "is_statistically_meaningful": false,
+        "non_provider_error_count": 0,
+        "provider_failure_count": 504,
+        "scoreable_fields": 0,
+        "total_fields": 504
+      }
+    },
+    "none": {
+      "by_field_type": {
+        "date": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 22,
+            "provider_quota_generation": 34
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        },
+        "identifier": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 47,
+            "provider_quota_generation": 149
+          },
+          "error_total": 196,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 196,
+          "scoreable_fields": 0,
+          "total_fields": 196
+        },
+        "location": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 43,
+            "provider_quota_generation": 69
+          },
+          "error_total": 112,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 112,
+          "scoreable_fields": 0,
+          "total_fields": 112
+        },
+        "name": {
+          "accuracy_over_scoreable": 1.0,
+          "correct": 1,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 43,
+            "provider_quota_generation": 40
+          },
+          "error_total": 83,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 83,
+          "scoreable_fields": 1,
+          "total_fields": 84
+        },
+        "numeric_financial": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 19,
+            "provider_quota_generation": 37
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        }
+      },
+      "overall": {
+        "accuracy_over_scoreable": 1.0,
+        "correct": 1,
+        "correct_abstention": 0,
+        "error_breakdown": {
+          "provider_quota_embedding": 174,
+          "provider_quota_generation": 329
+        },
+        "error_total": 503,
+        "hallucination": 0,
+        "incorrect_abstention": 0,
+        "incorrect_value": 0,
+        "is_statistically_meaningful": false,
+        "non_provider_error_count": 0,
+        "provider_failure_count": 503,
+        "scoreable_fields": 1,
+        "total_fields": 504
+      }
+    },
+    "policy_engine": {
+      "by_field_type": {
+        "date": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 56
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        },
+        "identifier": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 196
+          },
+          "error_total": 196,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 196,
+          "scoreable_fields": 0,
+          "total_fields": 196
+        },
+        "location": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 112
+          },
+          "error_total": 112,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 112,
+          "scoreable_fields": 0,
+          "total_fields": 112
+        },
+        "name": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 84
+          },
+          "error_total": 84,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 84,
+          "scoreable_fields": 0,
+          "total_fields": 84
+        },
+        "numeric_financial": {
+          "accuracy_over_scoreable": null,
+          "correct": 0,
+          "correct_abstention": 0,
+          "error_breakdown": {
+            "provider_quota_embedding": 56
+          },
+          "error_total": 56,
+          "hallucination": 0,
+          "incorrect_abstention": 0,
+          "incorrect_value": 0,
+          "is_statistically_meaningful": false,
+          "non_provider_error_count": 0,
+          "provider_failure_count": 56,
+          "scoreable_fields": 0,
+          "total_fields": 56
+        }
+      },
+      "overall": {
+        "accuracy_over_scoreable": null,
+        "correct": 0,
+        "correct_abstention": 0,
+        "error_breakdown": {
+          "provider_quota_embedding": 504
+        },
+        "error_total": 504,
+        "hallucination": 0,
+        "incorrect_abstention": 0,
+        "incorrect_value": 0,
+        "is_statistically_meaningful": false,
+        "non_provider_error_count": 0,
+        "provider_failure_count": 504,
+        "scoreable_fields": 0,
+        "total_fields": 504
+      }
+    }
+  },
+  "ocr": {
+    "measured_fields": 0,
+    "reason": "tesseract binary not found on PATH in this environment (DECISIONS.md E10); CI and Docker install it (.github/workflows/ci.yml) -- rerun there, or on any machine with tesseract installed, to produce a real measurement.",
+    "status": "environment_blocked"
+  },
+  "source_execution_status": "partial_errors_present",
+  "source_measured_at": "2026-07-30T11:20:37.056785+00:00",
+  "source_model": "gemini-3.5-flash"
+}

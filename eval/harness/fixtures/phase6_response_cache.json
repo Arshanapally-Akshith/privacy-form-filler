@@ -1,0 +1,26 @@
+{
+  "entries": {
+    "5d2c0fb6de488bd4abb82d3d374dcb75ad65ab15dd14165e04e5679d79fb45a7": {
+      "key_params": {
+        "case_id": "phase6_ocr_kyc",
+        "expected_format": "As it appears on the primary ID proof",
+        "field_label": "Full Name",
+        "field_name": "full_name",
+        "field_type": "name",
+        "privacy_mode": "none",
+        "reference_date": "2026-07-29",
+        "top_k": 5
+      },
+      "response": {
+        "confidence": 1.0,
+        "provenance": {
+          "document_id": "phase6_ocr_kyc__id_proof",
+          "page_number": 1
+        },
+        "state": "filled",
+        "value": "Nikhil Agarwal"
+      }
+    }
+  },
+  "generated_at": "2026-07-30T10:55:10.157290+00:00"
+}

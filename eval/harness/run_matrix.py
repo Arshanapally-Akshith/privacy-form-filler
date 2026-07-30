@@ -110,8 +110,9 @@ import fitz
 
 from app.api.models import FieldRecord
 from app.boundary.mode import PrivacyMode
+from app.boundary.policy_engine import ACTIVE_POLICY_CONFIG_NAME
 from app.config.form_schema import FormFieldSpec, FormSchema, load_form_schemas
-from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K
+from app.extraction.constants import DEFAULT_RETRIEVAL_TOP_K, GENERATION_MODEL
 from app.extraction.extractor import ExtractionProvenance, ExtractionResult
 from app.ingest.chunker import chunk_pages
 from app.ingest.parser import parse_document
@@ -242,7 +243,20 @@ def _evaluate_field(
         pass
 
     if run_case_id not in ingested:
-        _ingest_case_documents(run_case_id, case["documents"])
+        try:
+            _ingest_case_documents(run_case_id, case["documents"])
+        except Exception as exc:  # noqa: BLE001 -- discovered live (Phase 7 Commit 7): an
+            # embedding-provider failure during ingestion (e.g. the embedding model's own,
+            # separate per-minute rate limit -- a different quota entirely from the
+            # generation model's daily cap) previously propagated uncaught, crashing the
+            # whole run_matrix() call and losing every already-computed in-memory result
+            # that had not yet reached RESULT_PATH. Mirrors the run_graph handling directly
+            # below: a real, measured outcome to record for this one field, not a reason to
+            # abort the entire matrix. `ingested` is deliberately NOT marked on failure, so
+            # the very next field for this same (case, mode) naturally retries ingestion --
+            # correct for a transient, explicitly time-bounded rate limit (the observed
+            # error's own payload states a retry delay), not a permanent failure.
+            return None, exc
         ingested.add(run_case_id)
 
     state = _single_field_state(run_case_id, schema, field.name, privacy_mode, reference_date)
@@ -301,6 +315,15 @@ def run_matrix(cases: list[dict[str, Any]], *, cache_path: Path = DEFAULT_CACHE_
     return per_mode
 
 
+def execution_status_from_modes(modes_result: dict[str, Any]) -> str:
+    """Pure summary of whether any field, in any mode, resolved to an `error` outcome
+    (Phase 7 Commit 7: generated artifacts must record an explicit execution status, not
+    just per-field outcome_counts a reader would otherwise have to aggregate by hand to
+    notice a partial/quota-bounded run)."""
+    any_errors = any(summary["outcome_counts"].get("error", 0) > 0 for summary in modes_result.values())
+    return "partial_errors_present" if any_errors else "complete"
+
+
 def main() -> None:
     from dotenv import load_dotenv
 
@@ -309,13 +332,25 @@ def main() -> None:
     cases = load_dataset()
     result = run_matrix(cases)
 
-    result_with_timestamp = {"measured_at": datetime.now(UTC).isoformat(), "modes": result}
+    result_payload = {
+        "measured_at": datetime.now(UTC).isoformat(),
+        "model": GENERATION_MODEL,
+        "configuration": {
+            "dataset_case_count": len(cases),
+            "top_k": DEFAULT_RETRIEVAL_TOP_K,
+            "active_policy_config_name": ACTIVE_POLICY_CONFIG_NAME,
+            "modes": [mode.value for mode in MODES],
+        },
+        "execution_status": execution_status_from_modes(result),
+        "modes": result,
+    }
     RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    RESULT_PATH.write_text(json.dumps(result_with_timestamp, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    RESULT_PATH.write_text(json.dumps(result_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     for mode_name, summary in result.items():
         print(f"{mode_name}: accuracy={summary['accuracy']:.3f} ({summary['total_fields']} fields)")
         print(f"  outcomes: {summary['outcome_counts']}")
+    print(f"execution_status={result_payload['execution_status']}")
     print(f"Results written to {RESULT_PATH}")
 
 

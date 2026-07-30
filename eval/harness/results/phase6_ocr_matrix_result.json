@@ -1,0 +1,16 @@
+{
+  "attempted_cases": [
+    "phase6_ocr_kyc",
+    "phase6_ocr_insurance"
+  ],
+  "attempted_conditions": [
+    "clean_scan",
+    "photo_like"
+  ],
+  "attempted_modes": [
+    "none"
+  ],
+  "measured_at": "2026-07-30T11:22:40.126847+00:00",
+  "reason": "tesseract binary not found on PATH in this environment (DECISIONS.md E10); CI and Docker install it (.github/workflows/ci.yml) -- rerun there, or on any machine with tesseract installed, to produce a real measurement.",
+  "status": "environment_blocked"
+}

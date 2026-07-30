@@ -1,0 +1,783 @@
+{
+  "age_state": {
+    "config_name": "age_state",
+    "equivalence_classes": [
+      {
+        "case_ids": [
+          "phase6_ocr_kyc",
+          "kyc_clean_013"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "TAMIL NADU"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_001",
+          "kyc_clean_020",
+          "insurance_clean_020"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "MAHARASHTRA"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_002",
+          "kyc_clean_019"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "KARNATAKA"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_003",
+          "kyc_clean_005",
+          "insurance_clean_021",
+          "insurance_unusual_format_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "KARNATAKA"
+        },
+        "k": 4
+      },
+      {
+        "case_ids": [
+          "kyc_clean_004"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "WEST BENGAL"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_006",
+          "kyc_clean_017",
+          "kyc_clean_021"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "KARNATAKA"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_007",
+          "kyc_clean_016",
+          "insurance_clean_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "DELHI"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_008",
+          "kyc_clean_014",
+          "kyc_conflict_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "TELANGANA"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_009"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "MAHARASHTRA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_010",
+          "insurance_clean_011",
+          "insurance_clean_018"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "TAMIL NADU"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_011"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "RAJASTHAN"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_012",
+          "insurance_clean_012"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "RAJASTHAN"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_015"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "TELANGANA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_018"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "UTTAR PRADESH"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_conflict_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "GUJARAT"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_missing_field_001",
+          "insurance_missing_field_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_near_duplicate_001",
+          "kyc_unusual_format_001",
+          "insurance_clean_007"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "GUJARAT"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_near_duplicate_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "UTTAR PRADESH"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "phase6_ocr_insurance",
+          "insurance_clean_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "MAHARASHTRA"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_003"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "TAMIL NADU"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_004"
+        ],
+        "exposed_attributes": {
+          "age_band": "60-69",
+          "state": "TAMIL NADU"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_005"
+        ],
+        "exposed_attributes": {
+          "age_band": "60-69",
+          "state": "TELANGANA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_006"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "WEST BENGAL"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_008"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "TELANGANA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_009",
+          "insurance_unusual_format_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "TAMIL NADU"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_010"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "state": "DELHI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_013",
+          "insurance_conflict_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "UTTAR PRADESH"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_014",
+          "insurance_near_duplicate_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "state": "UTTAR PRADESH"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_015"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "state": "MAHARASHTRA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_016",
+          "insurance_clean_017",
+          "insurance_missing_field_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "WEST BENGAL"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "insurance_clean_019"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "state": "KARNATAKA"
+        },
+        "k": 1
+      }
+    ],
+    "median_k": 2,
+    "meets_threshold": false,
+    "minimum_k": 1,
+    "percentage_singletons": 26.785714285714285,
+    "total_cases": 56,
+    "total_equivalence_classes": 31
+  },
+  "ageband_city": {
+    "config_name": "ageband_city",
+    "equivalence_classes": [
+      {
+        "case_ids": [
+          "phase6_ocr_kyc",
+          "kyc_clean_013"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "CHENNAI"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_001",
+          "insurance_clean_020"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "PUNE"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_002",
+          "kyc_clean_019"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "BENGALURU URBAN"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_003",
+          "kyc_clean_005",
+          "insurance_clean_021",
+          "insurance_unusual_format_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "BENGALURU URBAN"
+        },
+        "k": 4
+      },
+      {
+        "case_ids": [
+          "kyc_clean_004"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "KOLKATA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_006",
+          "kyc_clean_017",
+          "kyc_clean_021"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "BENGALURU URBAN"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_007",
+          "kyc_clean_016",
+          "insurance_clean_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "NEW DELHI"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_008",
+          "kyc_clean_014",
+          "kyc_conflict_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "HYDERABAD"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_009"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "MUMBAI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_010",
+          "insurance_clean_011",
+          "insurance_clean_018"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "CHENNAI"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_clean_011"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "JAIPUR"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_012",
+          "insurance_clean_012"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "JAIPUR"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_clean_015"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "HYDERABAD"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_018"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "LUCKNOW"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_clean_020"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "MUMBAI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_conflict_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "AHMADABAD"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "kyc_missing_field_001",
+          "insurance_missing_field_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "kyc_near_duplicate_001",
+          "kyc_unusual_format_001",
+          "insurance_clean_007"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "AHMADABAD"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "kyc_near_duplicate_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "LUCKNOW"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "phase6_ocr_insurance"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "MUMBAI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "PUNE"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_003"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "CHENNAI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_004"
+        ],
+        "exposed_attributes": {
+          "age_band": "60-69",
+          "district": "CHENNAI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_005"
+        ],
+        "exposed_attributes": {
+          "age_band": "60-69",
+          "district": "HYDERABAD"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_006"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "KOLKATA"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_008"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "HYDERABAD"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_009",
+          "insurance_unusual_format_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "CHENNAI"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_010"
+        ],
+        "exposed_attributes": {
+          "age_band": "20-29",
+          "district": "NEW DELHI"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_013",
+          "insurance_conflict_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "LUCKNOW"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_014",
+          "insurance_near_duplicate_001"
+        ],
+        "exposed_attributes": {
+          "age_band": "30-39",
+          "district": "LUCKNOW"
+        },
+        "k": 2
+      },
+      {
+        "case_ids": [
+          "insurance_clean_015"
+        ],
+        "exposed_attributes": {
+          "age_band": "50-59",
+          "district": "PUNE"
+        },
+        "k": 1
+      },
+      {
+        "case_ids": [
+          "insurance_clean_016",
+          "insurance_clean_017",
+          "insurance_missing_field_002"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "KOLKATA"
+        },
+        "k": 3
+      },
+      {
+        "case_ids": [
+          "insurance_clean_019"
+        ],
+        "exposed_attributes": {
+          "age_band": "40-49",
+          "district": "BENGALURU URBAN"
+        },
+        "k": 1
+      }
+    ],
+    "median_k": 1,
+    "meets_threshold": false,
+    "minimum_k": 1,
+    "percentage_singletons": 32.142857142857146,
+    "total_cases": 56,
+    "total_equivalence_classes": 33
+  },
+  "strict": {
+    "config_name": "strict",
+    "equivalence_classes": [
+      {
+        "case_ids": [
+          "phase6_ocr_kyc",
+          "kyc_clean_001",
+          "kyc_clean_002",
+          "kyc_clean_003",
+          "kyc_clean_004",
+          "kyc_clean_005",
+          "kyc_clean_006",
+          "kyc_clean_007",
+          "kyc_clean_008",
+          "kyc_clean_009",
+          "kyc_clean_010",
+          "kyc_clean_011",
+          "kyc_clean_012",
+          "kyc_clean_013",
+          "kyc_clean_014",
+          "kyc_clean_015",
+          "kyc_clean_016",
+          "kyc_clean_017",
+          "kyc_clean_018",
+          "kyc_clean_019",
+          "kyc_clean_020",
+          "kyc_clean_021",
+          "kyc_conflict_001",
+          "kyc_conflict_002",
+          "kyc_missing_field_001",
+          "kyc_near_duplicate_001",
+          "kyc_near_duplicate_002",
+          "kyc_unusual_format_001",
+          "phase6_ocr_insurance",
+          "insurance_clean_001",
+          "insurance_clean_002",
+          "insurance_clean_003",
+          "insurance_clean_004",
+          "insurance_clean_005",
+          "insurance_clean_006",
+          "insurance_clean_007",
+          "insurance_clean_008",
+          "insurance_clean_009",
+          "insurance_clean_010",
+          "insurance_clean_011",
+          "insurance_clean_012",
+          "insurance_clean_013",
+          "insurance_clean_014",
+          "insurance_clean_015",
+          "insurance_clean_016",
+          "insurance_clean_017",
+          "insurance_clean_018",
+          "insurance_clean_019",
+          "insurance_clean_020",
+          "insurance_clean_021",
+          "insurance_conflict_001",
+          "insurance_missing_field_001",
+          "insurance_missing_field_002",
+          "insurance_near_duplicate_001",
+          "insurance_unusual_format_001",
+          "insurance_unusual_format_002"
+        ],
+        "exposed_attributes": {},
+        "k": 56
+      }
+    ],
+    "median_k": 56,
+    "meets_threshold": true,
+    "minimum_k": 56,
+    "percentage_singletons": 0.0,
+    "total_cases": 56,
+    "total_equivalence_classes": 1
+  }
+}

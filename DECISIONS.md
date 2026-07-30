@@ -69,6 +69,13 @@ Single source of truth for pinned engineering constants and measured values.
 | `age_state` | Age band + state | ARCH §5.3 |
 | `ageband_city` | Age band + city | ARCH §5.3 |
 
+**Phase 7 k-anonymity benchmark status (measured):** `age_state` and `ageband_city` both
+measure below the pinned k≥5 threshold (V7) on the committed evaluation dataset;
+`ageband_city` measures strictly worse than `age_state` on every statistic. `age_state`
+remains the active `policy_engine`-mode config regardless (R17, §4). Full measurement,
+cause, and the benchmark-result/architectural-recommendation/production-policy distinction
+are in §5 Phase 7 — do not treat this line alone as the full picture.
+
 ---
 
 ## 3. Evaluation decisions
@@ -128,6 +135,7 @@ measurement (§5) was run.
 | R14 | Vector index lifecycle | In-memory, per-process; not durable across restarts, consistent with R8. A container restart loses all case indices and requires re-ingestion. Chosen to avoid persistence-layer complexity not required by Phase 1. | BUILD P1 task 4 |
 | R15 | `Settings` extra-field handling | `extra="ignore"` (changed from `"forbid"` in Phase 0). The project-root `.env` is a shared file: it now also holds `OPENAI_API_KEY`/`GEMINI_API_KEY` for the embedding SDK, which reads them directly from the process environment and never through this class. pydantic-settings' dotenv source does not filter unprefixed keys out before its extra-field check (verified empirically — a real unprefixed OS environment variable was correctly filtered; an unprefixed `.env`-file key was not), so `extra="forbid"` broke `Settings()` construction entirely once those keys existed in `.env`. Trade-off, stated plainly: this also stops catching a genuine typo in an `APP_`-prefixed key, which `"forbid"` did catch. | Provider migration, 2026-07-27 |
 | R16 | Graph checkpointer | LangGraph's built-in `InMemorySaver` (from the already-installed `langgraph-checkpoint` package — no new dependency). `thread_id = case_id`: one case is one thread, matching the case-scoped `session_id` the boundary layer already uses everywhere else. A durable `langgraph-checkpoint-sqlite` backend was considered and rejected — it would give *partial* durability that is actively misleading, since the session pseudonym map (R8) and per-case vector index (R14) are both already frozen as process-memory-only; persisting only the graph checkpoint would not produce real cross-process resume, so the new dependency would not be justified (`CLAUDE.md` §6). "Crash-resume" therefore means resuming an interrupted-but-still-in-process run, consistent with R8/R14's own accepted trade-off — not surviving an actual process kill, stated plainly rather than implied to be more. Proven by resuming via a freshly-constructed `CompiledStateGraph` object built from the same `InMemorySaver` instance and `thread_id` (`tests/orchestration/test_checkpoint.py`), so resumption is demonstrated by checkpoint lookup keyed on `thread_id`, not by Python object identity with the original compiled graph. `app.orchestration.graph.build_graph`/`run_graph` accept an optional `checkpointer` (default `None`); `app.api.cases` does not pass one — checkpointing stays entirely inside `app.orchestration`, not exposed through the API. **Observed, not yet acted on:** `InMemorySaver` still round-trips checkpointed state through its default serializer even though the backend is in-memory, and every project-defined type in `OrchestrationState` (`FormSchema`, `FieldGraphState`, `VerifierTrace`, etc.) currently logs a `Deserializing unregistered type ... This will be blocked in a future version` warning during that round-trip. Harmless today — deserialization still succeeds, confirmed by `tests/orchestration/test_checkpoint.py` passing — but a future `langgraph-checkpoint` release tightening that default would break it. No `BUILD.md` task calls for pinning `LANGGRAPH_STRICT_MSGPACK` or registering allowed types; noted here rather than silently left for a future maintainer to rediscover. Resolves C1 (§7). | BUILD P5 task 8; ARCH §11.7 |
+| R17 | `policy_engine`-mode active config, retained despite failing the Phase 7 k-anonymity benchmark | `age_state` (`app.boundary.policy_engine.ACTIVE_POLICY_CONFIG_NAME`, unchanged). Phase 7 Commit 1 measured `age_state` at minimum k = 1 on the committed 56-case dataset, below the pinned V7 threshold (k ≥ 5) — see §5 Phase 7 for the full measurement and the benchmark-result/architectural-recommendation/production-policy distinction this entry is the "production policy" leg of. Retained as the active config anyway, for three explicit reasons, not by default inertia: (1) `policy_engine` mode exists specifically to demonstrate Generalize/Derive's accuracy behavior against Tokenize (ARCH §2 Demonstration scope, D7) — switching the active config to `strict` (the only one of the three that passes V7) would make `policy_engine` mode observably identical to `full_tokenize` for every field, per `app.boundary.policy_engine`'s own existing docstring, defeating the ablation the whole project measures; (2) the measured failure is a property of this specific, deliberately small, synthetic 56-case benchmark (V6's ~8–10-city identity pool colliding with V7's threshold by simple pigeonhole arithmetic — see §5 Phase 7), not a demonstrated property of the Generalize/Derive mechanism at real-deployment scale, and `ARCHITECTURE.md` §8/N4 itself scopes this check as "a bounded empirical sanity check... not a formal privacy guarantee"; (3) of the two configs that fail, `age_state` is the strictly better one (§5 Phase 7) — switching the active default to `ageband_city` instead would be a straightforward regression with no compensating benefit. This is a documented, considered exception to V10's general "disable by default" handling, not a case where V10 was overlooked. | Phase 7 Commit 2; DECISIONS.md V7/V10, §5 Phase 7 |
 
 ---
 
@@ -221,19 +229,97 @@ doesn't contain.
 
 Full results live in `RESULTS.md`. Headline values are mirrored here.
 
+**Quota probe tool.** `eval/harness/quota_probe.py` (Phase 7 Commit 0, per the approved Phase
+7 plan) — a standalone, paced, minimal-request live probe against `gemini-3.5-flash-lite`,
+independent of every other harness. Results are written to
+`eval/harness/results/quota_probe_result.json`; the committed artifact reflects a 10-request
+run (`termination_reason: "request_budget_reached"`, 10/10 succeeded, 0 failures) run
+2026-07-30. This entry records only that the tool exists and where its output lives — it is
+**not** a decision to substitute `gemini-3.5-flash-lite` for the pinned E9 model in any
+measurement. That decision (Phase 7 plan D1) is still open and will be made from this (and,
+if the signal isn't conclusive enough, a larger-budget re-run's) result once reviewed.
+
 | Metric | Value | Date |
 |--------|-------|------|
 | Accuracy delta, `none` → `policy_engine` | *pending* | |
 | Field type with largest degradation | *pending* | |
 | Accuracy — native-text documents | *pending* | |
 | Accuracy — OCR-derived documents | *pending* | |
-| Minimum k — `strict` | *pending* | |
-| Minimum k — `age_state` | *pending* | |
-| Minimum k — `ageband_city` | *pending* | |
-| Configs below k ≥ 5 | *pending* | |
+| Minimum k — `strict` | **56** (1 equivalence class covering the whole 56-case dataset; trivial, since `strict` derives/generalizes nothing) | 2026-07-30 |
+| Minimum k — `age_state` | **1** (median k = 2; 26.8% of cases, 15/56, sit in a singleton class) | 2026-07-30 |
+| Minimum k — `ageband_city` | **1** (median k = 1; 32.1% of cases, 18/56, sit in a singleton class — worse than `age_state` on every measured statistic) | 2026-07-30 |
+| Configs below k ≥ 5 | **`age_state` and `ageband_city`, both.** See the Commit 1/2 note immediately below the table for measured detail, why the failure occurs, and how it is handled (V10). | 2026-07-30 |
 | Verifier precision | *pending* | |
 | Verifier recall | *pending* | |
 | Unfixed bypass count | *pending* | |
+
+**Phase 7 Commit 1/2 — k-anonymity measurement and below-threshold handling (V7–V10).**
+Computed by `eval/harness/k_anonymity.py` (Commit 1) — a pure function of the committed
+56-case dataset (`eval/dataset/phase6_eval_cases.json`) and each named policy config's
+`field_actions`, calling the real `generalize_dob`/`derive_state`/`derive_district`
+directly. No LLM call is involved; this measurement does not depend on the Phase 7
+live-matrix quota question (Commit 0).
+
+| Config | Min k | Median k | % cases at k=1 | Equivalence classes | Meets V7 (k≥5)? |
+|---|---|---|---|---|---|
+| `strict` | 56 | 56 | 0.0% | 1 | Yes |
+| `age_state` | 1 | 2 | 26.8% (15/56) | 31 | **No** |
+| `ageband_city` | 1 | 1 | 32.1% (18/56) | 33 | **No** |
+
+*Why the failure occurs (dataset characteristics, not a mechanism defect).* 54 of the 56
+cases carry both a `date_of_birth` and a `pin_code` (the 2 exceptions are the
+`missing_field` adversarial cases whose omitted document was the only PIN-bearing one — a
+genuine-absence case, not a Derive failure; `app.privacy.derive`'s own fail-closed
+Unknown/Ambiguous-PIN path was never actually triggered on this dataset — every real PIN
+resolved unambiguously). Across those 54 cases, `V6`'s own pinned identity-pool constraint
+(~8–10 cities, realistic age distribution) produces exactly 9 distinct states, 10 distinct
+districts, and 5 distinct age bands — up to 45 (`age_state`) or 50 (`ageband_city`) possible
+exposed-attribute combinations for 54 cases. With the bin count this close to the case
+count, many bins collect exactly one case by simple pigeonhole arithmetic; this is a
+property of V6's deliberately small, bounded identity pool colliding with V7's threshold,
+not a bug in the Generalize/Derive mechanism, in `k_anonymity.py`'s grouping logic, or in
+the policy engine's actual behavior. Both configs' population is drawn from the *same*
+pooled 56 cases regardless of form type (age band and state/district are schema-independent
+attributes), which is architecturally correct for a re-identification analysis: a real
+adversary does not care which form a person filled out.
+
+`ageband_city` measures worse than `age_state` on every one of the four statistics above
+(same min k, but strictly worse median k, singleton rate, and equivalence-class count). This
+is not a coincidence: it is the exact ordering `ARCHITECTURE.md` §5.1 already predicts —
+Derive's leakage "depends on the cardinality of the lookup," and district (city-level) is a
+finer, more identifying granularity than state. This benchmark's numbers are the first
+concrete confirmation of that predicted ordering, not a new, independent finding.
+
+*Three distinct claims, kept separate on purpose (do not conflate them):*
+
+1. **Benchmark result** (measured fact, scoped to this 56-case synthetic dataset): both
+   `age_state` and `ageband_city` fail the pinned k≥5 threshold; `ageband_city` is the worse
+   of the two on every statistic; `strict` trivially passes because it exposes nothing.
+2. **Architectural recommendation** (a relative, evidence-supported judgment that
+   generalizes beyond this one dataset's scale): between the two configs that expose a
+   derived location attribute, `ageband_city` is **not recommended as a default** — it is
+   strictly dominated by `age_state` on re-identification risk, with no accuracy benefit yet
+   established to justify the extra exposure (the Phase 7 accuracy matrix, which would
+   measure that, has not run). `age_state` is the better of the two, but this benchmark does
+   *not* show it is safe in an absolute sense — it also fails k≥5 here, and that failure is
+   reported plainly, not minimized.
+3. **Production policy** (what `app.boundary.policy_engine.ACTIVE_POLICY_CONFIG_NAME`
+   actually runs, unchanged by this commit — see R17 in §4): `age_state` remains the active
+   `policy_engine`-mode config despite failing this benchmark's k-anonymity check. This is
+   not a claim that the failure doesn't matter; see R17 for the explicit rationale.
+
+*Scope of this check, restated from `ARCHITECTURE.md` §8/N4 rather than re-argued here:* a
+"bounded empirical sanity check... not a formal privacy guarantee," measured against a
+small, deliberately-constrained synthetic dataset whose identity pool (V6) is not
+representative of a real deployment's population size. A larger, less artificially
+concentrated real population could plausibly measure a different k for the same configs —
+in either direction — which is exactly why this is reported as a benchmark finding to weigh,
+not treated as a pass/fail gate that silently removes a config from the system.
+
+No file under `app/` changed as part of this measurement or its interpretation — see R17.
+No regression test was added for it: no production behavior changed, and pinning a specific
+k-anonymity number into CI is explicitly Phase 7's later regression-threshold commit's job
+(`CLAUDE.md` §4 — don't pin a threshold ahead of the commit that's actually supposed to).
 
 ### CI regression thresholds
 

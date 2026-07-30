@@ -23,7 +23,11 @@ from eval.harness.response_cache import (
     load_cache,
     put_cached_response,
 )
-from eval.harness.run_matrix import _evaluate_field, run_matrix
+from eval.harness.run_matrix import (
+    _evaluate_field,
+    execution_status_from_modes,
+    run_matrix,
+)
 
 REFERENCE_DATE = date(2026, 7, 29)
 
@@ -339,9 +343,100 @@ def test_error_from_run_graph_is_recorded_as_an_error_outcome_not_a_crash(
     assert load_cache(cache_path) == {}
 
 
+def test_error_from_ingestion_is_recorded_as_an_error_outcome_not_a_crash(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Discovered live (Phase 7 Commit 7): an embedding-provider failure during ingestion
+    previously propagated uncaught all the way out of run_matrix(), crashing the whole
+    process and losing every already-computed in-memory result. Ingestion failures must be
+    recorded per-field, exactly like run_graph failures already are -- run_graph must never
+    even be reached once ingestion itself has failed."""
+    cache_path = tmp_path / "cache.json"
+    case = _kyc_case("case-1", _all_fields_ground_truth("x"))
+
+    def _raising_ingest(run_case_id: str, documents: list[dict[str, Any]]) -> None:
+        raise RuntimeError("embedding provider rate limit")
+
+    monkeypatch.setattr("eval.harness.run_matrix._ingest_case_documents", _raising_ingest)
+    monkeypatch.setattr("eval.harness.run_matrix.run_graph", _must_not_be_called)
+
+    result = run_matrix([case], cache_path=cache_path)
+    summary = result[PrivacyMode.NONE.value]
+
+    assert summary["outcome_counts"]["error"] == len(_KYC_FIELD_NAMES)
+    assert summary["accuracy"] == 0.0
+    assert load_cache(cache_path) == {}
+
+
+def test_ingestion_is_retried_on_the_next_field_after_a_transient_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A failed ingestion attempt must not be marked 'ingested' -- self-healing behavior for
+    a transient failure (e.g. a rate limit with its own stated retry delay): the very next
+    field for the same (case, mode) gets a fresh attempt, which can succeed."""
+    cache_path = tmp_path / "cache.json"
+    case = _kyc_case("case-1", _all_fields_ground_truth("Rohan Mehta"))
+    run_case_id = f"case-1__{PrivacyMode.NONE.value}"
+
+    ingest_attempts: list[str] = []
+
+    def _fails_once_then_succeeds(rid: str, documents: list[dict[str, Any]]) -> None:
+        ingest_attempts.append(rid)
+        if len(ingest_attempts) == 1:
+            raise RuntimeError("embedding provider rate limit")
+
+    monkeypatch.setattr("eval.harness.run_matrix._ingest_case_documents", _fails_once_then_succeeds)
+    monkeypatch.setattr(
+        "eval.harness.run_matrix.run_graph",
+        _stub_run_graph({run_case_id: {name: "Rohan Mehta" for name in _KYC_FIELD_NAMES}}, []),
+    )
+
+    result = run_matrix([case], cache_path=cache_path)
+    summary = result[PrivacyMode.NONE.value]
+
+    # Exactly one field absorbed the transient failure; every other field of this same
+    # (case, mode) succeeded once ingestion was retried and worked.
+    assert summary["outcome_counts"]["error"] == 1
+    assert summary["outcome_counts"]["correct"] == len(_KYC_FIELD_NAMES) - 1
+    # run_matrix sweeps every PrivacyMode, each with its own fresh `ingested` check: the
+    # first attempt (case-1__none) fails and is retried once more for the same run_case_id;
+    # full_tokenize/policy_engine each ingest successfully on their own first try.
+    assert ingest_attempts == [
+        "case-1__none",
+        "case-1__none",
+        "case-1__full_tokenize",
+        "case-1__policy_engine",
+    ]
+
+
 # ---------------------------------------------------------------------------
 # _evaluate_field, directly (the cache/ingest/run_graph wiring in isolation)
 # ---------------------------------------------------------------------------
+
+
+def test_execution_status_is_complete_when_no_mode_has_any_error_outcome() -> None:
+    modes_result = {
+        "none": {"outcome_counts": {"correct": 10}},
+        "full_tokenize": {"outcome_counts": {"correct": 8, "correct_abstention": 2}},
+    }
+    assert execution_status_from_modes(modes_result) == "complete"
+
+
+def test_execution_status_is_partial_when_any_mode_has_at_least_one_error_outcome() -> None:
+    modes_result = {
+        "none": {"outcome_counts": {"correct": 10}},
+        "full_tokenize": {"outcome_counts": {"correct": 5, "error": 3}},
+    }
+    assert execution_status_from_modes(modes_result) == "partial_errors_present"
+
+
+def test_execution_status_treats_a_zero_error_count_as_complete() -> None:
+    """A mode summary can legitimately carry an explicit 'error': 0 key (scoring.py's own
+    outcome_counts only includes outcomes that actually occurred, but a caller constructing
+    a summary by hand -- as this test does -- might still include a zero) -- must not be
+    mistaken for a partial run."""
+    modes_result = {"none": {"outcome_counts": {"correct": 10, "error": 0}}}
+    assert execution_status_from_modes(modes_result) == "complete"
 
 
 def test_evaluate_field_returns_the_cached_response_without_ingesting_or_running_the_graph(
